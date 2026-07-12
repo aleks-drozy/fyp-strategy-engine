@@ -24,3 +24,16 @@ def test_session_slice_window(tmp_path):
     df = load_nq(_fixture(tmp_path))
     s = session_slice(df, "09:32", "10:00")
     assert len(s) == 2                                         # 09:32 + 09:33; 10:05 excluded
+
+def test_load_drops_dst_ambiguous_time(tmp_path):
+    # 2023-11-05 01:30 ET falls in the fall-back repeated hour -> ambiguous -> NaT -> dropped
+    csv = tmp_path / "dst.csv"
+    csv.write_text(
+        "timestamp ET,open,high,low,close,volume,Vwap_RTH,Vwap_ETH\n"
+        "11/05/2023 01:30,100,101,99,100,5,0,100\n"       # ambiguous -> dropped
+        "11/06/2023 09:33,100,101,99,100.5,10,0,100\n"    # normal -> kept
+    )
+    df = load_nq(str(csv))
+    assert len(df) == 1
+    assert df.index.notna().all()
+    assert df.index[0].strftime("%Y-%m-%d %H:%M") == "2023-11-06 09:33"

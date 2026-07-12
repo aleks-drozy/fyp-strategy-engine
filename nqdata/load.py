@@ -9,7 +9,7 @@ COLS = ["open", "high", "low", "close", "volume", "vwap_rth", "vwap_eth"]
 
 def load_nq(path: str | None = None) -> pd.DataFrame:
     df = pd.read_csv(path or DEFAULT_PATH)
-    ts = pd.to_datetime(df["timestamp ET"], errors="raise")
+    ts = pd.to_datetime(df["timestamp ET"], format="%m/%d/%Y %H:%M", errors="raise")
     idx = pd.DatetimeIndex(ts).tz_localize(
         "US/Eastern", ambiguous="NaT", nonexistent="shift_forward")
     df = df.drop(columns=["timestamp ET"]).rename(columns=RENAME)
