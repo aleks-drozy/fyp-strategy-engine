@@ -1,0 +1,12 @@
+{
+  "n_rows": 1048575,
+  "date_min": "2022-12-26 18:01:00-05:00",
+  "date_max": "2025-12-11 20:52:00-05:00",
+  "timezone": "US/Eastern",
+  "pct_1min_spacing": 0.9991321547167868,
+  "n_ohlc_violations": 0,
+  "n_nan_ohlc": 0,
+  "n_dup_timestamps": 0,
+  "session_bar_count": 21390,
+  "session_days": 764
+}
