@@ -57,8 +57,11 @@ taken from that file (line numbers cited). Where prior vault notes disagreed, **
 
 ## Reuse — what already exists (major accelerator)
 
-A faithful, line-by-line Python port of the hardest pieces lives in the Trading Dashboard repo and is
-**directly reusable** over `load_nq()` output (same lowercase OHLCV contract):
+A near-faithful Python port of the hardest pieces lives in the Trading Dashboard repo and is largely
+reusable over `load_nq()` output (same lowercase OHLCV contract) — **but it is not blindly trustworthy**:
+an adversarial review found a **CISD off-by-one** (wrong neighbor bar, `breakIdx+1` vs Pine's `breakIdx-1`)
+that must be corrected on copy, and the IFVG port omits the session gate. Treat every port as
+**verify-against-Pine**, not verbatim-faithful:
 
 - `backend/strategy/ifvg.py` — `compute_ifvg(df)` state machine. **HIGH reuse.** **Change required:** it
   omits the `inTradingSession` gate on FVG creation (it was built for a context where session was handled
@@ -112,8 +115,15 @@ is unambiguous; direction is a guard so a right-day/wrong-side trade scores as a
 counted as misses), and the count excluded is reported explicitly.
 
 - **`NQ1_2023_2024.csv`** (95 trades, −$4,600, PF 0.90) — **entirely inside** the window → full check.
-- **`NQ1_optimised.csv`** (72 trades, +$28,400, PF 1.70) — runs Jan 2025 → Feb 2026; the tail after
-  2025-12-11 is excluded (exact count computed and reported).
+- **`NQ1_optimised.csv`** (72 trades, +$28,400 full) — runs Jan 2025 → Feb 2026; the tail after
+  2025-12-11 is excluded. **In-window backtestable baseline = 59 trades / +$18,115** (verified); the 13
+  excluded trades carry +$10,285 incl. the biggest winners. The full +$28,400/72 is **not** the target.
+- **CRITICAL data caveat:** `load_nq` is a **back-adjusted continuous** NQ series; the real logs are the
+  **unadjusted front-month** (verified: 15017 vs 12362 in 2023, 22523 vs 21610 in 2025 — a large,
+  time-varying offset). Intraday relationships are offset-invariant so **signals are unaffected**, but
+  **absolute prices/$-PnL are NOT directly comparable** — headline validation is (entry-date, direction)
+  coverage + win/loss outcomes; the generated set is **window-matched to each disjoint log** before
+  comparison; and `fill_mode` is **fixed a-priori**, never fit to the logs.
 
 **Report (`backtest_results.json` + write-up):**
 - Coverage: # real trades in window, # excluded (post-truncation), # generated, # matched (same
@@ -132,8 +142,9 @@ Reproducing the *losing* 2023-24 log's character matters as much as the winner �
 
 - **Fill convention:** entry executes on the bar **after** the signal at its **open** (Pine
   `strategy.entry` default), with stop/target **anchored to the signal-bar close** (as the Pine computes
-  them). A `fill_mode` flag also supports signal-bar-close fills; validation picks whichever matches the
-  real logs' entry prices better, and the choice is documented. Entry-price deltas are reported either way.
+  them). `fill_mode` is **fixed a-priori to `next_open`** and is **never** selected by agreement with the
+  real logs (that would curve-fit the reimplementation to its own validation set — Pine semantics are
+  unambiguous). `signal_close` fills may be reported only as a **pre-declared sensitivity band**.
 - **Swing stop window:** `ta.lowest(low, 8)` / `ta.highest(high, 8)` include the **current bar** (8 bars
   ending at the entry bar, inclusive). This differs from the dashboard router's `[i-8:i]` (exclusive) —
   Phase 2 matches the Pine (inclusive).
