@@ -85,7 +85,51 @@ same result narrated with the fold table and all five charts inline
 (loads the committed `phase4_results.json` — it does not re-run the
 sweep), and `WRITEUP_PHASE4.md` for the full writeup.
 
-## Program complete (Phases 1–4)
+## Phase 5 — Costs + exits + volatility filter
+
+Extended the Phase-2/4 engine with a pluggable exit handler (5 modes:
+`fixed_1_5R`, `breakeven_1R`, `trail_swing`, `partial_1R`, `time_stop`), a
+leak-free ATR%-based volatility gate, and a reason-aware cost model
+(commission + slippage, charged per fill), all off/default by default so
+Phase-2/4 behavior is byte-preserved (regression-locked against the
+Phase-2 golden fixture). Swept `exit_mode × vol_filter` (20 combos, entry
+parameters fixed at the Phase-4-null defaults) through the same walk-forward
+harness as Phase 4, selecting **net** in-sample PF, and evaluated a
+5-condition pre-registered success rule against **net**, cost-adjusted,
+stitched out-of-sample results.
+
+**Honest headline: `robust_improvement = FALSE` — a null result, and the
+closest this program has come.** For the first time, the tuned
+configuration's stitched net OOS profit factor crosses breakeven: PF
+**1.0707** on 228 trades, **+$9,795** net P&L, **+$42.96/trade**
+expectancy (base: PF 0.9006, **−$25,587.50**, **−$63.81/trade**). It
+passes 4 of 5 pre-registered conditions — net PF > 1.0, margin ≥ 0.10 over
+base, beats base in 3/4 folds, beats the 75th-percentile selection-luck
+null — and fails only the statistical-confidence gate: a bootstrap CI
+lower bound of **0.807**, below the 1.0 floor the rule demands. Why: the
+entire net edge is concentrated in one 25-trade fold (+$18,845), while the
+other three folds combined net −$9,050. A **promising signal, not a
+proven edge** — exactly what the pre-registered gate was built to
+distinguish. Full result, the Fold-4 concentration analysis, cost
+sensitivity (0×/1×/2×), and every mandatory disclosure: see
+`WRITEUP_PHASE5.md`.
+
+**Run it:**
+
+```
+.venv/Scripts/python run_phase5.py
+```
+
+Requires the same Phase-1 raw data as Phase 2/4. Takes ~52 seconds (20
+combos × 4 folds). Writes `phase5_results.json` and five charts to
+`charts/` (stitched equity curve, per-fold OOS PF, selected exit/filter
+stability, cost-sensitivity bars, 20-combo selection-luck null). See
+`notebooks/05_costs_exits_volfilter.ipynb` for the same result narrated
+with the fold table, eligibility table, cost sensitivity, and all five
+charts inline (loads the committed `phase5_results.json` — it does not
+re-run the sweep), and `WRITEUP_PHASE5.md` for the full writeup.
+
+## Program complete (Phases 1–5)
 
 Data foundation (P1) → faithful strategy rebuild that located the likely
 source of the real track record's edge in selectivity/tuning rather than a
@@ -94,6 +138,12 @@ pre-registered as conditional on Phase 4 finding a robust improvement, and
 correctly **not run** since it didn't (`docs/superpowers/specs/2026-07-13-phase4-parameter-tuning-design.md`)
 → a pre-registered, falsifiable walk-forward tuning study that tests the
 Phase-2 hypothesis honestly out-of-sample and reports an **honest null**
-(P4). Every headline number in this program was defined before it was
+(P4) → smarter exits + costs + a volatility filter, layered on the
+Phase-4-null default entry, which pushes the stitched net OOS point
+estimate above breakeven for the first time — but is correctly held back
+from being called a proven edge by the same pre-registered statistical-
+confidence gate that makes every other result in this program trustworthy
+(P5). Every headline number in this program was defined before it was
 observed and reported whether or not it flattered the strategy — see
-`WRITEUP_PHASE4.md`'s closing section for the full retrospective.
+`WRITEUP_PHASE5.md`'s closing "Program epilogue" for the full 5-phase
+retrospective.

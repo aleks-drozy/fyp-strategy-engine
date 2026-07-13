@@ -1,0 +1,3135 @@
+{
+  "config_hash": "71ced75e040dd1cf618bc00ecf6a7f722847011fe6bb52423ee1f00905be6018",
+  "git_sha": "37fa2ddbf28a2a1d2ab6450893717d2e48518d20",
+  "grid_size": 20,
+  "min_is_trades": 50,
+  "min_oos_trades": 60,
+  "objective": "max_net_pf_among_eligible_combos__tiebreak_net_total_pnl_then_lower_net_max_drawdown",
+  "cost_model": {
+    "commission_rt": 5.0,
+    "slippage_ticks_entry": 1,
+    "slippage_ticks_stop": 1,
+    "tick_value": 5.0,
+    "multiplier": 1.0
+  },
+  "run_seconds": 51.5,
+  "folds": [
+    {
+      "fold_index": 0,
+      "train_start": "2023-01-01T00:00:00-05:00",
+      "train_end": "2024-01-01T00:00:00-05:00",
+      "test_start": "2024-01-01T00:00:00-05:00",
+      "test_end": "2024-07-01T00:00:00-04:00",
+      "selected_exit_mode": "partial_1R",
+      "selected_vol_filter": "p50",
+      "selected_params": {
+        "fvg_threshold": 0.0,
+        "rr": 1.5,
+        "ema_length": 20,
+        "swing_lookback": 8,
+        "session_start": "09:30",
+        "session_end": "10:30",
+        "exit_mode": "partial_1R",
+        "vol_filter": "p50"
+      },
+      "fallback_used": false,
+      "eligible": true,
+      "pre_filter_in_session_signal_count": 499,
+      "is_net_pf": 0.919337962522591,
+      "is_net_total_pnl": -4240.0,
+      "is_n": 113,
+      "is_net_max_drawdown": 9365.0,
+      "oos_net_metrics": {
+        "net_profit_factor": 0.722999641191245,
+        "net_win_rate": 0.5333333333333333,
+        "net_total_pnl": -3860.0,
+        "net_max_drawdown": 5145.0,
+        "net_expectancy": -128.66666666666666,
+        "n_trades": 30
+      },
+      "oos_net_base_metrics": {
+        "net_profit_factor": 0.8804371002132196,
+        "net_win_rate": 0.4019607843137255,
+        "net_total_pnl": -5607.5,
+        "net_max_drawdown": 12382.5,
+        "net_expectancy": -54.97549019607843,
+        "n_trades": 102
+      },
+      "oos_trades": [
+        {
+          "entry_time": "2024-01-03T10:12:00-05:00",
+          "direction": "Short",
+          "pnl_usd": 527.5,
+          "net_pnl": 507.5,
+          "r_multiple": 0.4953051643192488,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-01-04T10:03:00-05:00",
+          "direction": "Long",
+          "pnl_usd": 462.5,
+          "net_pnl": 442.5,
+          "r_multiple": 0.505464480874317,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-01-16T10:06:00-05:00",
+          "direction": "Short",
+          "pnl_usd": -585.0,
+          "net_pnl": -600.0,
+          "r_multiple": -1.0,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-01-18T10:04:00-05:00",
+          "direction": "Short",
+          "pnl_usd": -835.0,
+          "net_pnl": -850.0,
+          "r_multiple": -1.0060240963855422,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-02-02T09:55:00-05:00",
+          "direction": "Short",
+          "pnl_usd": -1220.0,
+          "net_pnl": -1235.0,
+          "r_multiple": -1.0041152263374487,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-02-20T10:27:00-05:00",
+          "direction": "Short",
+          "pnl_usd": -700.0,
+          "net_pnl": -715.0,
+          "r_multiple": -1.0,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-02-21T10:04:00-05:00",
+          "direction": "Long",
+          "pnl_usd": 265.0,
+          "net_pnl": 245.0,
+          "r_multiple": 0.4818181818181818,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-03-08T09:42:00-05:00",
+          "direction": "Long",
+          "pnl_usd": 1355.0,
+          "net_pnl": 1340.0,
+          "r_multiple": 2.0074074074074075,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_target"
+        },
+        {
+          "entry_time": "2024-03-11T09:43:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -1560.0,
+          "net_pnl": -1575.0,
+          "r_multiple": -1.0064516129032257,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-03-12T09:36:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 730.0,
+          "net_pnl": 710.0,
+          "r_multiple": 0.49829351535836175,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-03-14T10:11:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 535.0,
+          "net_pnl": 515.0,
+          "r_multiple": 0.4908256880733945,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-03-27T10:17:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 1990.0,
+          "net_pnl": 1975.0,
+          "r_multiple": 2.01010101010101,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_target"
+        },
+        {
+          "entry_time": "2024-04-05T10:09:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -990.0,
+          "net_pnl": -1005.0,
+          "r_multiple": -1.0050761421319796,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-04-08T09:52:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -590.0,
+          "net_pnl": -605.0,
+          "r_multiple": -1.0085470085470085,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-04-10T09:56:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -1700.0,
+          "net_pnl": -1715.0,
+          "r_multiple": -1.0,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-04-11T09:55:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -480.0,
+          "net_pnl": -495.0,
+          "r_multiple": -1.0105263157894737,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-04-12T10:20:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -770.0,
+          "net_pnl": -785.0,
+          "r_multiple": -1.0,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-04-16T10:23:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 415.0,
+          "net_pnl": 395.0,
+          "r_multiple": 0.49404761904761907,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-04-17T10:27:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -730.0,
+          "net_pnl": -745.0,
+          "r_multiple": -1.006896551724138,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-04-18T09:51:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 570.0,
+          "net_pnl": 550.0,
+          "r_multiple": 0.5,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-04-19T09:43:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 372.5,
+          "net_pnl": 352.5,
+          "r_multiple": 0.5033783783783784,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-04-22T09:48:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 292.5,
+          "net_pnl": 272.5,
+          "r_multiple": 0.49159663865546216,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-04-25T10:06:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 1145.0,
+          "net_pnl": 1130.0,
+          "r_multiple": 1.991304347826087,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_target"
+        },
+        {
+          "entry_time": "2024-04-26T09:35:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 430.0,
+          "net_pnl": 410.0,
+          "r_multiple": 0.49710982658959535,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-05-02T10:02:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 357.5,
+          "net_pnl": 337.5,
+          "r_multiple": 0.5,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-05-03T10:02:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 742.5,
+          "net_pnl": 722.5,
+          "r_multiple": 0.5051020408163265,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-06-03T10:02:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -1055.0,
+          "net_pnl": -1070.0,
+          "r_multiple": -0.9952830188679245,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-06-04T10:02:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -1055.0,
+          "net_pnl": -1070.0,
+          "r_multiple": -1.0,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-06-05T10:04:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 190.0,
+          "net_pnl": 170.0,
+          "r_multiple": 0.5,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-06-24T09:56:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -1455.0,
+          "net_pnl": -1470.0,
+          "r_multiple": -1.0034482758620689,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        }
+      ],
+      "oos_pf_distribution": [
+        0.8804371002132196,
+        0.6521941489361702,
+        0.4868111163447951,
+        1.0004385964912281,
+        1.0227018720312937,
+        0.6987131667288325,
+        0.5307064252751154,
+        1.1702127659574468,
+        1.0847410689559678,
+        0.868605079131395,
+        0.6911196911196911,
+        1.5850066934404283,
+        1.0272988505747127,
+        0.94642166344294,
+        0.722999641191245,
+        1.3771551724137931,
+        1.0767819706498951,
+        0.8563941299790356,
+        0.5169566499557653,
+        1.2496147919876734
+      ],
+      "selected_oos_percentile": 0.35,
+      "median_combo_oos_pf": 0.9134293818280799,
+      "p75_combo_oos_pf": 1.0787717452264132,
+      "combo_eligibility": [
+        {
+          "exit_mode": "fixed_1_5R",
+          "vol_filter": "off",
+          "vol_threshold": null,
+          "is_realized_trades": 201,
+          "oos_realized_trades": 102
+        },
+        {
+          "exit_mode": "fixed_1_5R",
+          "vol_filter": "p25",
+          "vol_threshold": 0.06324044901462898,
+          "is_realized_trades": 158,
+          "oos_realized_trades": 62
+        },
+        {
+          "exit_mode": "fixed_1_5R",
+          "vol_filter": "p50",
+          "vol_threshold": 0.07794778351413496,
+          "is_realized_trades": 113,
+          "oos_realized_trades": 30
+        },
+        {
+          "exit_mode": "fixed_1_5R",
+          "vol_filter": "p75",
+          "vol_threshold": 0.09733432261559946,
+          "is_realized_trades": 48,
+          "oos_realized_trades": 9
+        },
+        {
+          "exit_mode": "breakeven_1R",
+          "vol_filter": "off",
+          "vol_threshold": null,
+          "is_realized_trades": 201,
+          "oos_realized_trades": 103
+        },
+        {
+          "exit_mode": "breakeven_1R",
+          "vol_filter": "p25",
+          "vol_threshold": 0.06324044901462898,
+          "is_realized_trades": 158,
+          "oos_realized_trades": 62
+        },
+        {
+          "exit_mode": "breakeven_1R",
+          "vol_filter": "p50",
+          "vol_threshold": 0.07794778351413496,
+          "is_realized_trades": 113,
+          "oos_realized_trades": 30
+        },
+        {
+          "exit_mode": "breakeven_1R",
+          "vol_filter": "p75",
+          "vol_threshold": 0.09733432261559946,
+          "is_realized_trades": 48,
+          "oos_realized_trades": 9
+        },
+        {
+          "exit_mode": "trail_swing",
+          "vol_filter": "off",
+          "vol_threshold": null,
+          "is_realized_trades": 201,
+          "oos_realized_trades": 103
+        },
+        {
+          "exit_mode": "trail_swing",
+          "vol_filter": "p25",
+          "vol_threshold": 0.06324044901462898,
+          "is_realized_trades": 158,
+          "oos_realized_trades": 62
+        },
+        {
+          "exit_mode": "trail_swing",
+          "vol_filter": "p50",
+          "vol_threshold": 0.07794778351413496,
+          "is_realized_trades": 113,
+          "oos_realized_trades": 30
+        },
+        {
+          "exit_mode": "trail_swing",
+          "vol_filter": "p75",
+          "vol_threshold": 0.09733432261559946,
+          "is_realized_trades": 48,
+          "oos_realized_trades": 9
+        },
+        {
+          "exit_mode": "partial_1R",
+          "vol_filter": "off",
+          "vol_threshold": null,
+          "is_realized_trades": 201,
+          "oos_realized_trades": 102
+        },
+        {
+          "exit_mode": "partial_1R",
+          "vol_filter": "p25",
+          "vol_threshold": 0.06324044901462898,
+          "is_realized_trades": 158,
+          "oos_realized_trades": 61
+        },
+        {
+          "exit_mode": "partial_1R",
+          "vol_filter": "p50",
+          "vol_threshold": 0.07794778351413496,
+          "is_realized_trades": 113,
+          "oos_realized_trades": 30
+        },
+        {
+          "exit_mode": "partial_1R",
+          "vol_filter": "p75",
+          "vol_threshold": 0.09733432261559946,
+          "is_realized_trades": 48,
+          "oos_realized_trades": 9
+        },
+        {
+          "exit_mode": "time_stop",
+          "vol_filter": "off",
+          "vol_threshold": null,
+          "is_realized_trades": 201,
+          "oos_realized_trades": 103
+        },
+        {
+          "exit_mode": "time_stop",
+          "vol_filter": "p25",
+          "vol_threshold": 0.06324044901462898,
+          "is_realized_trades": 158,
+          "oos_realized_trades": 62
+        },
+        {
+          "exit_mode": "time_stop",
+          "vol_filter": "p50",
+          "vol_threshold": 0.07794778351413496,
+          "is_realized_trades": 113,
+          "oos_realized_trades": 30
+        },
+        {
+          "exit_mode": "time_stop",
+          "vol_filter": "p75",
+          "vol_threshold": 0.09733432261559946,
+          "is_realized_trades": 48,
+          "oos_realized_trades": 9
+        }
+      ]
+    },
+    {
+      "fold_index": 1,
+      "train_start": "2023-07-01T00:00:00-04:00",
+      "train_end": "2024-07-01T00:00:00-04:00",
+      "test_start": "2024-07-01T00:00:00-04:00",
+      "test_end": "2025-01-01T00:00:00-05:00",
+      "selected_exit_mode": "partial_1R",
+      "selected_vol_filter": "p50",
+      "selected_params": {
+        "fvg_threshold": 0.0,
+        "rr": 1.5,
+        "ema_length": 20,
+        "swing_lookback": 8,
+        "session_start": "09:30",
+        "session_end": "10:30",
+        "exit_mode": "partial_1R",
+        "vol_filter": "p50"
+      },
+      "fallback_used": false,
+      "eligible": true,
+      "pre_filter_in_session_signal_count": 503,
+      "is_net_pf": 0.9674909697138094,
+      "is_net_total_pnl": -1755.0,
+      "is_n": 113,
+      "is_net_max_drawdown": 6387.5,
+      "oos_net_metrics": {
+        "net_profit_factor": 0.7505534401841849,
+        "net_win_rate": 0.4875,
+        "net_total_pnl": -14085.0,
+        "net_max_drawdown": 16677.5,
+        "net_expectancy": -176.0625,
+        "n_trades": 80
+      },
+      "oos_net_base_metrics": {
+        "net_profit_factor": 0.6263627650652929,
+        "net_win_rate": 0.32727272727272727,
+        "net_total_pnl": -31187.5,
+        "net_max_drawdown": 31187.5,
+        "net_expectancy": -283.52272727272725,
+        "n_trades": 110
+      },
+      "oos_trades": [
+        {
+          "entry_time": "2024-07-01T10:12:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 480.0,
+          "net_pnl": 460.0,
+          "r_multiple": 0.4948453608247423,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-07-02T10:23:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -670.0,
+          "net_pnl": -685.0,
+          "r_multiple": -1.0151515151515151,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-07-03T10:09:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -710.0,
+          "net_pnl": -725.0,
+          "r_multiple": -1.0,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-07-05T10:20:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 1825.0,
+          "net_pnl": 1810.0,
+          "r_multiple": 2.0054945054945055,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_target"
+        },
+        {
+          "entry_time": "2024-07-11T09:59:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -880.0,
+          "net_pnl": -895.0,
+          "r_multiple": -1.0057142857142858,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-07-12T09:48:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 1680.0,
+          "net_pnl": 1665.0,
+          "r_multiple": 2.0,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_target"
+        },
+        {
+          "entry_time": "2024-07-15T09:46:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -1360.0,
+          "net_pnl": -1375.0,
+          "r_multiple": -1.0,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-07-17T09:56:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -545.0,
+          "net_pnl": -560.0,
+          "r_multiple": -1.0092592592592593,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-07-19T09:36:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 590.0,
+          "net_pnl": 570.0,
+          "r_multiple": 0.4978902953586498,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-07-22T09:40:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -1835.0,
+          "net_pnl": -1850.0,
+          "r_multiple": -0.994579945799458,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-07-23T10:09:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -1085.0,
+          "net_pnl": -1100.0,
+          "r_multiple": -1.0,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-07-25T09:48:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 940.0,
+          "net_pnl": 920.0,
+          "r_multiple": 0.5,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-07-26T09:49:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -1295.0,
+          "net_pnl": -1310.0,
+          "r_multiple": -0.9923371647509579,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-07-29T09:39:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 685.0,
+          "net_pnl": 665.0,
+          "r_multiple": 0.4963768115942029,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-07-30T09:45:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 1395.0,
+          "net_pnl": 1380.0,
+          "r_multiple": 2.0071942446043165,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_target"
+        },
+        {
+          "entry_time": "2024-07-31T09:46:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -1710.0,
+          "net_pnl": -1725.0,
+          "r_multiple": -1.0,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-08-01T09:41:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 587.5,
+          "net_pnl": 567.5,
+          "r_multiple": 0.5021367521367521,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-08-02T09:40:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -2420.0,
+          "net_pnl": -2435.0,
+          "r_multiple": -0.9979381443298969,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-08-05T10:14:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -4215.0,
+          "net_pnl": -4230.0,
+          "r_multiple": -0.991764705882353,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-08-06T09:38:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -2245.0,
+          "net_pnl": -2260.0,
+          "r_multiple": -1.0135440180586908,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-08-07T10:06:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 722.5,
+          "net_pnl": 702.5,
+          "r_multiple": 0.5070175438596491,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-08-08T09:56:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 4400.0,
+          "net_pnl": 4385.0,
+          "r_multiple": 1.9954648526077097,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_target"
+        },
+        {
+          "entry_time": "2024-08-12T09:59:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -1095.0,
+          "net_pnl": -1110.0,
+          "r_multiple": -1.0186046511627906,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-08-13T09:57:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -765.0,
+          "net_pnl": -780.0,
+          "r_multiple": -1.006578947368421,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-08-14T09:35:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 2255.0,
+          "net_pnl": 2240.0,
+          "r_multiple": 2.0044444444444443,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_target"
+        },
+        {
+          "entry_time": "2024-08-15T10:28:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 372.5,
+          "net_pnl": 352.5,
+          "r_multiple": 0.5033783783783784,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-08-16T09:52:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 475.0,
+          "net_pnl": 455.0,
+          "r_multiple": 0.5026455026455027,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-08-19T09:44:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -1300.0,
+          "net_pnl": -1315.0,
+          "r_multiple": -0.9848484848484849,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-08-22T09:50:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -495.0,
+          "net_pnl": -510.0,
+          "r_multiple": -1.03125,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-08-23T10:26:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -2105.0,
+          "net_pnl": -2120.0,
+          "r_multiple": -0.9929245283018868,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-08-26T09:45:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 1860.0,
+          "net_pnl": 1845.0,
+          "r_multiple": 1.9893048128342246,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_target"
+        },
+        {
+          "entry_time": "2024-08-27T09:50:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 2085.0,
+          "net_pnl": 2070.0,
+          "r_multiple": 1.9857142857142858,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_target"
+        },
+        {
+          "entry_time": "2024-08-28T10:14:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 382.5,
+          "net_pnl": 362.5,
+          "r_multiple": 0.51,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-08-29T10:30:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 757.5,
+          "net_pnl": 737.5,
+          "r_multiple": 0.5016556291390728,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-08-30T09:49:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -595.0,
+          "net_pnl": -610.0,
+          "r_multiple": -0.9916666666666667,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-09-03T10:03:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -1395.0,
+          "net_pnl": -1410.0,
+          "r_multiple": -0.9893617021276596,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-09-04T10:02:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -2725.0,
+          "net_pnl": -2740.0,
+          "r_multiple": -1.0018382352941178,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-09-05T10:13:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -1510.0,
+          "net_pnl": -1525.0,
+          "r_multiple": -0.9966996699669967,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-09-06T09:32:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -710.0,
+          "net_pnl": -725.0,
+          "r_multiple": -0.993006993006993,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-09-09T10:20:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 645.0,
+          "net_pnl": 625.0,
+          "r_multiple": 0.5,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-09-10T09:38:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 802.5,
+          "net_pnl": 782.5,
+          "r_multiple": 0.5063091482649842,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-09-11T10:09:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 1740.0,
+          "net_pnl": 1725.0,
+          "r_multiple": 2.0115606936416186,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_target"
+        },
+        {
+          "entry_time": "2024-09-12T09:39:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -1505.0,
+          "net_pnl": -1520.0,
+          "r_multiple": -0.9966887417218543,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-09-13T10:28:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 347.5,
+          "net_pnl": 327.5,
+          "r_multiple": 0.49642857142857144,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-09-16T10:11:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -575.0,
+          "net_pnl": -590.0,
+          "r_multiple": -0.9829059829059829,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-09-18T10:21:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -595.0,
+          "net_pnl": -610.0,
+          "r_multiple": -0.9596774193548387,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-09-19T09:52:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -1490.0,
+          "net_pnl": -1505.0,
+          "r_multiple": -1.0067567567567568,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-09-27T10:05:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -1150.0,
+          "net_pnl": -1165.0,
+          "r_multiple": -0.9871244635193133,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-09-30T10:29:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 405.0,
+          "net_pnl": 385.0,
+          "r_multiple": 0.5031055900621118,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-10-01T10:09:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 887.5,
+          "net_pnl": 867.5,
+          "r_multiple": 0.5,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-10-02T09:37:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 530.0,
+          "net_pnl": 510.0,
+          "r_multiple": 0.49765258215962443,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-10-03T10:15:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 1045.0,
+          "net_pnl": 1025.0,
+          "r_multiple": 0.4976190476190476,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-10-04T10:10:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -1430.0,
+          "net_pnl": -1445.0,
+          "r_multiple": -0.9930555555555556,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-10-10T10:02:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 502.5,
+          "net_pnl": 482.5,
+          "r_multiple": 0.5025,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-10-16T09:46:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -1245.0,
+          "net_pnl": -1260.0,
+          "r_multiple": -1.0121951219512195,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-10-17T10:22:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -1260.0,
+          "net_pnl": -1275.0,
+          "r_multiple": -0.9921259842519685,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-10-22T09:56:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 317.5,
+          "net_pnl": 297.5,
+          "r_multiple": 0.49609375,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-10-24T09:57:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -850.0,
+          "net_pnl": -865.0,
+          "r_multiple": -1.0119047619047619,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-10-28T10:02:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 412.5,
+          "net_pnl": 392.5,
+          "r_multiple": 0.5061349693251533,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-10-29T09:59:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 2040.0,
+          "net_pnl": 2025.0,
+          "r_multiple": 2.0,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_target"
+        },
+        {
+          "entry_time": "2024-10-31T10:19:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -1475.0,
+          "net_pnl": -1490.0,
+          "r_multiple": -1.0034013605442176,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-11-01T09:40:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 1040.0,
+          "net_pnl": 1025.0,
+          "r_multiple": 2.0392156862745097,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_target"
+        },
+        {
+          "entry_time": "2024-11-04T09:50:00-05:00",
+          "direction": "Long",
+          "pnl_usd": 642.5,
+          "net_pnl": 622.5,
+          "r_multiple": 0.49613899613899615,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-11-05T10:13:00-05:00",
+          "direction": "Short",
+          "pnl_usd": -840.0,
+          "net_pnl": -855.0,
+          "r_multiple": -0.9882352941176471,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-11-14T10:20:00-05:00",
+          "direction": "Short",
+          "pnl_usd": -865.0,
+          "net_pnl": -880.0,
+          "r_multiple": -1.005813953488372,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-11-15T10:00:00-05:00",
+          "direction": "Short",
+          "pnl_usd": 2360.0,
+          "net_pnl": 2345.0,
+          "r_multiple": 2.008510638297872,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_target"
+        },
+        {
+          "entry_time": "2024-11-19T09:54:00-05:00",
+          "direction": "Long",
+          "pnl_usd": 2275.0,
+          "net_pnl": 2260.0,
+          "r_multiple": 1.9956140350877194,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_target"
+        },
+        {
+          "entry_time": "2024-11-21T10:14:00-05:00",
+          "direction": "Long",
+          "pnl_usd": -1480.0,
+          "net_pnl": -1495.0,
+          "r_multiple": -1.0033898305084745,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-11-22T10:30:00-05:00",
+          "direction": "Short",
+          "pnl_usd": -1285.0,
+          "net_pnl": -1300.0,
+          "r_multiple": -0.9846743295019157,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-11-25T09:41:00-05:00",
+          "direction": "Long",
+          "pnl_usd": -1830.0,
+          "net_pnl": -1845.0,
+          "r_multiple": -1.0054945054945055,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-11-26T09:55:00-05:00",
+          "direction": "Short",
+          "pnl_usd": 412.5,
+          "net_pnl": 392.5,
+          "r_multiple": 0.5030487804878049,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-12-16T10:26:00-05:00",
+          "direction": "Long",
+          "pnl_usd": 1935.0,
+          "net_pnl": 1920.0,
+          "r_multiple": 2.005181347150259,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_target"
+        },
+        {
+          "entry_time": "2024-12-17T10:02:00-05:00",
+          "direction": "Short",
+          "pnl_usd": -1265.0,
+          "net_pnl": -1280.0,
+          "r_multiple": -0.9921568627450981,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-12-18T09:44:00-05:00",
+          "direction": "Long",
+          "pnl_usd": 595.0,
+          "net_pnl": 575.0,
+          "r_multiple": 0.5,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-12-19T09:37:00-05:00",
+          "direction": "Short",
+          "pnl_usd": 365.0,
+          "net_pnl": 345.0,
+          "r_multiple": 0.4866666666666667,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-12-20T09:50:00-05:00",
+          "direction": "Short",
+          "pnl_usd": -2075.0,
+          "net_pnl": -2090.0,
+          "r_multiple": -1.017156862745098,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-12-23T10:08:00-05:00",
+          "direction": "Short",
+          "pnl_usd": -1685.0,
+          "net_pnl": -1700.0,
+          "r_multiple": -1.0029761904761905,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2024-12-26T10:01:00-05:00",
+          "direction": "Long",
+          "pnl_usd": 882.5,
+          "net_pnl": 862.5,
+          "r_multiple": 0.5042857142857143,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_stop"
+        },
+        {
+          "entry_time": "2024-12-27T09:56:00-05:00",
+          "direction": "Short",
+          "pnl_usd": 1415.0,
+          "net_pnl": 1400.0,
+          "r_multiple": 2.00709219858156,
+          "outcome": "Win",
+          "exit_reason": "partial_remainder_target"
+        },
+        {
+          "entry_time": "2024-12-30T09:52:00-05:00",
+          "direction": "Long",
+          "pnl_usd": -1285.0,
+          "net_pnl": -1300.0,
+          "r_multiple": -1.0,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        }
+      ],
+      "oos_pf_distribution": [
+        0.6263627650652929,
+        0.7033756361528055,
+        0.700285756154748,
+        0.6619550408719346,
+        0.6270500686366592,
+        0.702451394759087,
+        0.7180414644905161,
+        0.6574951644100581,
+        0.776880183014012,
+        0.8528919330289193,
+        0.8364143704220439,
+        0.7708513708513709,
+        0.706761462565293,
+        0.774315464712688,
+        0.7505534401841849,
+        0.48497479643272584,
+        0.5938886150813208,
+        0.679998480704953,
+        0.6752654207247522,
+        0.5957135898684851
+      ],
+      "selected_oos_percentile": 0.75,
+      "median_combo_oos_pf": 0.7013685754569174,
+      "p75_combo_oos_pf": 0.7556279228509815,
+      "combo_eligibility": [
+        {
+          "exit_mode": "fixed_1_5R",
+          "vol_filter": "off",
+          "vol_threshold": null,
+          "is_realized_trades": 208,
+          "oos_realized_trades": 110
+        },
+        {
+          "exit_mode": "fixed_1_5R",
+          "vol_filter": "p25",
+          "vol_threshold": 0.05710979811357746,
+          "is_realized_trades": 167,
+          "oos_realized_trades": 97
+        },
+        {
+          "exit_mode": "fixed_1_5R",
+          "vol_filter": "p50",
+          "vol_threshold": 0.06937892303972722,
+          "is_realized_trades": 114,
+          "oos_realized_trades": 80
+        },
+        {
+          "exit_mode": "fixed_1_5R",
+          "vol_filter": "p75",
+          "vol_threshold": 0.08197288383789272,
+          "is_realized_trades": 60,
+          "oos_realized_trades": 63
+        },
+        {
+          "exit_mode": "breakeven_1R",
+          "vol_filter": "off",
+          "vol_threshold": null,
+          "is_realized_trades": 209,
+          "oos_realized_trades": 110
+        },
+        {
+          "exit_mode": "breakeven_1R",
+          "vol_filter": "p25",
+          "vol_threshold": 0.05710979811357746,
+          "is_realized_trades": 168,
+          "oos_realized_trades": 97
+        },
+        {
+          "exit_mode": "breakeven_1R",
+          "vol_filter": "p50",
+          "vol_threshold": 0.06937892303972722,
+          "is_realized_trades": 114,
+          "oos_realized_trades": 80
+        },
+        {
+          "exit_mode": "breakeven_1R",
+          "vol_filter": "p75",
+          "vol_threshold": 0.08197288383789272,
+          "is_realized_trades": 60,
+          "oos_realized_trades": 63
+        },
+        {
+          "exit_mode": "trail_swing",
+          "vol_filter": "off",
+          "vol_threshold": null,
+          "is_realized_trades": 209,
+          "oos_realized_trades": 110
+        },
+        {
+          "exit_mode": "trail_swing",
+          "vol_filter": "p25",
+          "vol_threshold": 0.05710979811357746,
+          "is_realized_trades": 168,
+          "oos_realized_trades": 97
+        },
+        {
+          "exit_mode": "trail_swing",
+          "vol_filter": "p50",
+          "vol_threshold": 0.06937892303972722,
+          "is_realized_trades": 114,
+          "oos_realized_trades": 80
+        },
+        {
+          "exit_mode": "trail_swing",
+          "vol_filter": "p75",
+          "vol_threshold": 0.08197288383789272,
+          "is_realized_trades": 60,
+          "oos_realized_trades": 63
+        },
+        {
+          "exit_mode": "partial_1R",
+          "vol_filter": "off",
+          "vol_threshold": null,
+          "is_realized_trades": 208,
+          "oos_realized_trades": 110
+        },
+        {
+          "exit_mode": "partial_1R",
+          "vol_filter": "p25",
+          "vol_threshold": 0.05710979811357746,
+          "is_realized_trades": 167,
+          "oos_realized_trades": 97
+        },
+        {
+          "exit_mode": "partial_1R",
+          "vol_filter": "p50",
+          "vol_threshold": 0.06937892303972722,
+          "is_realized_trades": 113,
+          "oos_realized_trades": 80
+        },
+        {
+          "exit_mode": "partial_1R",
+          "vol_filter": "p75",
+          "vol_threshold": 0.08197288383789272,
+          "is_realized_trades": 60,
+          "oos_realized_trades": 63
+        },
+        {
+          "exit_mode": "time_stop",
+          "vol_filter": "off",
+          "vol_threshold": null,
+          "is_realized_trades": 209,
+          "oos_realized_trades": 110
+        },
+        {
+          "exit_mode": "time_stop",
+          "vol_filter": "p25",
+          "vol_threshold": 0.05710979811357746,
+          "is_realized_trades": 168,
+          "oos_realized_trades": 97
+        },
+        {
+          "exit_mode": "time_stop",
+          "vol_filter": "p50",
+          "vol_threshold": 0.06937892303972722,
+          "is_realized_trades": 114,
+          "oos_realized_trades": 80
+        },
+        {
+          "exit_mode": "time_stop",
+          "vol_filter": "p75",
+          "vol_threshold": 0.08197288383789272,
+          "is_realized_trades": 60,
+          "oos_realized_trades": 63
+        }
+      ]
+    },
+    {
+      "fold_index": 2,
+      "train_start": "2024-01-01T00:00:00-05:00",
+      "train_end": "2025-01-01T00:00:00-05:00",
+      "test_start": "2025-01-01T00:00:00-05:00",
+      "test_end": "2025-07-01T00:00:00-04:00",
+      "selected_exit_mode": "trail_swing",
+      "selected_vol_filter": "off",
+      "selected_params": {
+        "fvg_threshold": 0.0,
+        "rr": 1.5,
+        "ema_length": 20,
+        "swing_lookback": 8,
+        "session_start": "09:30",
+        "session_end": "10:30",
+        "exit_mode": "trail_swing",
+        "vol_filter": "off"
+      },
+      "fallback_used": false,
+      "eligible": true,
+      "pre_filter_in_session_signal_count": 505,
+      "is_net_pf": 0.8817067421027817,
+      "is_net_total_pnl": -12545.0,
+      "is_n": 213,
+      "is_net_max_drawdown": 20555.0,
+      "oos_net_metrics": {
+        "net_profit_factor": 1.1676878122348948,
+        "net_win_rate": 0.5053763440860215,
+        "net_total_pnl": 8895.0,
+        "net_max_drawdown": 11730.0,
+        "net_expectancy": 95.64516129032258,
+        "n_trades": 93
+      },
+      "oos_net_base_metrics": {
+        "net_profit_factor": 1.1061551179918834,
+        "net_win_rate": 0.43010752688172044,
+        "net_total_pnl": 7062.5,
+        "net_max_drawdown": 12155.0,
+        "net_expectancy": 75.94086021505376,
+        "n_trades": 93
+      },
+      "oos_trades": [
+        {
+          "entry_time": "2025-01-02T10:21:00-05:00",
+          "direction": "Short",
+          "pnl_usd": 1195.0,
+          "net_pnl": 1180.0,
+          "r_multiple": 0.7177177177177178,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-01-03T10:01:00-05:00",
+          "direction": "Long",
+          "pnl_usd": -1300.0,
+          "net_pnl": -1315.0,
+          "r_multiple": -1.0077519379844961,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-01-07T09:58:00-05:00",
+          "direction": "Short",
+          "pnl_usd": 2685.0,
+          "net_pnl": 2670.0,
+          "r_multiple": 2.2375,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-01-08T10:04:00-05:00",
+          "direction": "Long",
+          "pnl_usd": -1690.0,
+          "net_pnl": -1705.0,
+          "r_multiple": -0.9912023460410557,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-01-10T09:33:00-05:00",
+          "direction": "Short",
+          "pnl_usd": 1505.0,
+          "net_pnl": 1490.0,
+          "r_multiple": 1.3681818181818182,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-01-13T09:45:00-05:00",
+          "direction": "Long",
+          "pnl_usd": 125.0,
+          "net_pnl": 110.0,
+          "r_multiple": 0.08741258741258741,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-01-15T09:33:00-05:00",
+          "direction": "Long",
+          "pnl_usd": -795.0,
+          "net_pnl": -810.0,
+          "r_multiple": -1.0192307692307692,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-01-16T10:09:00-05:00",
+          "direction": "Long",
+          "pnl_usd": 520.0,
+          "net_pnl": 505.0,
+          "r_multiple": 0.37545126353790614,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-01-17T10:03:00-05:00",
+          "direction": "Long",
+          "pnl_usd": -1100.0,
+          "net_pnl": -1115.0,
+          "r_multiple": -1.0,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-01-20T10:12:00-05:00",
+          "direction": "Short",
+          "pnl_usd": 380.0,
+          "net_pnl": 365.0,
+          "r_multiple": 0.7676767676767676,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-01-21T09:55:00-05:00",
+          "direction": "Short",
+          "pnl_usd": 25.0,
+          "net_pnl": 10.0,
+          "r_multiple": 0.019011406844106463,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-01-22T10:24:00-05:00",
+          "direction": "Short",
+          "pnl_usd": -550.0,
+          "net_pnl": -565.0,
+          "r_multiple": -1.0091743119266054,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-01-23T09:55:00-05:00",
+          "direction": "Short",
+          "pnl_usd": 75.0,
+          "net_pnl": 60.0,
+          "r_multiple": 0.21739130434782608,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-01-24T09:47:00-05:00",
+          "direction": "Long",
+          "pnl_usd": -975.0,
+          "net_pnl": -990.0,
+          "r_multiple": -0.9948979591836735,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-01-27T10:09:00-05:00",
+          "direction": "Long",
+          "pnl_usd": -1195.0,
+          "net_pnl": -1210.0,
+          "r_multiple": -1.0127118644067796,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-01-28T09:53:00-05:00",
+          "direction": "Long",
+          "pnl_usd": 3950.0,
+          "net_pnl": 3935.0,
+          "r_multiple": 2.57328990228013,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-01-29T10:04:00-05:00",
+          "direction": "Long",
+          "pnl_usd": -915.0,
+          "net_pnl": -930.0,
+          "r_multiple": -1.0054945054945055,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-01-30T10:02:00-05:00",
+          "direction": "Short",
+          "pnl_usd": 830.0,
+          "net_pnl": 815.0,
+          "r_multiple": 0.4955223880597015,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-01-31T09:38:00-05:00",
+          "direction": "Short",
+          "pnl_usd": -1340.0,
+          "net_pnl": -1355.0,
+          "r_multiple": -0.9962825278810409,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-02-05T10:05:00-05:00",
+          "direction": "Short",
+          "pnl_usd": -1890.0,
+          "net_pnl": -1905.0,
+          "r_multiple": -1.0053191489361701,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-02-06T09:46:00-05:00",
+          "direction": "Long",
+          "pnl_usd": 720.0,
+          "net_pnl": 705.0,
+          "r_multiple": 0.9230769230769231,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-02-11T10:03:00-05:00",
+          "direction": "Long",
+          "pnl_usd": 770.0,
+          "net_pnl": 755.0,
+          "r_multiple": 0.7439613526570048,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-02-12T10:02:00-05:00",
+          "direction": "Short",
+          "pnl_usd": 355.0,
+          "net_pnl": 340.0,
+          "r_multiple": 0.36597938144329895,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-02-13T10:08:00-05:00",
+          "direction": "Short",
+          "pnl_usd": -1090.0,
+          "net_pnl": -1105.0,
+          "r_multiple": -0.9864253393665159,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-02-14T10:06:00-05:00",
+          "direction": "Long",
+          "pnl_usd": 65.0,
+          "net_pnl": 50.0,
+          "r_multiple": 0.11016949152542373,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-02-17T10:02:00-05:00",
+          "direction": "Short",
+          "pnl_usd": -220.0,
+          "net_pnl": -235.0,
+          "r_multiple": -1.0232558139534884,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-02-18T10:01:00-05:00",
+          "direction": "Short",
+          "pnl_usd": 150.0,
+          "net_pnl": 135.0,
+          "r_multiple": 0.3333333333333333,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-02-19T09:33:00-05:00",
+          "direction": "Short",
+          "pnl_usd": -360.0,
+          "net_pnl": -375.0,
+          "r_multiple": -1.0285714285714285,
+          "outcome": "Loss",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-02-20T10:19:00-05:00",
+          "direction": "Long",
+          "pnl_usd": -1630.0,
+          "net_pnl": -1645.0,
+          "r_multiple": -1.003076923076923,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-02-24T09:35:00-05:00",
+          "direction": "Short",
+          "pnl_usd": 4185.0,
+          "net_pnl": 4170.0,
+          "r_multiple": 3.6710526315789473,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-02-26T09:44:00-05:00",
+          "direction": "Short",
+          "pnl_usd": -1225.0,
+          "net_pnl": -1240.0,
+          "r_multiple": -1.0,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-02-27T09:40:00-05:00",
+          "direction": "Short",
+          "pnl_usd": 6605.0,
+          "net_pnl": 6590.0,
+          "r_multiple": 8.467948717948717,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-02-28T10:05:00-05:00",
+          "direction": "Short",
+          "pnl_usd": -1635.0,
+          "net_pnl": -1650.0,
+          "r_multiple": -1.0,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-03-03T09:40:00-05:00",
+          "direction": "Short",
+          "pnl_usd": 2425.0,
+          "net_pnl": 2410.0,
+          "r_multiple": 1.0,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-03-04T10:18:00-05:00",
+          "direction": "Short",
+          "pnl_usd": -1855.0,
+          "net_pnl": -1870.0,
+          "r_multiple": -1.0,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-03-05T09:42:00-05:00",
+          "direction": "Long",
+          "pnl_usd": -2205.0,
+          "net_pnl": -2220.0,
+          "r_multiple": -1.0068493150684932,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-03-06T10:28:00-05:00",
+          "direction": "Short",
+          "pnl_usd": -1560.0,
+          "net_pnl": -1575.0,
+          "r_multiple": -1.0129870129870129,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-03-07T09:34:00-05:00",
+          "direction": "Long",
+          "pnl_usd": 1975.0,
+          "net_pnl": 1960.0,
+          "r_multiple": 2.135135135135135,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-03-13T10:30:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 705.0,
+          "net_pnl": 690.0,
+          "r_multiple": 0.4392523364485981,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-03-14T09:59:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -130.0,
+          "net_pnl": -145.0,
+          "r_multiple": -0.09811320754716982,
+          "outcome": "Loss",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-03-19T09:36:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -240.0,
+          "net_pnl": -255.0,
+          "r_multiple": -0.27586206896551724,
+          "outcome": "Loss",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-03-20T09:34:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 1250.0,
+          "net_pnl": 1235.0,
+          "r_multiple": 0.7936507936507936,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-03-24T09:39:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 830.0,
+          "net_pnl": 815.0,
+          "r_multiple": 1.1140939597315436,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-03-25T09:43:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -915.0,
+          "net_pnl": -930.0,
+          "r_multiple": -0.9945652173913043,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-03-26T09:37:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -835.0,
+          "net_pnl": -850.0,
+          "r_multiple": -1.0121212121212122,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-03-31T09:53:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 1355.0,
+          "net_pnl": 1340.0,
+          "r_multiple": 0.8237082066869301,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-04-01T09:34:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -1180.0,
+          "net_pnl": -1195.0,
+          "r_multiple": -0.9915966386554622,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-04-02T10:02:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -1255.0,
+          "net_pnl": -1270.0,
+          "r_multiple": -0.996031746031746,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-04-03T10:05:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 2780.0,
+          "net_pnl": 2765.0,
+          "r_multiple": 1.5027027027027027,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-04-04T09:48:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 210.0,
+          "net_pnl": 195.0,
+          "r_multiple": 0.10096153846153846,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-04-08T09:47:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 2290.0,
+          "net_pnl": 2275.0,
+          "r_multiple": 1.0725995316159251,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-04-09T10:08:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 2380.0,
+          "net_pnl": 2365.0,
+          "r_multiple": 0.6601941747572816,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-04-10T09:34:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -2000.0,
+          "net_pnl": -2015.0,
+          "r_multiple": -0.9876543209876543,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-04-11T10:02:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 2650.0,
+          "net_pnl": 2635.0,
+          "r_multiple": 1.0271317829457365,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-04-14T10:01:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -1215.0,
+          "net_pnl": -1230.0,
+          "r_multiple": -0.9798387096774194,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-04-16T09:33:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -1320.0,
+          "net_pnl": -1335.0,
+          "r_multiple": -1.03125,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-04-17T09:48:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -1545.0,
+          "net_pnl": -1560.0,
+          "r_multiple": -1.0164473684210527,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-04-23T09:38:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -1625.0,
+          "net_pnl": -1640.0,
+          "r_multiple": -1.0061919504643964,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-04-25T09:36:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -1420.0,
+          "net_pnl": -1435.0,
+          "r_multiple": -1.0,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-04-28T09:44:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -1680.0,
+          "net_pnl": -1695.0,
+          "r_multiple": -0.9940828402366864,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-04-30T09:32:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 585.0,
+          "net_pnl": 570.0,
+          "r_multiple": 0.420863309352518,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-05-01T09:55:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 50.0,
+          "net_pnl": 35.0,
+          "r_multiple": 0.0546448087431694,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-05-02T09:57:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 450.0,
+          "net_pnl": 435.0,
+          "r_multiple": 0.30612244897959184,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-05-05T09:58:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -95.0,
+          "net_pnl": -110.0,
+          "r_multiple": -0.10270270270270271,
+          "outcome": "Loss",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-05-07T09:33:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -965.0,
+          "net_pnl": -980.0,
+          "r_multiple": -1.0,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-05-08T10:03:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -950.0,
+          "net_pnl": -965.0,
+          "r_multiple": -1.0160427807486632,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-05-09T09:32:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -565.0,
+          "net_pnl": -580.0,
+          "r_multiple": -1.0,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-05-12T10:29:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 470.0,
+          "net_pnl": 455.0,
+          "r_multiple": 0.3321554770318021,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-05-14T09:34:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -995.0,
+          "net_pnl": -1010.0,
+          "r_multiple": -1.0,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-05-15T09:54:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 400.0,
+          "net_pnl": 385.0,
+          "r_multiple": 0.449438202247191,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-05-16T09:32:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 1295.0,
+          "net_pnl": 1280.0,
+          "r_multiple": 0.9283154121863799,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-05-19T10:28:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -970.0,
+          "net_pnl": -985.0,
+          "r_multiple": -0.9897959183673469,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-05-20T09:55:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -1350.0,
+          "net_pnl": -1365.0,
+          "r_multiple": -0.9854014598540146,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-05-21T10:04:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 2155.0,
+          "net_pnl": 2140.0,
+          "r_multiple": 3.216417910447761,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-05-22T09:53:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 1480.0,
+          "net_pnl": 1465.0,
+          "r_multiple": 1.0206896551724138,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-05-23T10:23:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -1330.0,
+          "net_pnl": -1345.0,
+          "r_multiple": -0.9851851851851852,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-05-28T09:49:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 920.0,
+          "net_pnl": 905.0,
+          "r_multiple": 0.736,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-05-29T10:05:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 1065.0,
+          "net_pnl": 1050.0,
+          "r_multiple": 0.9383259911894273,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-06-02T09:48:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 1475.0,
+          "net_pnl": 1460.0,
+          "r_multiple": 1.0424028268551238,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-06-03T09:36:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -1270.0,
+          "net_pnl": -1285.0,
+          "r_multiple": -1.0,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-06-05T10:27:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -1415.0,
+          "net_pnl": -1430.0,
+          "r_multiple": -0.9895104895104895,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-06-10T09:32:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -530.0,
+          "net_pnl": -545.0,
+          "r_multiple": -1.0192307692307692,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-06-11T09:54:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -1510.0,
+          "net_pnl": -1525.0,
+          "r_multiple": -0.9966996699669967,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-06-12T10:09:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 855.0,
+          "net_pnl": 840.0,
+          "r_multiple": 0.8066037735849056,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-06-13T09:56:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 1275.0,
+          "net_pnl": 1260.0,
+          "r_multiple": 1.0493827160493827,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-06-16T09:32:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 1755.0,
+          "net_pnl": 1740.0,
+          "r_multiple": 1.6956521739130435,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-06-17T09:44:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -790.0,
+          "net_pnl": -805.0,
+          "r_multiple": -0.9875,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-06-18T10:05:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 1015.0,
+          "net_pnl": 1000.0,
+          "r_multiple": 1.1404494382022472,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-06-20T10:18:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 695.0,
+          "net_pnl": 680.0,
+          "r_multiple": 1.4946236559139785,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-06-23T09:45:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 2205.0,
+          "net_pnl": 2190.0,
+          "r_multiple": 1.4089456869009584,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-06-24T09:33:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -730.0,
+          "net_pnl": -745.0,
+          "r_multiple": -1.006896551724138,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-06-27T09:35:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 1340.0,
+          "net_pnl": 1325.0,
+          "r_multiple": 1.6855345911949686,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-06-30T10:20:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 170.0,
+          "net_pnl": 155.0,
+          "r_multiple": 0.3469387755102041,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        }
+      ],
+      "oos_pf_distribution": [
+        1.1061551179918834,
+        1.1181860357225701,
+        1.1064972714870396,
+        1.2616558645201756,
+        1.1822429906542056,
+        1.2046147791006592,
+        1.1703655352480418,
+        1.2938394850912913,
+        1.1676878122348948,
+        1.2055490425947635,
+        1.169476869865975,
+        1.2609094483029748,
+        1.0009585889570551,
+        1.0169055857637173,
+        0.9993989071038252,
+        1.0151715039577835,
+        1.3947961675746758,
+        1.4230994723470785,
+        1.4017117020131338,
+        1.5121811224489796
+      ],
+      "selected_oos_percentile": 0.4,
+      "median_combo_oos_pf": 1.1763042629511236,
+      "p75_combo_oos_pf": 1.2697017696629547,
+      "combo_eligibility": [
+        {
+          "exit_mode": "fixed_1_5R",
+          "vol_filter": "off",
+          "vol_threshold": null,
+          "is_realized_trades": 212,
+          "oos_realized_trades": 93
+        },
+        {
+          "exit_mode": "fixed_1_5R",
+          "vol_filter": "p25",
+          "vol_threshold": 0.05621575971848433,
+          "is_realized_trades": 177,
+          "oos_realized_trades": 87
+        },
+        {
+          "exit_mode": "fixed_1_5R",
+          "vol_filter": "p50",
+          "vol_threshold": 0.07106404558479282,
+          "is_realized_trades": 121,
+          "oos_realized_trades": 74
+        },
+        {
+          "exit_mode": "fixed_1_5R",
+          "vol_filter": "p75",
+          "vol_threshold": 0.08727150997563285,
+          "is_realized_trades": 68,
+          "oos_realized_trades": 60
+        },
+        {
+          "exit_mode": "breakeven_1R",
+          "vol_filter": "off",
+          "vol_threshold": null,
+          "is_realized_trades": 213,
+          "oos_realized_trades": 93
+        },
+        {
+          "exit_mode": "breakeven_1R",
+          "vol_filter": "p25",
+          "vol_threshold": 0.05621575971848433,
+          "is_realized_trades": 178,
+          "oos_realized_trades": 87
+        },
+        {
+          "exit_mode": "breakeven_1R",
+          "vol_filter": "p50",
+          "vol_threshold": 0.07106404558479282,
+          "is_realized_trades": 121,
+          "oos_realized_trades": 74
+        },
+        {
+          "exit_mode": "breakeven_1R",
+          "vol_filter": "p75",
+          "vol_threshold": 0.08727150997563285,
+          "is_realized_trades": 69,
+          "oos_realized_trades": 60
+        },
+        {
+          "exit_mode": "trail_swing",
+          "vol_filter": "off",
+          "vol_threshold": null,
+          "is_realized_trades": 213,
+          "oos_realized_trades": 93
+        },
+        {
+          "exit_mode": "trail_swing",
+          "vol_filter": "p25",
+          "vol_threshold": 0.05621575971848433,
+          "is_realized_trades": 178,
+          "oos_realized_trades": 87
+        },
+        {
+          "exit_mode": "trail_swing",
+          "vol_filter": "p50",
+          "vol_threshold": 0.07106404558479282,
+          "is_realized_trades": 121,
+          "oos_realized_trades": 74
+        },
+        {
+          "exit_mode": "trail_swing",
+          "vol_filter": "p75",
+          "vol_threshold": 0.08727150997563285,
+          "is_realized_trades": 69,
+          "oos_realized_trades": 60
+        },
+        {
+          "exit_mode": "partial_1R",
+          "vol_filter": "off",
+          "vol_threshold": null,
+          "is_realized_trades": 212,
+          "oos_realized_trades": 93
+        },
+        {
+          "exit_mode": "partial_1R",
+          "vol_filter": "p25",
+          "vol_threshold": 0.05621575971848433,
+          "is_realized_trades": 177,
+          "oos_realized_trades": 87
+        },
+        {
+          "exit_mode": "partial_1R",
+          "vol_filter": "p50",
+          "vol_threshold": 0.07106404558479282,
+          "is_realized_trades": 120,
+          "oos_realized_trades": 74
+        },
+        {
+          "exit_mode": "partial_1R",
+          "vol_filter": "p75",
+          "vol_threshold": 0.08727150997563285,
+          "is_realized_trades": 69,
+          "oos_realized_trades": 60
+        },
+        {
+          "exit_mode": "time_stop",
+          "vol_filter": "off",
+          "vol_threshold": null,
+          "is_realized_trades": 213,
+          "oos_realized_trades": 93
+        },
+        {
+          "exit_mode": "time_stop",
+          "vol_filter": "p25",
+          "vol_threshold": 0.05621575971848433,
+          "is_realized_trades": 178,
+          "oos_realized_trades": 87
+        },
+        {
+          "exit_mode": "time_stop",
+          "vol_filter": "p50",
+          "vol_threshold": 0.07106404558479282,
+          "is_realized_trades": 121,
+          "oos_realized_trades": 74
+        },
+        {
+          "exit_mode": "time_stop",
+          "vol_filter": "p75",
+          "vol_threshold": 0.08727150997563285,
+          "is_realized_trades": 69,
+          "oos_realized_trades": 60
+        }
+      ]
+    },
+    {
+      "fold_index": 3,
+      "train_start": "2024-07-01T00:00:00-04:00",
+      "train_end": "2025-07-01T00:00:00-04:00",
+      "test_start": "2025-07-01T00:00:00-04:00",
+      "test_end": "2025-12-12T00:00:00-05:00",
+      "selected_exit_mode": "trail_swing",
+      "selected_vol_filter": "p50",
+      "selected_params": {
+        "fvg_threshold": 0.0,
+        "rr": 1.5,
+        "ema_length": 20,
+        "swing_lookback": 8,
+        "session_start": "09:30",
+        "session_end": "10:30",
+        "exit_mode": "trail_swing",
+        "vol_filter": "p50"
+      },
+      "fallback_used": false,
+      "eligible": true,
+      "pre_filter_in_session_signal_count": 493,
+      "is_net_pf": 1.0215156586182166,
+      "is_net_total_pnl": 1800.0,
+      "is_n": 113,
+      "is_net_max_drawdown": 18455.0,
+      "oos_net_metrics": {
+        "net_profit_factor": 2.2480132450331127,
+        "net_win_rate": 0.56,
+        "net_total_pnl": 18845.0,
+        "net_max_drawdown": 3660.0,
+        "net_expectancy": 753.8,
+        "n_trades": 25
+      },
+      "oos_net_base_metrics": {
+        "net_profit_factor": 1.0685067349805801,
+        "net_win_rate": 0.4270833333333333,
+        "net_total_pnl": 4145.0,
+        "net_max_drawdown": 16155.0,
+        "net_expectancy": 43.177083333333336,
+        "n_trades": 96
+      },
+      "oos_trades": [
+        {
+          "entry_time": "2025-08-21T09:42:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -65.0,
+          "net_pnl": -80.0,
+          "r_multiple": -0.07065217391304347,
+          "outcome": "Loss",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-08-22T10:02:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 1745.0,
+          "net_pnl": 1730.0,
+          "r_multiple": 0.4110718492343934,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-08-29T10:28:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -935.0,
+          "net_pnl": -950.0,
+          "r_multiple": -1.016304347826087,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-09-02T09:37:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 2165.0,
+          "net_pnl": 2150.0,
+          "r_multiple": 1.1895604395604396,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-09-03T10:14:00-04:00",
+          "direction": "Short",
+          "pnl_usd": -1205.0,
+          "net_pnl": -1220.0,
+          "r_multiple": -1.0,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-09-04T09:58:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -580.0,
+          "net_pnl": -595.0,
+          "r_multiple": -1.0,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-09-05T09:57:00-04:00",
+          "direction": "Short",
+          "pnl_usd": 4545.0,
+          "net_pnl": 4530.0,
+          "r_multiple": 3.986842105263158,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-09-25T10:03:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 2650.0,
+          "net_pnl": 2635.0,
+          "r_multiple": 2.264957264957265,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-10-14T09:55:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 3475.0,
+          "net_pnl": 3460.0,
+          "r_multiple": 2.020348837209302,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-10-16T10:18:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 995.0,
+          "net_pnl": 980.0,
+          "r_multiple": 0.7624521072796935,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-10-17T09:50:00-04:00",
+          "direction": "Long",
+          "pnl_usd": 1885.0,
+          "net_pnl": 1870.0,
+          "r_multiple": 0.8510158013544018,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-10-30T09:52:00-04:00",
+          "direction": "Long",
+          "pnl_usd": -2840.0,
+          "net_pnl": -2855.0,
+          "r_multiple": -1.0070921985815602,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-11-04T09:43:00-05:00",
+          "direction": "Long",
+          "pnl_usd": 1750.0,
+          "net_pnl": 1735.0,
+          "r_multiple": 0.8771929824561403,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-11-05T10:16:00-05:00",
+          "direction": "Short",
+          "pnl_usd": -1145.0,
+          "net_pnl": -1160.0,
+          "r_multiple": -0.9956521739130435,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-11-06T09:51:00-05:00",
+          "direction": "Short",
+          "pnl_usd": 3090.0,
+          "net_pnl": 3075.0,
+          "r_multiple": 3.4915254237288136,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-11-07T10:11:00-05:00",
+          "direction": "Long",
+          "pnl_usd": -1765.0,
+          "net_pnl": -1780.0,
+          "r_multiple": -1.0,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-11-12T10:14:00-05:00",
+          "direction": "Short",
+          "pnl_usd": 200.0,
+          "net_pnl": 185.0,
+          "r_multiple": 0.23391812865497075,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-11-13T09:53:00-05:00",
+          "direction": "Long",
+          "pnl_usd": 1235.0,
+          "net_pnl": 1220.0,
+          "r_multiple": 0.7264705882352941,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-11-14T09:38:00-05:00",
+          "direction": "Long",
+          "pnl_usd": 2780.0,
+          "net_pnl": 2765.0,
+          "r_multiple": 0.931323283082077,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-11-17T10:30:00-05:00",
+          "direction": "Long",
+          "pnl_usd": -1500.0,
+          "net_pnl": -1515.0,
+          "r_multiple": -1.0033444816053512,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-11-18T09:46:00-05:00",
+          "direction": "Short",
+          "pnl_usd": 1975.0,
+          "net_pnl": 1960.0,
+          "r_multiple": 0.7552581261950286,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-11-20T09:45:00-05:00",
+          "direction": "Long",
+          "pnl_usd": -1690.0,
+          "net_pnl": -1705.0,
+          "r_multiple": -1.0,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-11-21T09:43:00-05:00",
+          "direction": "Long",
+          "pnl_usd": -1940.0,
+          "net_pnl": -1955.0,
+          "r_multiple": -1.0077922077922077,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        },
+        {
+          "entry_time": "2025-11-25T09:56:00-05:00",
+          "direction": "Long",
+          "pnl_usd": 5665.0,
+          "net_pnl": 5650.0,
+          "r_multiple": 1.9568221070811744,
+          "outcome": "Win",
+          "exit_reason": "trail"
+        },
+        {
+          "entry_time": "2025-11-26T09:49:00-05:00",
+          "direction": "Long",
+          "pnl_usd": -1270.0,
+          "net_pnl": -1285.0,
+          "r_multiple": -0.996078431372549,
+          "outcome": "Loss",
+          "exit_reason": "stop"
+        }
+      ],
+      "oos_pf_distribution": [
+        1.0685067349805801,
+        0.8723214285714286,
+        2.321984150278838,
+        2.8412200684150513,
+        1.1368735976065818,
+        0.9345139578506013,
+        2.1120146033853304,
+        2.1132612407512807,
+        1.1973903387007219,
+        0.9386604774535809,
+        2.2480132450331127,
+        1.9880273660205245,
+        1.10161305448748,
+        0.8631741821396994,
+        2.09254327563249,
+        2.2368871151653362,
+        1.1937579994092744,
+        0.9373292349726776,
+        2.4951816160118607,
+        2.1941315945465325
+      ],
+      "selected_oos_percentile": 0.85,
+      "median_combo_oos_pf": 1.5927088523606232,
+      "p75_combo_oos_pf": 2.2048204747012337,
+      "combo_eligibility": [
+        {
+          "exit_mode": "fixed_1_5R",
+          "vol_filter": "off",
+          "vol_threshold": null,
+          "is_realized_trades": 203,
+          "oos_realized_trades": 96
+        },
+        {
+          "exit_mode": "fixed_1_5R",
+          "vol_filter": "p25",
+          "vol_threshold": 0.06614547422722107,
+          "is_realized_trades": 164,
+          "oos_realized_trades": 60
+        },
+        {
+          "exit_mode": "fixed_1_5R",
+          "vol_filter": "p50",
+          "vol_threshold": 0.08771577331806985,
+          "is_realized_trades": 112,
+          "oos_realized_trades": 25
+        },
+        {
+          "exit_mode": "fixed_1_5R",
+          "vol_filter": "p75",
+          "vol_threshold": 0.11761955861864001,
+          "is_realized_trades": 56,
+          "oos_realized_trades": 11
+        },
+        {
+          "exit_mode": "breakeven_1R",
+          "vol_filter": "off",
+          "vol_threshold": null,
+          "is_realized_trades": 203,
+          "oos_realized_trades": 96
+        },
+        {
+          "exit_mode": "breakeven_1R",
+          "vol_filter": "p25",
+          "vol_threshold": 0.06614547422722107,
+          "is_realized_trades": 164,
+          "oos_realized_trades": 60
+        },
+        {
+          "exit_mode": "breakeven_1R",
+          "vol_filter": "p50",
+          "vol_threshold": 0.08771577331806985,
+          "is_realized_trades": 113,
+          "oos_realized_trades": 25
+        },
+        {
+          "exit_mode": "breakeven_1R",
+          "vol_filter": "p75",
+          "vol_threshold": 0.11761955861864001,
+          "is_realized_trades": 56,
+          "oos_realized_trades": 11
+        },
+        {
+          "exit_mode": "trail_swing",
+          "vol_filter": "off",
+          "vol_threshold": null,
+          "is_realized_trades": 203,
+          "oos_realized_trades": 96
+        },
+        {
+          "exit_mode": "trail_swing",
+          "vol_filter": "p25",
+          "vol_threshold": 0.06614547422722107,
+          "is_realized_trades": 164,
+          "oos_realized_trades": 60
+        },
+        {
+          "exit_mode": "trail_swing",
+          "vol_filter": "p50",
+          "vol_threshold": 0.08771577331806985,
+          "is_realized_trades": 113,
+          "oos_realized_trades": 25
+        },
+        {
+          "exit_mode": "trail_swing",
+          "vol_filter": "p75",
+          "vol_threshold": 0.11761955861864001,
+          "is_realized_trades": 56,
+          "oos_realized_trades": 11
+        },
+        {
+          "exit_mode": "partial_1R",
+          "vol_filter": "off",
+          "vol_threshold": null,
+          "is_realized_trades": 203,
+          "oos_realized_trades": 96
+        },
+        {
+          "exit_mode": "partial_1R",
+          "vol_filter": "p25",
+          "vol_threshold": 0.06614547422722107,
+          "is_realized_trades": 164,
+          "oos_realized_trades": 60
+        },
+        {
+          "exit_mode": "partial_1R",
+          "vol_filter": "p50",
+          "vol_threshold": 0.08771577331806985,
+          "is_realized_trades": 113,
+          "oos_realized_trades": 25
+        },
+        {
+          "exit_mode": "partial_1R",
+          "vol_filter": "p75",
+          "vol_threshold": 0.11761955861864001,
+          "is_realized_trades": 56,
+          "oos_realized_trades": 11
+        },
+        {
+          "exit_mode": "time_stop",
+          "vol_filter": "off",
+          "vol_threshold": null,
+          "is_realized_trades": 203,
+          "oos_realized_trades": 96
+        },
+        {
+          "exit_mode": "time_stop",
+          "vol_filter": "p25",
+          "vol_threshold": 0.06614547422722107,
+          "is_realized_trades": 164,
+          "oos_realized_trades": 60
+        },
+        {
+          "exit_mode": "time_stop",
+          "vol_filter": "p50",
+          "vol_threshold": 0.08771577331806985,
+          "is_realized_trades": 113,
+          "oos_realized_trades": 25
+        },
+        {
+          "exit_mode": "time_stop",
+          "vol_filter": "p75",
+          "vol_threshold": 0.11761955861864001,
+          "is_realized_trades": 56,
+          "oos_realized_trades": 11
+        }
+      ]
+    }
+  ],
+  "stitched_oos": {
+    "all_folds": {
+      "tuned": {
+        "n_trades": 228,
+        "net_profit_factor": 1.0706990508499044,
+        "net_win_rate": 0.5087719298245614,
+        "net_total_pnl": 9795.0,
+        "net_max_drawdown": 21030.0,
+        "net_expectancy_per_trade": 42.96052631578947,
+        "gross_total_pnl": 13405.0
+      },
+      "base": {
+        "n_trades": 401,
+        "net_profit_factor": 0.9005943940482897,
+        "net_win_rate": 0.3940149625935162,
+        "net_total_pnl": -25587.5,
+        "net_max_drawdown": 47092.5,
+        "net_expectancy_per_trade": -63.80922693266833,
+        "gross_total_pnl": -20362.5
+      }
+    },
+    "excluding_fallback_folds": {
+      "tuned": {
+        "n_trades": 228,
+        "net_profit_factor": 1.0706990508499044,
+        "net_win_rate": 0.5087719298245614,
+        "net_total_pnl": 9795.0,
+        "net_max_drawdown": 21030.0,
+        "net_expectancy_per_trade": 42.96052631578947,
+        "gross_total_pnl": 13405.0
+      },
+      "base": {
+        "n_trades": 401,
+        "net_profit_factor": 0.9005943940482897,
+        "net_win_rate": 0.3940149625935162,
+        "net_total_pnl": -25587.5,
+        "net_max_drawdown": 47092.5,
+        "net_expectancy_per_trade": -63.80922693266833,
+        "gross_total_pnl": -20362.5
+      }
+    },
+    "fallback_fold_count": 0
+  },
+  "combo_null_distribution": [
+    {
+      "exit_mode": "fixed_1_5R",
+      "vol_filter": "off",
+      "stitched_net_oos_pf": 0.9005943940482897
+    },
+    {
+      "exit_mode": "fixed_1_5R",
+      "vol_filter": "p25",
+      "stitched_net_oos_pf": 0.8484779398992531
+    },
+    {
+      "exit_mode": "fixed_1_5R",
+      "vol_filter": "p50",
+      "stitched_net_oos_pf": 0.984362227133731
+    },
+    {
+      "exit_mode": "fixed_1_5R",
+      "vol_filter": "p75",
+      "stitched_net_oos_pf": 1.0728392001322096
+    },
+    {
+      "exit_mode": "breakeven_1R",
+      "vol_filter": "off",
+      "stitched_net_oos_pf": 0.9614873995400773
+    },
+    {
+      "exit_mode": "breakeven_1R",
+      "vol_filter": "p25",
+      "stitched_net_oos_pf": 0.8935799579798409
+    },
+    {
+      "exit_mode": "breakeven_1R",
+      "vol_filter": "p50",
+      "stitched_net_oos_pf": 1.015119323139963
+    },
+    {
+      "exit_mode": "breakeven_1R",
+      "vol_filter": "p75",
+      "stitched_net_oos_pf": 1.0377908400685771
+    },
+    {
+      "exit_mode": "trail_swing",
+      "vol_filter": "off",
+      "stitched_net_oos_pf": 1.0329149560117301
+    },
+    {
+      "exit_mode": "trail_swing",
+      "vol_filter": "p25",
+      "stitched_net_oos_pf": 0.9709968830894394
+    },
+    {
+      "exit_mode": "trail_swing",
+      "vol_filter": "p50",
+      "stitched_net_oos_pf": 1.097070217007033
+    },
+    {
+      "exit_mode": "trail_swing",
+      "vol_filter": "p75",
+      "stitched_net_oos_pf": 1.0866663418911677
+    },
+    {
+      "exit_mode": "partial_1R",
+      "vol_filter": "off",
+      "stitched_net_oos_pf": 0.9340686918903416
+    },
+    {
+      "exit_mode": "partial_1R",
+      "vol_filter": "p25",
+      "stitched_net_oos_pf": 0.8855166496863103
+    },
+    {
+      "exit_mode": "partial_1R",
+      "vol_filter": "p50",
+      "stitched_net_oos_pf": 0.9880879774338645
+    },
+    {
+      "exit_mode": "partial_1R",
+      "vol_filter": "p75",
+      "stitched_net_oos_pf": 0.8640519020937777
+    },
+    {
+      "exit_mode": "time_stop",
+      "vol_filter": "off",
+      "stitched_net_oos_pf": 1.0231952718232562
+    },
+    {
+      "exit_mode": "time_stop",
+      "vol_filter": "p25",
+      "stitched_net_oos_pf": 0.9668917849416979
+    },
+    {
+      "exit_mode": "time_stop",
+      "vol_filter": "p50",
+      "stitched_net_oos_pf": 1.09062558356676
+    },
+    {
+      "exit_mode": "time_stop",
+      "vol_filter": "p75",
+      "stitched_net_oos_pf": 1.099897265300132
+    }
+  ],
+  "success_rule": {
+    "condition_a_tuned_net_pf_gt_1": {
+      "tuned_stitched_net_oos_pf": 1.0706990508499044,
+      "passes": true
+    },
+    "condition_b_margin_gte_0_10": {
+      "tuned_stitched_net_oos_pf": 1.0706990508499044,
+      "base_stitched_net_oos_pf": 0.9005943940482897,
+      "margin": 0.17010465680161468,
+      "passes": true
+    },
+    "condition_c_wins_3_of_4_folds": {
+      "folds_tuned_beats_base": 3,
+      "total_folds": 4,
+      "passes": true
+    },
+    "condition_d_beats_p75_combo_null": {
+      "tuned_stitched_net_oos_pf_capped": 1.0706990508499044,
+      "p75_of_20_combos_stitched_net_oos_pf": 1.0465529300844851,
+      "median_of_20_combos_stitched_net_oos_pf": 0.9862251022837978,
+      "passes": true
+    },
+    "condition_e_oos_sample_gate": {
+      "n_oos_trades": 228,
+      "min_oos_trades": 60,
+      "trade_count_passes": true,
+      "bootstrap_ci_lower_5th_pct": 0.8073437434414015,
+      "bootstrap_ci_upper_95th_pct": 1.3942768022401717,
+      "bootstrap_n_boot": 1000,
+      "bootstrap_seed": 42,
+      "ci_lower_gt_1_passes": false,
+      "passes": false
+    },
+    "robust_improvement": false
+  },
+  "cost_sensitivity": {
+    "0x": {
+      "multiplier": 0.0,
+      "tuned": {
+        "net_profit_factor": 1.0979432287290396,
+        "net_total_pnl": 13405.0
+      },
+      "base": {
+        "net_profit_factor": 0.9197568568726355,
+        "net_total_pnl": -20362.5
+      },
+      "tuned_pf_gt_1": true,
+      "tuned_beats_base_margin_ge_0_10": true
+    },
+    "1x": {
+      "multiplier": 1.0,
+      "tuned": {
+        "net_profit_factor": 1.0706990508499044,
+        "net_total_pnl": 9795.0
+      },
+      "base": {
+        "net_profit_factor": 0.9005943940482897,
+        "net_total_pnl": -25587.5
+      },
+      "tuned_pf_gt_1": true,
+      "tuned_beats_base_margin_ge_0_10": true
+    },
+    "2x": {
+      "multiplier": 2.0,
+      "tuned": {
+        "net_profit_factor": 1.0441061113884333,
+        "net_total_pnl": 6185.0
+      },
+      "base": {
+        "net_profit_factor": 0.8819670561195173,
+        "net_total_pnl": -30812.5
+      },
+      "tuned_pf_gt_1": true,
+      "tuned_beats_base_margin_ge_0_10": true
+    }
+  }
+}
