@@ -30,11 +30,9 @@ improvement, still not a reliable money-maker"; that is reported as-is.
 
 NQ: tick = 0.25 pt, `$5/tick` (`$20/pt`). Applied per trade to produce `net_pnl`:
 - `COMMISSION_RT = $5.00` (round-trip; retail NQ ~$2–2.50/side).
-- `SLIPPAGE_TICKS_ENTRY = 1` — entry is a market/stop fill → 1 tick adverse.
-- `SLIPPAGE_TICKS_STOP = 1` — stop exits are market → 1 tick adverse.
-- Target exits are **limit** fills → **0** slippage.
-- `net_pnl = gross_pnl − COMMISSION_RT − TICK_VALUE*(SLIPPAGE_TICKS_ENTRY + (SLIPPAGE_TICKS_STOP if exit_reason=="stop" else 0))`.
-- **Sensitivity (reported, not for selection):** re-report the headline at cost multipliers **0×, 1× (headline), 2×** so the reader sees how cost-fragile the result is.
+- `SLIPPAGE_TICKS_ENTRY = 1`; `SLIPPAGE_TICKS_EXIT = 1`.
+- **Slippage is charged on every market-order fill, not only `exit_reason=="stop"`** (revised after review — otherwise the new exit modes' market fills would be under-costed vs the base). `MARKET_EXIT_REASONS = {stop, trail, time, partial_remainder_stop}` pay the exit tick; true limit fills (`target`, `partial_scaleout`, `partial_remainder_target`) pay 0. Every trade pays commission + entry tick; `partial_1R` pays **two** commissions (two fills) with per-leg slippage.
+- **Sensitivity (reported, not for selection):** re-report at cost multipliers **0×, 1× (headline), 2×** (1-tick stop slippage is optimistic; 2× is the realistic case).
 
 ## Exit modes (pre-registered set of 5)
 
@@ -52,11 +50,11 @@ Exit fills obey the existing stop-first / gap-through model; intrabar ordering a
 
 ## Volatility filter (pre-registered, leak-free, scale-free)
 
-At the signal bar, compute `ATR14` = ATR over the trailing 14 one-minute bars. Filter: enter only if
-`ATR14 ≥ threshold`, where the threshold is a **percentile of the IN-SAMPLE (train-window) distribution** of
-signal-bar ATR14 — so it is scale-free and never uses test data. `vol_filter ∈ {off, p25, p50, p75}` (the
-train-window 25th/50th/75th percentile; `off` = no filter). Percentiles are computed per fold from train
-trades only.
+The filter variable is **ATR% = ATR14/close·100** (a fraction of price, so it is genuinely scale-free on the
+back-adjusted series — raw-point ATR would drift with the price level, like Phase-4's fvg%). Enter only if the
+signal-bar `ATR% ≥ threshold`. The threshold is the p-th percentile of ATR% over a **single pinned
+population — every in-session signal bar in the TRAIN window** (computed before the vol gate and the 1/day cap,
+independent of exit_mode), per fold. `vol_filter ∈ {off, p25, p50, p75}`. Train-only ⇒ leak-free.
 
 ## Walk-forward (reuse Phase 4 infra, verbatim discipline)
 
@@ -70,12 +68,14 @@ trades only.
 ## Pre-registered success rule (net of costs — the honest bar)
 
 A **positive** ("costs+exits+filter make it robustly work") verdict requires ALL of:
-(a) tuned **net** stitched-OOS PF **> 1.0** (actually profitable after costs);
-(b) tuned net OOS PF exceeds the **base net** OOS PF by **≥ 0.10**;
-(c) tuned beats base in **≥ 3/4 folds** (net);
-(d) tuned net OOS PF **> the median of the 20 combos' net OOS PF** (selection-luck null).
-Otherwise → **null** (with the honest sub-story: which levers helped, by how much, and whether it merely
-narrowed the loss like Phase 4). Frozen before the run; config hashed + git-SHA'd; single-shot.
+(a) tuned **net** stitched-OOS PF **> 1.0**;
+(b) tuned − base **net** stitched-OOS PF **≥ 0.10**;
+(c) tuned beats base net in **≥ 3/4 folds**;
+(d) tuned net stitched-OOS PF **≥ the 75th percentile** of the 20 combos' **stitched** net-OOS PF (selection-luck null, same statistic for pick and distribution);
+(e) **small-sample gate:** tuned stitched-OOS trade count **≥ `MIN_OOS_TRADES = 60`** AND the tuned stitched net-PF **bootstrap CI lower bound > 1.0**.
+Otherwise → **null** (with the honest sub-story: which levers helped, by how much, whether it merely narrowed the
+loss like Phase 4). Frozen before the run; the config hash covers the whole design (grid, folds, floors,
+objective, vol-filter+ATR definition, exit sequencing, cost constants, `TIME_STOP_ET`); single-shot.
 
 ## Components (in `fyp-strategy-engine`)
 
