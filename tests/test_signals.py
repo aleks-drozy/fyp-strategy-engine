@@ -30,3 +30,10 @@ def test_ifvg_turns_and_cisd_flips_same_bar():
     ifvg = _s(["None", "None", "Bullish"])
     cisd = _s(["Bearish", "Bearish", "Bullish"])  # both turn bullish on bar2
     assert double_confirmation(ifvg, cisd).tolist() == ["", "", "Long"]
+
+
+def test_short_ifvg_turns_and_cisd_flips_same_bar():
+    # bear-side OR-branch 2: ifvg and cisd both turn bearish on bar2
+    ifvg = _s(["None", "None", "Bearish"])
+    cisd = _s(["Bullish", "Bullish", "Bearish"])
+    assert double_confirmation(ifvg, cisd).tolist() == ["", "", "Short"]
