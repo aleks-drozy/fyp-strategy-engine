@@ -156,20 +156,64 @@ def test_no_entry_outside_session(monkeypatch):
     assert trades == []
 
 
-# --- (e) no-lookahead: a future-bar spike can't change an earlier trade -----
+# --- (e) no-lookahead: an in-flight future bar can't change entry/stop/target --
 
 
-def test_no_lookahead_future_spike_does_not_change_earlier_trade(monkeypatch):
-    sig = [""] * (len(ROWS_LONG_WIN) + 3)
+def test_no_lookahead_in_flight_bar_does_not_change_entry_stop_target(monkeypatch):
+    """Bars 0-9 reuse ROWS_LONG_WIN's swing history + signal bar (signal at
+    index 9 -> entry=100, stop=95, target=107.5). Bar 10 is a quiet fill bar
+    (no same-bar exit), so the trade FILLS and stays OPEN across bar 11 and
+    is only resolved on a LATER, FIXED bar (13, identical in both frames,
+    which hits the target). Bar 11 -- strictly after entry (bar 10) and
+    strictly before the exit-determining bar (13), i.e. while the trade is
+    in-flight -- is the only bar that differs between the two frames: a wide
+    intrabar spike that still stays short of both stop(95) and target(107.5),
+    so it can't itself trigger an exit and the two frames are forced to
+    resolve on the same later bar. This proves the IN-FLIGHT decision (not
+    just a closed trade) ignores a future bar, unlike a mutation placed after
+    the trade has already closed."""
+    rows_common_tail = [
+        (100, 102, 99, 100),   # 12 quiet in-flight buffer bar (identical both frames)
+        (100, 108, 99, 101),   # 13 exit-determining bar (identical both frames): hits target
+    ]
+    rows_quiet = ROWS_LONG_WIN[:10] + [
+        (100, 102, 99, 101),   # 10 fill bar: quiet, no same-bar exit
+        (101, 103, 100, 101),  # 11 in-flight bar: quiet
+    ] + rows_common_tail
+    rows_spike = ROWS_LONG_WIN[:10] + [
+        (100, 102, 99, 101),   # 10 fill bar: quiet, no same-bar exit (same as quiet frame)
+        (101, 107, 96, 101),   # 11 in-flight bar: wide spike, still short of stop/target
+    ] + rows_common_tail
+
+    df_quiet = _session_frame(rows_quiet)
+    df_spike = _session_frame(rows_spike)
+
+    sig = [""] * len(df_quiet)
     sig[9] = "Long"
     monkeypatch.setattr(engine, "double_confirmation", _fake_signals(sig))
     monkeypatch.setattr(engine, "compute_ema", _fake_ema(low=True))
-
-    df_quiet = _session_frame(ROWS_LONG_WIN + [(100, 101, 99, 100)] * 3)
-    df_spike = _session_frame(ROWS_LONG_WIN + [(100, 500_000, 0.01, 100)] * 3)
 
     trades_quiet = backtest(df_quiet)
     trades_spike = backtest(df_spike)
 
     assert len(trades_quiet) == 1
-    assert trades_quiet == trades_spike  # dataclass equality: every field matches
+    assert len(trades_spike) == 1
+    tr_quiet, tr_spike = trades_quiet[0], trades_spike[0]
+
+    # Sanity: the trade really did stay open across the mutated bar (11) and
+    # was only resolved on the later, fixed bar (13) -- confirms this isn't
+    # the vacuous "a closed trade isn't retroactively rewritten" case.
+    assert tr_quiet.entry_time == df_quiet.index[10]
+    assert tr_quiet.exit_time == df_quiet.index[13]
+    assert tr_spike.entry_time == df_spike.index[10]
+    assert tr_spike.exit_time == df_spike.index[13]
+
+    # entry/stop/target are decided at/before the signal bar (9) and locked
+    # in at the fill bar (10) -- both strictly before the mutated in-flight
+    # bar (11) -- so they must be identical no matter what bar 11 does.
+    # (exit/outcome/pnl legitimately match too here since the
+    # exit-determining bar is unchanged, but the invariant under test is
+    # entry/stop/target.)
+    assert (tr_quiet.entry, tr_quiet.stop, tr_quiet.target) == (
+        tr_spike.entry, tr_spike.stop, tr_spike.target,
+    )
