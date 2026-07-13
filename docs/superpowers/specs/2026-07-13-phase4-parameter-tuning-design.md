@@ -76,11 +76,18 @@ background. Report total runtime.
 
 ## Objective & guards
 
-- **Selection metric (in-sample):** profit factor, subject to a **minimum in-sample trade count** (e.g. ≥ 20)
-  so a PF is not built on 2 trades; ties broken by higher trade count then lower max drawdown. The exact floor
-  is a documented constant.
+- **Selection metric (in-sample):** profit factor, subject to a **minimum in-sample trade count `MIN_IS_TRADES = 50`**
+  (raised from 20 after review — PF on ~20 trades under a 144-way max is noise-dominated); ties broken by higher
+  trade count then lower max drawdown. A documented constant.
+- **PRE-REGISTRATION FREEZE (added after adversarial review):** the grid, fold windows, objective, and floor are
+  frozen as constants and hashed (SHA-256 + git SHA) into `phase4_results.json`; the runner is single-shot and
+  the OOS number is observed once. Changing any of them after seeing an OOS result requires a new dated spec.
+- **PRE-REGISTERED FALSIFIABLE SUCCESS RULE + null control:** a positive verdict requires ALL of — tuned
+  stitched-OOS PF **> 1.0**; tuned − default OOS PF **≥ 0.10**; tuned beats default in **≥ 3/4 folds**; and
+  tuned OOS PF **> the median OOS PF of all 144 combos** (the selection-luck null). All 144 combos' OOS PF are
+  recorded so the selected pick's OOS percentile is reported. Otherwise the result is a **null**.
 - **OOS metrics reported per fold and stitched:** profit factor, win rate, total PnL, max drawdown, trade
-  count, and the selected params.
+  count, the selected params, the selection-luck null distribution, and the pre-registered verdict.
 
 ## Comparisons (what the writeup answers)
 
