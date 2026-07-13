@@ -1,0 +1,537 @@
+{
+  "slice_start": "2024-05-01",
+  "slice_end": "2024-07-31",
+  "n_trades": 53,
+  "trades": [
+    {
+      "entry_time": "2024-05-02T10:02:00-04:00",
+      "direction": "Short",
+      "entry": 19185.5,
+      "stop": 19221.25,
+      "target": 19131.875,
+      "exit": 19131.875,
+      "pnl_usd": 1072.5,
+      "r_multiple": 1.5
+    },
+    {
+      "entry_time": "2024-05-03T10:02:00-04:00",
+      "direction": "Short",
+      "entry": 19671.25,
+      "stop": 19744.0,
+      "target": 19560.25,
+      "exit": 19744.0,
+      "pnl_usd": -1455.0,
+      "r_multiple": -0.9897959183673469
+    },
+    {
+      "entry_time": "2024-05-06T09:32:00-04:00",
+      "direction": "Short",
+      "entry": 19744.75,
+      "stop": 19772.0,
+      "target": 19704.5,
+      "exit": 19772.0,
+      "pnl_usd": -545.0,
+      "r_multiple": -1.0092592592592593
+    },
+    {
+      "entry_time": "2024-05-07T09:51:00-04:00",
+      "direction": "Short",
+      "entry": 19898.0,
+      "stop": 19927.0,
+      "target": 19854.5,
+      "exit": 19927.0,
+      "pnl_usd": -580.0,
+      "r_multiple": -1.0
+    },
+    {
+      "entry_time": "2024-05-08T10:19:00-04:00",
+      "direction": "Long",
+      "entry": 19863.75,
+      "stop": 19845.25,
+      "target": 19890.875,
+      "exit": 19890.875,
+      "pnl_usd": 542.5,
+      "r_multiple": 1.4863013698630136
+    },
+    {
+      "entry_time": "2024-05-09T10:25:00-04:00",
+      "direction": "Long",
+      "entry": 19855.0,
+      "stop": 19822.75,
+      "target": 19902.125,
+      "exit": 19902.125,
+      "pnl_usd": 942.5,
+      "r_multiple": 1.484251968503937
+    },
+    {
+      "entry_time": "2024-05-14T10:19:00-04:00",
+      "direction": "Short",
+      "entry": 19980.25,
+      "stop": 20008.25,
+      "target": 19937.0,
+      "exit": 20008.25,
+      "pnl_usd": -560.0,
+      "r_multiple": -0.9824561403508771
+    },
+    {
+      "entry_time": "2024-05-16T10:15:00-04:00",
+      "direction": "Long",
+      "entry": 20396.25,
+      "stop": 20367.5,
+      "target": 20440.625,
+      "exit": 20440.625,
+      "pnl_usd": 887.5,
+      "r_multiple": 1.517094017094017
+    },
+    {
+      "entry_time": "2024-05-17T09:39:00-04:00",
+      "direction": "Long",
+      "entry": 20355.75,
+      "stop": 20332.75,
+      "target": 20389.625,
+      "exit": 20332.75,
+      "pnl_usd": -460.0,
+      "r_multiple": -1.010989010989011
+    },
+    {
+      "entry_time": "2024-05-21T10:19:00-04:00",
+      "direction": "Long",
+      "entry": 20418.25,
+      "stop": 20395.5,
+      "target": 20452.375,
+      "exit": 20452.375,
+      "pnl_usd": 682.5,
+      "r_multiple": 1.5
+    },
+    {
+      "entry_time": "2024-05-22T09:46:00-04:00",
+      "direction": "Long",
+      "entry": 20507.0,
+      "stop": 20482.5,
+      "target": 20543.125,
+      "exit": 20482.5,
+      "pnl_usd": -490.0,
+      "r_multiple": -1.0103092783505154
+    },
+    {
+      "entry_time": "2024-05-24T09:32:00-04:00",
+      "direction": "Short",
+      "entry": 20438.5,
+      "stop": 20463.75,
+      "target": 20401.25,
+      "exit": 20463.75,
+      "pnl_usd": -505.0,
+      "r_multiple": -1.01
+    },
+    {
+      "entry_time": "2024-05-27T09:50:00-04:00",
+      "direction": "Short",
+      "entry": 20589.75,
+      "stop": 20604.75,
+      "target": 20566.625,
+      "exit": 20604.75,
+      "pnl_usd": -300.0,
+      "r_multiple": -0.9836065573770492
+    },
+    {
+      "entry_time": "2024-05-29T10:13:00-04:00",
+      "direction": "Long",
+      "entry": 20525.5,
+      "stop": 20504.25,
+      "target": 20556.125,
+      "exit": 20556.125,
+      "pnl_usd": 612.5,
+      "r_multiple": 1.4759036144578312
+    },
+    {
+      "entry_time": "2024-05-31T09:47:00-04:00",
+      "direction": "Short",
+      "entry": 20282.5,
+      "stop": 20325.25,
+      "target": 20219.625,
+      "exit": 20219.625,
+      "pnl_usd": 1257.5,
+      "r_multiple": 1.4881656804733727
+    },
+    {
+      "entry_time": "2024-06-03T09:52:00-04:00",
+      "direction": "Short",
+      "entry": 20409.25,
+      "stop": 20449.25,
+      "target": 20348.625,
+      "exit": 20348.625,
+      "pnl_usd": 1212.5,
+      "r_multiple": 1.5062111801242235
+    },
+    {
+      "entry_time": "2024-06-04T09:35:00-04:00",
+      "direction": "Short",
+      "entry": 20307.5,
+      "stop": 20344.5,
+      "target": 20252.0,
+      "exit": 20344.5,
+      "pnl_usd": -740.0,
+      "r_multiple": -1.0
+    },
+    {
+      "entry_time": "2024-06-05T09:43:00-04:00",
+      "direction": "Long",
+      "entry": 20527.75,
+      "stop": 20507.5,
+      "target": 20558.75,
+      "exit": 20507.5,
+      "pnl_usd": -405.0,
+      "r_multiple": -0.9878048780487805
+    },
+    {
+      "entry_time": "2024-06-10T09:34:00-04:00",
+      "direction": "Long",
+      "entry": 20699.75,
+      "stop": 20671.5,
+      "target": 20740.875,
+      "exit": 20740.875,
+      "pnl_usd": 822.5,
+      "r_multiple": 1.481981981981982
+    },
+    {
+      "entry_time": "2024-06-11T09:48:00-04:00",
+      "direction": "Short",
+      "entry": 20741.75,
+      "stop": 20774.25,
+      "target": 20693.625,
+      "exit": 20693.625,
+      "pnl_usd": 962.5,
+      "r_multiple": 1.4922480620155039
+    },
+    {
+      "entry_time": "2024-06-12T10:13:00-04:00",
+      "direction": "Long",
+      "entry": 21193.5,
+      "stop": 21173.75,
+      "target": 21222.5,
+      "exit": 21222.5,
+      "pnl_usd": 580.0,
+      "r_multiple": 1.4871794871794872
+    },
+    {
+      "entry_time": "2024-06-13T10:06:00-04:00",
+      "direction": "Short",
+      "entry": 21326.0,
+      "stop": 21344.25,
+      "target": 21296.75,
+      "exit": 21296.75,
+      "pnl_usd": 585.0,
+      "r_multiple": 1.5394736842105263
+    },
+    {
+      "entry_time": "2024-06-14T09:34:00-04:00",
+      "direction": "Short",
+      "entry": 21254.5,
+      "stop": 21277.75,
+      "target": 21219.625,
+      "exit": 21277.75,
+      "pnl_usd": -465.0,
+      "r_multiple": -1.0
+    },
+    {
+      "entry_time": "2024-06-17T09:35:00-04:00",
+      "direction": "Short",
+      "entry": 21375.5,
+      "stop": 21407.0,
+      "target": 21327.0,
+      "exit": 21407.0,
+      "pnl_usd": -630.0,
+      "r_multiple": -0.984375
+    },
+    {
+      "entry_time": "2024-06-18T09:33:00-04:00",
+      "direction": "Long",
+      "entry": 21639.0,
+      "stop": 21615.25,
+      "target": 21674.625,
+      "exit": 21615.25,
+      "pnl_usd": -475.0,
+      "r_multiple": -1.0
+    },
+    {
+      "entry_time": "2024-06-20T09:46:00-04:00",
+      "direction": "Long",
+      "entry": 21693.25,
+      "stop": 21643.0,
+      "target": 21769.25,
+      "exit": 21643.0,
+      "pnl_usd": -1005.0,
+      "r_multiple": -0.995049504950495
+    },
+    {
+      "entry_time": "2024-06-21T10:26:00-04:00",
+      "direction": "Short",
+      "entry": 21391.25,
+      "stop": 21440.5,
+      "target": 21316.75,
+      "exit": 21440.5,
+      "pnl_usd": -985.0,
+      "r_multiple": -0.9949494949494949
+    },
+    {
+      "entry_time": "2024-06-24T09:42:00-04:00",
+      "direction": "Short",
+      "entry": 21348.75,
+      "stop": 21398.25,
+      "target": 21274.5,
+      "exit": 21398.25,
+      "pnl_usd": -990.0,
+      "r_multiple": -1.0
+    },
+    {
+      "entry_time": "2024-06-25T09:43:00-04:00",
+      "direction": "Long",
+      "entry": 21257.5,
+      "stop": 21225.25,
+      "target": 21305.25,
+      "exit": 21305.25,
+      "pnl_usd": 955.0,
+      "r_multiple": 1.4921875
+    },
+    {
+      "entry_time": "2024-06-26T10:05:00-04:00",
+      "direction": "Long",
+      "entry": 21422.5,
+      "stop": 21388.5,
+      "target": 21472.875,
+      "exit": 21388.5,
+      "pnl_usd": -680.0,
+      "r_multiple": -1.0074074074074073
+    },
+    {
+      "entry_time": "2024-06-27T10:16:00-04:00",
+      "direction": "Long",
+      "entry": 21543.5,
+      "stop": 21471.75,
+      "target": 21652.375,
+      "exit": 21471.75,
+      "pnl_usd": -1435.0,
+      "r_multiple": -0.9930795847750865
+    },
+    {
+      "entry_time": "2024-06-28T09:38:00-04:00",
+      "direction": "Long",
+      "entry": 21512.0,
+      "stop": 21472.25,
+      "target": 21571.625,
+      "exit": 21571.625,
+      "pnl_usd": 1192.5,
+      "r_multiple": 1.5
+    },
+    {
+      "entry_time": "2024-07-01T10:12:00-04:00",
+      "direction": "Short",
+      "entry": 21316.75,
+      "stop": 21365.75,
+      "target": 21244.5,
+      "exit": 21365.75,
+      "pnl_usd": -980.0,
+      "r_multiple": -1.0103092783505154
+    },
+    {
+      "entry_time": "2024-07-02T10:23:00-04:00",
+      "direction": "Short",
+      "entry": 21464.0,
+      "stop": 21497.5,
+      "target": 21415.0,
+      "exit": 21497.5,
+      "pnl_usd": -670.0,
+      "r_multiple": -1.0151515151515151
+    },
+    {
+      "entry_time": "2024-07-03T10:09:00-04:00",
+      "direction": "Short",
+      "entry": 21697.5,
+      "stop": 21733.0,
+      "target": 21644.25,
+      "exit": 21733.0,
+      "pnl_usd": -710.0,
+      "r_multiple": -1.0
+    },
+    {
+      "entry_time": "2024-07-04T10:28:00-04:00",
+      "direction": "Long",
+      "entry": 21812.0,
+      "stop": 21807.25,
+      "target": 21821.0,
+      "exit": 21807.25,
+      "pnl_usd": -95.0,
+      "r_multiple": -0.8636363636363636
+    },
+    {
+      "entry_time": "2024-07-05T09:48:00-04:00",
+      "direction": "Short",
+      "entry": 21867.25,
+      "stop": 21927.75,
+      "target": 21777.125,
+      "exit": 21927.75,
+      "pnl_usd": -1210.0,
+      "r_multiple": -1.004149377593361
+    },
+    {
+      "entry_time": "2024-07-08T09:34:00-04:00",
+      "direction": "Long",
+      "entry": 22072.5,
+      "stop": 22048.25,
+      "target": 22110.125,
+      "exit": 22048.25,
+      "pnl_usd": -485.0,
+      "r_multiple": -0.9797979797979798
+    },
+    {
+      "entry_time": "2024-07-09T10:08:00-04:00",
+      "direction": "Short",
+      "entry": 22152.75,
+      "stop": 22193.75,
+      "target": 22091.875,
+      "exit": 22193.75,
+      "pnl_usd": -820.0,
+      "r_multiple": -1.0061349693251533
+    },
+    {
+      "entry_time": "2024-07-10T10:27:00-04:00",
+      "direction": "Long",
+      "entry": 22206.75,
+      "stop": 22182.0,
+      "target": 22243.25,
+      "exit": 22182.0,
+      "pnl_usd": -495.0,
+      "r_multiple": -1.010204081632653
+    },
+    {
+      "entry_time": "2024-07-11T09:46:00-04:00",
+      "direction": "Long",
+      "entry": 22324.5,
+      "stop": 22285.25,
+      "target": 22382.75,
+      "exit": 22285.25,
+      "pnl_usd": -785.0,
+      "r_multiple": -1.0064102564102564
+    },
+    {
+      "entry_time": "2024-07-12T09:48:00-04:00",
+      "direction": "Long",
+      "entry": 21908.25,
+      "stop": 21866.25,
+      "target": 21971.25,
+      "exit": 21971.25,
+      "pnl_usd": 1260.0,
+      "r_multiple": 1.5
+    },
+    {
+      "entry_time": "2024-07-15T09:46:00-04:00",
+      "direction": "Short",
+      "entry": 22031.25,
+      "stop": 22099.25,
+      "target": 21929.25,
+      "exit": 22099.25,
+      "pnl_usd": -1360.0,
+      "r_multiple": -1.0
+    },
+    {
+      "entry_time": "2024-07-16T09:32:00-04:00",
+      "direction": "Short",
+      "entry": 22070.0,
+      "stop": 22089.5,
+      "target": 22042.625,
+      "exit": 22089.5,
+      "pnl_usd": -390.0,
+      "r_multiple": -1.04
+    },
+    {
+      "entry_time": "2024-07-17T09:56:00-04:00",
+      "direction": "Long",
+      "entry": 21668.0,
+      "stop": 21640.75,
+      "target": 21708.25,
+      "exit": 21640.75,
+      "pnl_usd": -545.0,
+      "r_multiple": -1.0092592592592593
+    },
+    {
+      "entry_time": "2024-07-19T09:36:00-04:00",
+      "direction": "Long",
+      "entry": 21328.25,
+      "stop": 21268.75,
+      "target": 21416.875,
+      "exit": 21268.75,
+      "pnl_usd": -1190.0,
+      "r_multiple": -1.0042194092827004
+    },
+    {
+      "entry_time": "2024-07-22T09:40:00-04:00",
+      "direction": "Long",
+      "entry": 21407.5,
+      "stop": 21315.75,
+      "target": 21546.375,
+      "exit": 21315.75,
+      "pnl_usd": -1835.0,
+      "r_multiple": -0.994579945799458
+    },
+    {
+      "entry_time": "2024-07-23T09:35:00-04:00",
+      "direction": "Long",
+      "entry": 21396.0,
+      "stop": 21366.5,
+      "target": 21442.125,
+      "exit": 21442.125,
+      "pnl_usd": 922.5,
+      "r_multiple": 1.524793388429752
+    },
+    {
+      "entry_time": "2024-07-25T09:48:00-04:00",
+      "direction": "Short",
+      "entry": 20545.0,
+      "stop": 20639.0,
+      "target": 20404.0,
+      "exit": 20404.0,
+      "pnl_usd": 2820.0,
+      "r_multiple": 1.5
+    },
+    {
+      "entry_time": "2024-07-26T09:49:00-04:00",
+      "direction": "Short",
+      "entry": 20513.75,
+      "stop": 20578.5,
+      "target": 20415.375,
+      "exit": 20578.5,
+      "pnl_usd": -1295.0,
+      "r_multiple": -0.9923371647509579
+    },
+    {
+      "entry_time": "2024-07-29T09:39:00-04:00",
+      "direction": "Long",
+      "entry": 20724.5,
+      "stop": 20655.0,
+      "target": 20827.5,
+      "exit": 20655.0,
+      "pnl_usd": -1390.0,
+      "r_multiple": -1.0072463768115942
+    },
+    {
+      "entry_time": "2024-07-30T09:32:00-04:00",
+      "direction": "Short",
+      "entry": 20691.25,
+      "stop": 20726.25,
+      "target": 20638.125,
+      "exit": 20726.25,
+      "pnl_usd": -700.0,
+      "r_multiple": -0.9929078014184397
+    },
+    {
+      "entry_time": "2024-07-31T09:46:00-04:00",
+      "direction": "Short",
+      "entry": 20762.0,
+      "stop": 20847.5,
+      "target": 20633.75,
+      "exit": 20847.5,
+      "pnl_usd": -1710.0,
+      "r_multiple": -1.0
+    }
+  ]
+}
