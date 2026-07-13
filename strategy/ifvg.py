@@ -23,6 +23,14 @@ Added vs the original port (Phase-2, Task 1 Step 5): an explicit `in_session` ga
 mirroring Pine lines 320/335 (FVG creation gated on inTradingSession) and lines
 425-426 (state reset outside the session). FVG creation is now gated on session,
 and the emitted state is forced to "None" for any out-of-session bar.
+
+Added in Phase 4, Task 1 Step 2: `fvg_threshold` (Pine lines 307-315) -- a gap
+only qualifies as an FVG if its percentage size clears this floor. A bullish
+gap's pct is `(low[i]-high[i-2])/high[i-2]*100`; a bearish gap's pct is
+`(low[i-2]-high[i])/low[i-2]*100`. At the default `0.0` this is identical to
+the plain gap-exists check, since a real gap (low[i] > high[i-2], or
+high[i] < low[i-2]) always has a strictly positive pct -- so `pct >= 0.0` is
+always true and behavior is unchanged from Phase 2.
 """
 
 import pandas as pd
@@ -34,7 +42,7 @@ IFVGState = Literal["Bullish", "Bearish", "None", "Expired"]
 IFVG_LOOKBACK = 10  # bars after inversion before expiry
 
 
-def compute_ifvg(df: pd.DataFrame, in_session: pd.Series) -> pd.Series:
+def compute_ifvg(df: pd.DataFrame, in_session: pd.Series, fvg_threshold: float = 0.0) -> pd.Series:
     """
     Compute IFVG state for each bar.
 
@@ -47,6 +55,10 @@ def compute_ifvg(df: pd.DataFrame, in_session: pd.Series) -> pd.Series:
         Boolean mask (same index as df) — True where the bar is inside the
         strategy's trading session. FVG creation is gated on this, and the
         emitted state is forced to "None" outside it.
+    fvg_threshold : float
+        Minimum gap size, as a percentage of the reference price, for a gap
+        to qualify as an FVG (Pine lines 307-315). Default 0.0 is
+        behavior-preserving: any real gap has pct >= 0.0.
 
     Returns
     -------
@@ -83,29 +95,34 @@ def compute_ifvg(df: pd.DataFrame, in_session: pd.Series) -> pd.Series:
             ifvg_state = "None"
 
         # --- FVG detection (Pine lines 307-316), gated on session (Pine lines 320/335) ---
+        # and on gap size clearing fvg_threshold (Pine lines 307-315).
         # Bullish gap: low[i] > high[i-2]
         bullish_gap = lows[i] > highs[i - 2]
-        if bullish_gap and session[i]:
-            fvg_array.insert(0, {
-                "top": lows[i],
-                "bottom": highs[i - 2],
-                "is_bullish": True,
-                "start_bar": i,
-                "is_inverted": False,
-                "invert_bar": None,
-            })
+        if bullish_gap and session[i] and highs[i - 2] != 0:
+            gap_pct = (lows[i] - highs[i - 2]) / highs[i - 2] * 100.0
+            if gap_pct >= fvg_threshold:
+                fvg_array.insert(0, {
+                    "top": lows[i],
+                    "bottom": highs[i - 2],
+                    "is_bullish": True,
+                    "start_bar": i,
+                    "is_inverted": False,
+                    "invert_bar": None,
+                })
 
         # Bearish gap: high[i] < low[i-2]
         bearish_gap = highs[i] < lows[i - 2]
-        if bearish_gap and session[i]:
-            fvg_array.insert(0, {
-                "top": lows[i - 2],
-                "bottom": highs[i],
-                "is_bullish": False,
-                "start_bar": i,
-                "is_inverted": False,
-                "invert_bar": None,
-            })
+        if bearish_gap and session[i] and lows[i - 2] != 0:
+            gap_pct = (lows[i - 2] - highs[i]) / lows[i - 2] * 100.0
+            if gap_pct >= fvg_threshold:
+                fvg_array.insert(0, {
+                    "top": lows[i - 2],
+                    "bottom": highs[i],
+                    "is_bullish": False,
+                    "start_bar": i,
+                    "is_inverted": False,
+                    "invert_bar": None,
+                })
 
         # --- Inversion check (Pine lines 350-369) ---
         for fvg in fvg_array:

@@ -15,6 +15,13 @@ Three phases run per bar i, strictly in this order:
      the signal bar itself is never exit-checked.
 
 No lookahead: every decision at bar i only reads bars <= i.
+
+Phase 4 (docs/superpowers/plans/2026-07-13-phase4-parameter-tuning.md, Task 1
+Step 5) split this into a cacheable signal layer and a cheap execution
+layer, and threaded a `StrategyParams` through both so the engine can be
+re-run cheaply over many (params, window) combinations for walk-forward
+tuning. `backtest(df, params=StrategyParams())` = the Phase-2 default
+behavior, byte-identical for defaults.
 """
 
 import numpy as np
@@ -25,32 +32,24 @@ from strategy.ema import compute_ema
 from strategy.ifvg import compute_ifvg
 from strategy.cisd import compute_cisd
 from strategy.signals import double_confirmation
+from strategy.params import StrategyParams
 from backtest.trade import Trade
 
 PT_VALUE = 20.0            # USD per NQ index point
-SWING = 8                  # swing-stop lookback, inclusive of the signal bar
-RR = 1.5                   # target = risk * RR
 MAX_TRADES_PER_DAY = 1     # Pine `maxTradesPerDay`
 
 
-def backtest(df: pd.DataFrame, fill_mode: str = "next_open") -> list[Trade]:
-    """Run the bar-by-bar simulation and return the list of CLOSED trades.
-
-    Trades still open at the end of the data are intentionally not
-    appended (see Task 3 spec: only resolved trades are returned).
-
-    Exposes a same-bar-span diagnostic as a function attribute --
-    `backtest.same_bar_span_count` -- set at the end of each call to the
-    number of exits where a single bar's range touched both the stop and
-    the target (resolved stop-first). The signature stays a fixed
-    `-> list[Trade]`, so this is the mechanism the Task 5 runner uses to
-    report the size of the pessimistic-fill bias without widening the
-    return type.
+def compute_signal_layer(df: pd.DataFrame, params: StrategyParams = StrategyParams()) -> dict:
+    """Precompute the (cacheable) signal layer: session mask, IFVG/CISD
+    double-confirmation signal, EMA, and the raw OHLC/day/index arrays that
+    `run_execution` needs. Pure function of `df` and `params` -- no
+    execution-loop state -- so it can be computed once and sliced/reused
+    across many execution runs (e.g. walk-forward IS/OOS windows).
     """
-    in_sess = in_session_mask(df.index)
-    ifvg = compute_ifvg(df, in_sess)
+    in_sess = in_session_mask(df.index, params.session_start, params.session_end)
+    ifvg = compute_ifvg(df, in_sess, params.fvg_threshold)
     cisd = compute_cisd(df)
-    ema = compute_ema(df, 20)
+    ema = compute_ema(df, params.ema_length)
     sig = double_confirmation(ifvg, cisd)  # positional; aligned by row position, not index
 
     o, h, l, c = (df[x].to_numpy(dtype=float) for x in ("open", "high", "low", "close"))
@@ -61,6 +60,42 @@ def backtest(df: pd.DataFrame, fill_mode: str = "next_open") -> list[Trade]:
     idx = df.index
     days = idx.tz_convert("America/New_York").date
 
+    return {
+        "sig": sg,
+        "ema_v": ema_v,
+        "sess": sess,
+        "o": o,
+        "h": h,
+        "l": l,
+        "c": c,
+        "days": days,
+        "index": idx,
+    }
+
+
+def run_execution(layer: dict, params: StrategyParams = StrategyParams(), fill_mode: str = "next_open") -> list[Trade]:
+    """Run the bar-by-bar simulation over a precomputed signal layer and
+    return the list of CLOSED trades.
+
+    Trades still open at the end of the data are intentionally not
+    appended (see Task 3 spec: only resolved trades are returned).
+
+    Exposes a same-bar-span diagnostic as a function attribute --
+    `run_execution.same_bar_span_count` -- set at the end of each call to
+    the number of exits where a single bar's range touched both the stop
+    and the target (resolved stop-first).
+    """
+    sg = layer["sig"]
+    ema_v = layer["ema_v"]
+    sess = layer["sess"]
+    o, h, l, c = layer["o"], layer["h"], layer["l"], layer["c"]
+    days = layer["days"]
+    idx = layer["index"]
+
+    swing = params.swing_lookback
+    rr = params.rr
+    n = len(sg)
+
     trades: list[Trade] = []
     counters = {"same_bar_span": 0}
     open_t: Trade | None = None
@@ -68,7 +103,7 @@ def backtest(df: pd.DataFrame, fill_mode: str = "next_open") -> list[Trade]:
     trades_today = 0
     cur_day = None
 
-    for i in range(SWING, len(df)):
+    for i in range(swing, n):
         if days[i] != cur_day:
             cur_day = days[i]
             trades_today = 0
@@ -96,17 +131,36 @@ def backtest(df: pd.DataFrame, fill_mode: str = "next_open") -> list[Trade]:
         if open_t is None and pending is None and sess[i] and trades_today < MAX_TRADES_PER_DAY:
             s = sg[i]
             if s == "Long" and c[i] > ema_v[i]:
-                stop = float(np.min(l[i - SWING + 1: i + 1]))
+                stop = float(np.min(l[i - swing + 1: i + 1]))
                 risk = c[i] - stop
                 if risk > 0:
-                    pending = _mk("Long", c[i], stop, c[i] + risk * RR)
+                    pending = _mk("Long", c[i], stop, c[i] + risk * rr)
             elif s == "Short" and c[i] < ema_v[i]:
-                stop = float(np.max(h[i - SWING + 1: i + 1]))
+                stop = float(np.max(h[i - swing + 1: i + 1]))
                 risk = stop - c[i]
                 if risk > 0:
-                    pending = _mk("Short", c[i], stop, c[i] - risk * RR)
+                    pending = _mk("Short", c[i], stop, c[i] - risk * rr)
 
-    backtest.same_bar_span_count = counters["same_bar_span"]
+    run_execution.same_bar_span_count = counters["same_bar_span"]
+    return trades
+
+
+run_execution.same_bar_span_count = 0  # populated by each call; see run_execution()'s docstring
+
+
+def backtest(df: pd.DataFrame, params: StrategyParams = StrategyParams(), fill_mode: str = "next_open") -> list[Trade]:
+    """Run the bar-by-bar simulation and return the list of CLOSED trades.
+
+    `backtest(df, params=StrategyParams())` = `run_execution(compute_signal_layer(df, params), params, fill_mode)`
+    -- byte-identical to the pre-Phase-4 engine for default params.
+
+    Exposes the same `backtest.same_bar_span_count` diagnostic as before
+    (mirrored from `run_execution.same_bar_span_count` after each call), so
+    existing callers don't need to change.
+    """
+    layer = compute_signal_layer(df, params)
+    trades = run_execution(layer, params, fill_mode)
+    backtest.same_bar_span_count = run_execution.same_bar_span_count
     return trades
 
 
