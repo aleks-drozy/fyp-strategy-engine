@@ -148,14 +148,16 @@ def compare(generated: list, real: pd.DataFrame, win_start, win_end) -> dict:
     # collapsing duplicate keys if it's ever violated (Minor review finding).
     real_by_key = {(r.entry_date, r.direction): r for r in real_in.itertuples()}
     gen_by_key = {(g.entry_date, g.direction): g for g in generated_in.itertuples()}
-    assert len(real_by_key) == n_real_in_window, (
-        f"duplicate (entry_date, direction) key in real log within window: "
-        f"{n_real_in_window} rows but {len(real_by_key)} unique keys"
-    )
-    assert len(gen_by_key) == n_generated_in_window, (
-        f"duplicate (entry_date, direction) key in generated trades within "
-        f"window: {n_generated_in_window} rows but {len(gen_by_key)} unique keys"
-    )
+    if len(real_by_key) != n_real_in_window:
+        raise ValueError(
+            f"duplicate (entry_date, direction) key in real log within window: "
+            f"{n_real_in_window} rows but {len(real_by_key)} unique keys"
+        )
+    if len(gen_by_key) != n_generated_in_window:
+        raise ValueError(
+            f"duplicate (entry_date, direction) key in generated trades within "
+            f"window: {n_generated_in_window} rows but {len(gen_by_key)} unique keys"
+        )
 
     matched_keys = set(real_by_key) & set(gen_by_key)
     n_matched = len(matched_keys)
