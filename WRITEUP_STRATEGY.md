@@ -156,10 +156,13 @@ reconciliation.
 - **The winning log's true backtestable baseline is 59 trades / +$18,115,
   not the full 72 / +$28,400.** 13 of the winning log's real trades (worth
   +$10,285, including some of its largest winners) fall after 2025-12-11,
-  the last timestamp in the Phase-1 raw data. Comparing the generated engine
-  against the full +$28,400 figure would be comparing against trades the
-  data simply cannot produce a signal for — the in-window +$18,115 / 59
-  trades is the only fair target.
+  the last timestamp in the Phase-1 raw data. That 2025-12-11 edge is a
+  truncation artifact of the Phase-1 export, not a true end of available NQ
+  data: the raw CSV is exactly 1,048,576 lines — Excel's row-limit cap — and
+  its last row is a mid-session minute, not a market boundary. Comparing the
+  generated engine against the full +$28,400 figure would be comparing
+  against trades the truncated Phase-1 export does not cover — the
+  in-window +$18,115 / 59 trades is the only fair target.
 - **0 same-bar-span exits.** No generated trade's exit bar hit both its stop
   and target on the same bar, so the pessimistic stop-first tie-break rule
   never actually had to arbitrate a genuine ambiguity in this run.

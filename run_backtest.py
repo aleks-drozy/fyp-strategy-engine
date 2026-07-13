@@ -80,11 +80,12 @@ def _generated_out_of_all_windows(generated: list, windows: dict[str, tuple[date
     """
     ordered = sorted(windows.items(), key=lambda kv: kv[1][0])
     (first_name, (first_start, first_end)), (second_name, (second_start, second_end)) = ordered
-    assert first_end <= second_start, (
-        f"expected disjoint, non-overlapping log windows but got "
-        f"{first_name}={first_start}..{first_end} overlapping "
-        f"{second_name}={second_start}..{second_end}"
-    )
+    if first_end > second_start:
+        raise ValueError(
+            f"expected disjoint, non-overlapping log windows but got "
+            f"{first_name}={first_start}..{first_end} overlapping "
+            f"{second_name}={second_start}..{second_end}"
+        )
 
     def _covered(d: date) -> bool:
         return (first_start <= d <= first_end) or (second_start <= d <= second_end)
@@ -235,15 +236,17 @@ def main() -> None:
     # --- Sanity assert the known in-window real baselines --------------------
     for name, baseline in KNOWN_BASELINES.items():
         report = log_reports[name]
-        assert report["n_real_in_window"] == baseline["n_real_in_window"], (
-            f"{name}: expected {baseline['n_real_in_window']} real in-window trades, "
-            f"got {report['n_real_in_window']} -- parsing/window regression"
-        )
+        if report["n_real_in_window"] != baseline["n_real_in_window"]:
+            raise RuntimeError(
+                f"{name}: expected {baseline['n_real_in_window']} real in-window trades, "
+                f"got {report['n_real_in_window']} -- parsing/window regression"
+            )
         real_pnl = report["aggregate"]["real"]["total_pnl"]
-        assert abs(real_pnl - baseline["real_total_pnl"]) < 1e-6, (
-            f"{name}: expected real total_pnl {baseline['real_total_pnl']}, "
-            f"got {real_pnl} -- parsing/window regression"
-        )
+        if abs(real_pnl - baseline["real_total_pnl"]) >= 1e-6:
+            raise RuntimeError(
+                f"{name}: expected real total_pnl {baseline['real_total_pnl']}, "
+                f"got {real_pnl} -- parsing/window regression"
+            )
     print("Sanity baselines OK: 2023-24 = 95/-4600.0, optimised = 59/+18115.0")
 
     out_of_all_windows = _generated_out_of_all_windows(trades, windows)

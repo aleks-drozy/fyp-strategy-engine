@@ -130,9 +130,11 @@ def compute_cisd(df: pd.DataFrame) -> pd.Series:
                 # Corrected neighbor index (Blocker 4): max of high[breakIdx] and
                 # high[breakIdx-1] -- was erroneously high[breakIdx+1] in the original port.
                 offset = i - bullish_break_idx
-                h1 = highs[i - offset] if (i - offset) >= 0 else float("nan")
-                h2 = highs[i - offset - 1] if (i - offset - 1) >= 0 else float("nan")
-                struct_top = max(h1, h2) if not (math.isnan(h1) or math.isnan(h2)) else max(h1, h2, default=0.0)
+                h1 = highs[i - offset]
+                if (i - offset - 1) >= 0:
+                    struct_top = max(h1, highs[i - offset - 1])
+                else:
+                    struct_top = h1
                 is_bearish_pullback = False
                 # Create bullish CISD level at potentialTopPrice
                 b = {"price": potential_top, "completed": False}
@@ -152,9 +154,11 @@ def compute_cisd(df: pd.DataFrame) -> pd.Series:
                 # Mirrored fix (Blocker 4): min of low[breakIdx] and low[breakIdx-1]
                 # -- was erroneously low[breakIdx+1] in the original port.
                 offset = i - bearish_break_idx
-                l1 = lows[i - offset] if (i - offset) >= 0 else float("nan")
-                l2 = lows[i - offset - 1] if (i - offset - 1) >= 0 else float("nan")
-                struct_bottom = min(l1, l2) if not (math.isnan(l1) or math.isnan(l2)) else min(l1, l2)
+                l1 = lows[i - offset]
+                if (i - offset - 1) >= 0:
+                    struct_bottom = min(l1, lows[i - offset - 1])
+                else:
+                    struct_bottom = l1
                 is_bullish_pullback = False
                 bu = {"price": potential_bottom, "completed": False}
                 cisd_levels_bu.append(bu)

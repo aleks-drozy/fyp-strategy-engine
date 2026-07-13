@@ -245,6 +245,6 @@
     "data_date_min": "2022-12-26T18:01:00-05:00",
     "data_date_max": "2025-12-11T20:52:00-05:00",
     "fill_mode": "next_open",
-    "run_seconds": 19.2
+    "run_seconds": 20.4
   }
 }
