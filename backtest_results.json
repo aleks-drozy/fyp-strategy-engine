@@ -1,0 +1,250 @@
+{
+  "generated": {
+    "total_trades": 605,
+    "aggregate": {
+      "profit_factor": 0.858860901517489,
+      "win_rate": 0.3702479338842975,
+      "total_pnl": -50317.5,
+      "max_drawdown": 72617.5,
+      "direction_mix": {
+        "Long": 312,
+        "Short": 293
+      }
+    },
+    "same_bar_span_count": 0,
+    "out_of_all_windows": {
+      "count": 50,
+      "before_first_window": {
+        "count": 40,
+        "date_range": [
+          "2022-12-27",
+          "2023-03-03"
+        ]
+      },
+      "inter_log_gap": {
+        "count": 10,
+        "date_range": [
+          "2025-01-02",
+          "2025-01-20"
+        ],
+        "gap_bounds": [
+          "2024-12-30",
+          "2025-01-21"
+        ]
+      },
+      "after_last_window": {
+        "count": 0,
+        "date_range": null
+      }
+    }
+  },
+  "logs": {
+    "2023_2024": {
+      "source_path": "C:/Users/Alex/Projects/Trading-Strategy-Monte-Carlo-Simulation/data/NQ1_2023_2024.csv",
+      "log_date_min": "2023-03-06",
+      "log_date_max": "2024-12-30",
+      "compare": {
+        "win_start": "2023-03-06",
+        "win_end": "2024-12-30",
+        "n_real_in_window": 95,
+        "n_real_excluded": 0,
+        "n_generated_in_window": 376,
+        "n_matched": 76,
+        "n_missed": 19,
+        "n_extra": 300,
+        "precision": 0.20212765957446807,
+        "recall": 0.8,
+        "matched_entry_price_delta": [
+          2655.0,
+          2655.0,
+          2524.75,
+          2524.75,
+          2530.25,
+          2524.75,
+          2524.75,
+          2526.5,
+          2524.75,
+          2524.75,
+          2524.5,
+          2524.75,
+          2524.75,
+          2343.75,
+          2348.25,
+          2348.25,
+          2348.25,
+          2348.25,
+          2348.25,
+          2347.75,
+          2348.25,
+          2348.25,
+          2349.0,
+          2151.0,
+          2151.0,
+          2151.0,
+          2151.0,
+          2151.0,
+          2151.0,
+          2151.0,
+          2151.0,
+          2151.75,
+          2151.0,
+          1925.75,
+          1941.25,
+          1941.5,
+          1941.25,
+          1941.25,
+          1693.75,
+          1693.75,
+          1693.75,
+          1693.75,
+          1686.25,
+          1693.75,
+          1693.75,
+          1693.25,
+          1693.5,
+          1693.75,
+          1694.25,
+          1693.75,
+          1693.75,
+          1433.25,
+          1426.0,
+          1433.0,
+          1433.0,
+          1433.0,
+          1433.0,
+          1433.0,
+          1406.0,
+          1433.0,
+          1310.0,
+          1434.0,
+          1433.0,
+          1431.25,
+          1433.0,
+          1433.0,
+          1441.0,
+          1198.0,
+          1198.0,
+          1146.0,
+          1198.0,
+          1198.0,
+          1198.0,
+          1198.0,
+          912.0,
+          912.0
+        ],
+        "aggregate": {
+          "generated": {
+            "profit_factor": 0.7065862553931969,
+            "win_rate": 0.3377659574468085,
+            "total_pnl": -61545.0,
+            "direction_mix": {
+              "Long": 186,
+              "Short": 190
+            }
+          },
+          "real": {
+            "profit_factor": 0.897629909869812,
+            "win_rate": 0.37894736842105264,
+            "total_pnl": -4600.0,
+            "direction_mix": {
+              "Long": 41,
+              "Short": 54
+            }
+          }
+        }
+      }
+    },
+    "optimised": {
+      "source_path": "C:/Users/Alex/Projects/Trading-Strategy-Monte-Carlo-Simulation/data/NQ1_optimised.csv",
+      "log_date_min": "2025-01-21",
+      "log_date_max": "2026-02-24",
+      "compare": {
+        "win_start": "2025-01-21",
+        "win_end": "2025-12-11",
+        "n_real_in_window": 59,
+        "n_real_excluded": 13,
+        "n_generated_in_window": 179,
+        "n_matched": 45,
+        "n_missed": 14,
+        "n_extra": 134,
+        "precision": 0.25139664804469275,
+        "recall": 0.7627118644067796,
+        "matched_entry_price_delta": [
+          912.0,
+          912.0,
+          912.0,
+          912.25,
+          972.5,
+          913.25,
+          912.0,
+          969.75,
+          912.0,
+          846.25,
+          708.5,
+          708.5,
+          708.5,
+          708.5,
+          708.5,
+          708.5,
+          708.5,
+          708.5,
+          708.5,
+          704.5,
+          708.5,
+          494.25,
+          494.0,
+          494.0,
+          494.0,
+          494.0,
+          494.0,
+          494.0,
+          449.5,
+          494.0,
+          494.0,
+          494.0,
+          493.75,
+          493.5,
+          256.5,
+          256.5,
+          256.5,
+          256.5,
+          256.5,
+          256.5,
+          306.0,
+          256.5,
+          256.5,
+          256.25,
+          291.75
+        ],
+        "aggregate": {
+          "generated": {
+            "profit_factor": 1.0928949135470876,
+            "win_rate": 0.4245810055865922,
+            "total_pnl": 11067.5,
+            "direction_mix": {
+              "Long": 97,
+              "Short": 82
+            }
+          },
+          "real": {
+            "profit_factor": 1.5350760596662236,
+            "win_rate": 0.559322033898305,
+            "total_pnl": 18115.0,
+            "direction_mix": {
+              "Long": 27,
+              "Short": 32
+            }
+          }
+        }
+      }
+    }
+  },
+  "meta": {
+    "data_path": "data/raw/Dataset_NQ_1min_2022_2025.csv",
+    "data_rows": 1048575,
+    "data_date_min": "2022-12-26T18:01:00-05:00",
+    "data_date_max": "2025-12-11T20:52:00-05:00",
+    "fill_mode": "next_open",
+    "run_seconds": 20.4
+  }
+}
