@@ -320,5 +320,5 @@ def test_walk_forward_rejects_grid_without_default():
             test_end=df.index[-1].normalize() + pd.Timedelta(days=1),
         )
     ]
-    with pytest.raises(AssertionError):
+    with pytest.raises(ValueError):
         walk_forward(df, grid, folds)
