@@ -3,10 +3,10 @@
 Vendored (unchanged logic) from
 C:/Users/Alex/Projects/Trading-Strategy-Monte-Carlo-Simulation/mc/metrics.py
 because that module lives in a separate, unrelated repo and importing across
-repos would require sys.path surgery. Only the three functions
-validate_trades.py needs are copied here: profit_factor, win_rate,
-total_pnl. See the source file for the fuller metrics set (equity_curve,
-max_drawdown, longest_losing_streak) if this repo ever needs those too.
+repos would require sys.path surgery. profit_factor, win_rate, total_pnl are
+used by validate_trades.py; max_drawdown was added for run_backtest.py
+(Task 5). See the source file for the fuller metrics set (equity_curve,
+longest_losing_streak) if this repo ever needs those too.
 """
 from __future__ import annotations
 import math
@@ -29,3 +29,15 @@ def profit_factor(pnls: Sequence[float]) -> float:
     if gross_loss == 0:
         return math.inf if gross_profit > 0 else 0.0
     return gross_profit / gross_loss
+
+
+def max_drawdown(pnls: Sequence[float]) -> float:
+    # Largest peak-to-trough drop in cumulative equity, measured from starting capital
+    # (implicit peak at 0.0). Non-negative USD magnitude; 0.0 if never below a prior peak.
+    peak, worst = 0.0, 0.0
+    running = 0.0
+    for p in pnls:
+        running += p
+        peak = max(peak, running)
+        worst = max(worst, peak - running)
+    return worst

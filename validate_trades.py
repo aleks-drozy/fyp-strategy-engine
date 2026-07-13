@@ -54,6 +54,11 @@ def parse_tv_log(path: str) -> pd.DataFrame:
 
     rows = []
     for trade_no, erow in entries.iterrows():
+        if trade_no not in exits.index:
+            raise ValueError(
+                f"{path}: Trade # {trade_no} has an Entry row but no matching "
+                f"Exit row -- cannot pair round-trip trades."
+            )
         xrow = exits.loc[trade_no]
         direction = "Long" if "long" in erow["Type"].lower() else "Short"
         entry_dt = pd.to_datetime(erow["Date and time"])
@@ -139,9 +144,18 @@ def compare(generated: list, real: pd.DataFrame, win_start, win_end) -> dict:
     # (entry_date, direction) is verified unique per day within each real
     # log, and the engine caps generated trades at MAX_TRADES_PER_DAY == 1,
     # so both sides are unique per key -- a plain dict keyed on (date,
-    # direction) is safe (no need to guard against duplicate keys).
+    # direction) is safe. Assert the assumption rather than silently
+    # collapsing duplicate keys if it's ever violated (Minor review finding).
     real_by_key = {(r.entry_date, r.direction): r for r in real_in.itertuples()}
     gen_by_key = {(g.entry_date, g.direction): g for g in generated_in.itertuples()}
+    assert len(real_by_key) == n_real_in_window, (
+        f"duplicate (entry_date, direction) key in real log within window: "
+        f"{n_real_in_window} rows but {len(real_by_key)} unique keys"
+    )
+    assert len(gen_by_key) == n_generated_in_window, (
+        f"duplicate (entry_date, direction) key in generated trades within "
+        f"window: {n_generated_in_window} rows but {len(gen_by_key)} unique keys"
+    )
 
     matched_keys = set(real_by_key) & set(gen_by_key)
     n_matched = len(matched_keys)
