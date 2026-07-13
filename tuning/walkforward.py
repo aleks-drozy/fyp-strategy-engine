@@ -45,6 +45,8 @@ from strategy.signals import double_confirmation
 from tuning.grid import EMA_GRID, FVG_GRID
 
 MIN_IS_TRADES = 50  # pre-registered selection floor (Global Constraints)
+PF_CAP = 1e6  # cap on profit factor for all-win (gross_loss==0 -> inf) combos, so the
+              # null-control distribution / median-combo PF can't be distorted by an inf.
 
 # Pre-registered fold windows (Global Constraints: "rolling 12mo train / 6mo
 # test / 6mo step"), expressed directly in half-open form:
@@ -319,12 +321,14 @@ def walk_forward(df: pd.DataFrame, grid: list[StrategyParams], folds: list[Fold]
             for params in grid
         ]
 
-        oos_pf_distribution = [r["profit_factor"] for r in oos_results]
+        # Cap PF (all-win combos give gross_loss==0 -> inf) so an inf can't
+        # distort the median-combo null the Task-3 success rule compares against.
+        oos_pf_distribution = [min(r["profit_factor"], PF_CAP) for r in oos_results]
         selected_oos = next(r for r in oos_results if r["params"] == selection.params)
         default_oos = next(r for r in oos_results if r["params"] == default)
         random_oos = oos_results[(fold_i * 37) % len(grid)]  # deterministic sanity anchor, not random/time-based
 
-        selected_pf = selected_oos["profit_factor"]
+        selected_pf = min(selected_oos["profit_factor"], PF_CAP)
         selected_oos_percentile = sum(1 for x in oos_pf_distribution if x <= selected_pf) / len(oos_pf_distribution)
         median_combo_oos_pf = float(np.median(oos_pf_distribution))
 
