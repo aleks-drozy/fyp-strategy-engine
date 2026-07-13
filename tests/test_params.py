@@ -3,6 +3,10 @@
 Phase 4, Task 1 Step 6 (docs/superpowers/plans/2026-07-13-phase4-parameter-tuning.md).
 Asserts the documented defaults (Global Constraints -- MUST reproduce Phase 2
 exactly) and that the dataclass is frozen (hashable, assignment raises).
+
+Phase 5, Task 1 Step 4 (docs/superpowers/plans/2026-07-13-phase5-exits-costs-volfilter.md)
+adds `exit_mode`/`vol_filter`, both defaulting to the Phase-2/4 base
+behavior.
 """
 
 import dataclasses
@@ -20,6 +24,18 @@ def test_defaults_match_phase2():
     assert p.swing_lookback == 8
     assert p.session_start == "09:30"
     assert p.session_end == "10:30"
+
+
+def test_phase5_defaults_are_behavior_preserving():
+    p = StrategyParams()
+    assert p.exit_mode == "fixed_1_5R"
+    assert p.vol_filter == "off"
+
+
+def test_phase5_fields_are_overridable():
+    p = StrategyParams(exit_mode="trail_swing", vol_filter="p50")
+    assert p.exit_mode == "trail_swing"
+    assert p.vol_filter == "p50"
 
 
 def test_is_frozen_and_hashable():
