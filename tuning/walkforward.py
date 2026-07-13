@@ -266,14 +266,18 @@ def walk_forward(df: pd.DataFrame, grid: list[StrategyParams], folds: list[Fold]
     (the precomputed signal-layer cache assumes the default session).
     """
     default = StrategyParams()
-    assert default in grid, (
-        "grid must include StrategyParams() -- it is both the select_params() "
-        "fallback target and the OOS-default baseline"
-    )
-    assert all(
+    if default not in grid:
+        raise ValueError(
+            "grid must include StrategyParams() -- it is both the select_params() "
+            "fallback target and the OOS-default baseline"
+        )
+    if not all(
         p.session_start == default.session_start and p.session_end == default.session_end
         for p in grid
-    ), "walk_forward's precomputed signal layer is cached at the default session only"
+    ):
+        raise ValueError(
+            "walk_forward's precomputed signal layer is cached at the default session only"
+        )
 
     pre = _precompute(df)
     idx = pre["index"]
@@ -290,11 +294,10 @@ def walk_forward(df: pd.DataFrame, grid: list[StrategyParams], folds: list[Fold]
         b_tr = idx.searchsorted(fold.train_end, side="left")
         a_te = idx.searchsorted(fold.test_start, side="left")
         b_te = idx.searchsorted(fold.test_end, side="left")
-        assert b_tr == a_te, "train window must end exactly where the test window begins"
-        if b_tr > a_tr and b_te > a_te:
-            assert idx[a_tr:b_tr].max() < idx[a_te:b_te].min(), (
-                "train/test slices must be strictly disjoint in time"
-            )
+        if b_tr != a_te:
+            raise ValueError("train window must end exactly where the test window begins")
+        if b_tr > a_tr and b_te > a_te and not (idx[a_tr:b_tr].max() < idx[a_te:b_te].min()):
+            raise ValueError("train/test slices must be strictly disjoint in time")
 
         # --- IS: selection reads ONLY the train-window slice ---
         is_results = [
