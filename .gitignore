@@ -6,3 +6,4 @@ venv/
 data/raw/
 *.zip
 data/raw_p6/
+data/parquet_p6/
