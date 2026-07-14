@@ -198,6 +198,7 @@ def walk_forward_p5(
     grid: list[StrategyParams],
     folds: list[Fold],
     cost_model=None,
+    spec=None,
 ) -> dict:
     """Run the Phase-5 walk-forward: for each fold, compute the leak-free
     train-only vol-filter thresholds, select params from the TRAIN slice
@@ -211,6 +212,11 @@ def walk_forward_p5(
     """
     default = StrategyParams()
     _validate_grid_p5(grid, default)
+
+    # Phase-6 instrument threading: `spec=None` preserves the exact Phase-5
+    # call path (engine default = NQ spec), keeping the pinned F4 regression.
+    from strategy.instrument import SPECS
+    spec = spec if spec is not None else SPECS["NQ"]
 
     layer = _precompute_p5(df)
     idx = layer["index"]
@@ -254,6 +260,7 @@ def walk_forward_p5(
                 cost_model=cost_model,
                 atr=train_layer["atr_pct"],
                 vol_threshold=vol_thresholds[params.vol_filter],
+                spec=spec,
             )
             m = _net_metrics(trades)
             m["params"] = params
@@ -272,6 +279,7 @@ def walk_forward_p5(
                 cost_model=cost_model,
                 atr=test_layer["atr_pct"],
                 vol_threshold=vol_thresholds[params.vol_filter],
+                spec=spec,
             )
             m = _net_metrics(trades)
             m["params"] = params
