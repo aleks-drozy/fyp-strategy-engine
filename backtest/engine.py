@@ -46,10 +46,11 @@ from strategy.ifvg import compute_ifvg
 from strategy.cisd import compute_cisd
 from strategy.signals import double_confirmation
 from strategy.params import StrategyParams
+from strategy.instrument import InstrumentSpec, SPECS
 from backtest.trade import Trade
 from backtest import exits
 
-PT_VALUE = 20.0            # USD per NQ index point
+PT_VALUE = 20.0            # USD per NQ index point (== SPECS["NQ"].pt_value, the default)
 MAX_TRADES_PER_DAY = 1     # Pine `maxTradesPerDay`
 
 
@@ -94,6 +95,7 @@ def run_execution(
     cost_model=None,
     atr: np.ndarray | None = None,
     vol_threshold: float | None = None,
+    spec: InstrumentSpec = SPECS["NQ"],
 ) -> list[Trade]:
     """Run the bar-by-bar simulation over a precomputed signal layer and
     return the list of CLOSED trades.
@@ -147,7 +149,7 @@ def run_execution(
 
         # 1) manage the open trade on bar i (stop-first, gap-through)
         if open_t is not None:
-            _manage_open_trade(open_t, mgmt_state, exit_mode, i, o, h, l, c, idx, swing, cost_model, trades, counters)
+            _manage_open_trade(open_t, mgmt_state, exit_mode, i, o, h, l, c, idx, swing, cost_model, trades, counters, spec.pt_value)
             if open_t.outcome != "Open":
                 open_t = None
                 mgmt_state = None
@@ -160,7 +162,7 @@ def run_execution(
             pending = None
             trades_today += 1
             mgmt_state = None if exit_mode == "fixed_1_5R" else exits.init_state(open_t)
-            _manage_open_trade(open_t, mgmt_state, exit_mode, i, o, h, l, c, idx, swing, cost_model, trades, counters)
+            _manage_open_trade(open_t, mgmt_state, exit_mode, i, o, h, l, c, idx, swing, cost_model, trades, counters, spec.pt_value)
             if open_t.outcome != "Open":
                 open_t = None
                 mgmt_state = None
@@ -197,6 +199,7 @@ def backtest(
     cost_model=None,
     atr: np.ndarray | None = None,
     vol_threshold: float | None = None,
+    spec: InstrumentSpec = SPECS["NQ"],
 ) -> list[Trade]:
     """Run the bar-by-bar simulation and return the list of CLOSED trades.
 
@@ -211,7 +214,8 @@ def backtest(
     existing callers don't need to change.
     """
     layer = compute_signal_layer(df, params)
-    trades = run_execution(layer, params, fill_mode, cost_model=cost_model, atr=atr, vol_threshold=vol_threshold)
+    trades = run_execution(layer, params, fill_mode, cost_model=cost_model, atr=atr,
+                           vol_threshold=vol_threshold, spec=spec)
     backtest.same_bar_span_count = run_execution.same_bar_span_count
     return trades
 
@@ -257,6 +261,7 @@ def _manage_open_trade(
     cost_model,
     trades: list[Trade],
     counters: dict,
+    pt_value: float = PT_VALUE,
 ) -> None:
     """Manage `trade` on bar `i`, dispatching on `exit_mode`.
 
@@ -276,15 +281,16 @@ def _manage_open_trade(
     two fills, that this generic wrapper doesn't have).
     """
     if exit_mode == "fixed_1_5R":
-        _try_exit(trade, o[i], h[i], l[i], idx[i], trades, counters)
+        _try_exit(trade, o[i], h[i], l[i], idx[i], trades, counters, pt_value)
         if trade.outcome != "Open":
             trade.exit_reason = "stop" if trade.outcome == "Loss" else "target"
             trade.net_pnl = trade.pnl_usd if cost_model is None else cost_model.net_pnl(trade.pnl_usd, trade.exit_reason)
     else:
-        exits.manage_bar(trade, mgmt_state, exit_mode, i, o, h, l, c, idx, swing, PT_VALUE, cost_model, trades, counters)
+        exits.manage_bar(trade, mgmt_state, exit_mode, i, o, h, l, c, idx, swing, pt_value, cost_model, trades, counters)
 
 
-def _try_exit(trade: Trade, o: float, h: float, l: float, t, trades: list[Trade], counters: dict) -> None:
+def _try_exit(trade: Trade, o: float, h: float, l: float, t, trades: list[Trade], counters: dict,
+              pt_value: float = PT_VALUE) -> None:
     """Stop-first exit check with gap-through fills.
 
     A stop that gaps through fills at the WORSE of stop/open (pessimistic,
@@ -323,6 +329,6 @@ def _try_exit(trade: Trade, o: float, h: float, l: float, t, trades: list[Trade]
     trade.exit = exit_price
     trade.exit_time = t
     trade.outcome = outcome
-    trade.pnl_usd = (exit_price - trade.entry) * sign * PT_VALUE
-    trade.r_multiple = trade.pnl_usd / (trade.risk * PT_VALUE)
+    trade.pnl_usd = (exit_price - trade.entry) * sign * pt_value
+    trade.r_multiple = trade.pnl_usd / (trade.risk * pt_value)
     trades.append(trade)
