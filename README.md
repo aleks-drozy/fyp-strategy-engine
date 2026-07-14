@@ -129,7 +129,30 @@ with the fold table, eligibility table, cost sensitivity, and all five
 charts inline (loads the committed `phase5_results.json` — it does not
 re-run the sweep), and `WRITEUP_PHASE5.md` for the full writeup.
 
-## Program complete (Phases 1–5)
+## Phase 6 — Cross-instrument confirmation: the exit edge is DISPROVEN
+
+The proof/disproof capstone. Acquires ~10 years × 3 instruments (ES, YM,
+independent-vendor NQ) of unadjusted CME 1-minute futures, passes them
+through hard validation gates (which forensically caught a ±60-minute DST
+bug, intra-day splices, and fast-market infidelity **in the Phase-1
+dataset** — the new data is the cleanest in the program), then runs the
+FROZEN Phase-5 procedure — zero re-tuning — over 17 walk-forward folds per
+instrument. Pre-registered via a git-timestamped freeze
+(`docs/phase6_freeze.json`, committed before the runner existed; the runner
+hash-verifies and refuses to run on mismatch).
+
+**Verdict: DISPROVEN.** Pooled ES+YM net R-multiple profit factor **0.905**,
+day-cluster bootstrap 90% CI **[0.813, 0.990]** — the upper bound is below
+breakeven, so with high confidence the tuned strategy loses net of costs on
+independent data (1,402 OOS trades / 1,005 trade-days). On clean NQ the
+tuned procedure is *worse* than base (0.851 vs 0.899). Both fixed-config
+replications: not supported. Unprofitable in every sensitivity slice.
+Phase 5's near-miss was period-specific luck.
+
+Run: `python run_phase6.py` (hash-gated single shot) →
+`phase6_results.json` + `charts/phase6_*.png`. See `WRITEUP_PHASE6.md`.
+
+## Program complete (Phases 1–6)
 
 Data foundation (P1) → faithful strategy rebuild that located the likely
 source of the real track record's edge in selectivity/tuning rather than a
@@ -143,7 +166,9 @@ Phase-4-null default entry, which pushes the stitched net OOS point
 estimate above breakeven for the first time — but is correctly held back
 from being called a proven edge by the same pre-registered statistical-
 confidence gate that makes every other result in this program trustworthy
-(P5). Every headline number in this program was defined before it was
-observed and reported whether or not it flattered the strategy — see
-`WRITEUP_PHASE5.md`'s closing "Program epilogue" for the full 5-phase
-retrospective.
+(P5) → and the definitive cross-instrument confirmation on 10 years of
+cleaner data, which **disproves** the exit edge with statistical confidence
+and closes the program (P6). Every headline number in this program was
+defined before it was observed and reported whether or not it flattered
+the strategy — see `WRITEUP_PHASE6.md`'s closing "Program epilogue" for the
+full retrospective.
