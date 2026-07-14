@@ -252,7 +252,10 @@ def main() -> dict:
     for sym in ("ES", "NQ", "YM"):
         results["instruments"][sym] = instrument_block(sym)
 
-    es, ym, nq = (results["instruments"][s] for s in ("ES", "NQ", "YM"))
+    # unpack in the SAME order as named (a mislabel here propagates into the
+    # conditions block -- caught and fixed after the first run; the verdict
+    # was unaffected because the pooled CI uses explicit ES/YM keys)
+    es, ym, nq = (results["instruments"][s] for s in ("ES", "YM", "NQ"))
 
     # -- pooled ES+YM day-cluster CI on the tuned R-PF + margin ----------------
     pooled_rs_by = {s: _rs_by_day(per_inst[s]["ha"]["oos_trades_tuned"], per_inst[s]["spec"].pt_value)
