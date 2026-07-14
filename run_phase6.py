@@ -78,21 +78,25 @@ def day_cluster_bootstrap(
     n_boot: int = N_BOOT,
     seed: int = SEED,
 ) -> np.ndarray:
-    """Bootstrap distribution of `stat(pooled_r_list)` under day-cluster
-    resampling: per instrument, resample ITS trade-days with replacement
-    (stratified composition); a sampled day contributes all its trades."""
+    """Bootstrap distribution of `stat(pooled_r_list)` under JOINT
+    calendar-day cluster resampling, exactly as frozen: resample the UNION
+    of trade-days with replacement; a sampled day carries ALL its pooled
+    trades from EVERY instrument (this is what respects the ~0.9 ES/YM
+    same-day correlation -- same-day trades across instruments are
+    near-duplicates and must move together in the resample)."""
     rng = np.random.default_rng(seed)
-    inst_days = {inst: sorted(m) for inst, m in rs_by_day_by_inst.items()}
+    union_days = sorted({d for m in rs_by_day_by_inst.values() for d in m})
+    day_trades: dict[str, list[float]] = {d: [] for d in union_days}
+    for m in rs_by_day_by_inst.values():
+        for d, rs in m.items():
+            day_trades[d].extend(rs)
+    n_days = len(union_days)
     out = np.empty(n_boot)
     for b in range(n_boot):
+        pick = rng.integers(0, n_days, size=n_days)
         pooled: list[float] = []
-        for inst, days in inst_days.items():
-            if not days:
-                continue
-            pick = rng.integers(0, len(days), size=len(days))
-            m = rs_by_day_by_inst[inst]
-            for i in pick:
-                pooled.extend(m[days[i]])
+        for i in pick:
+            pooled.extend(day_trades[union_days[i]])
         out[b] = stat(pooled)
     return out
 
@@ -267,30 +271,30 @@ def main() -> dict:
     pooled_pf_hat = r_pf(pooled_rs)
 
     boot_pf = day_cluster_bootstrap(pooled_rs_by, r_pf)
-    ci_lo, _ = basic_interval(pooled_pf_hat, boot_pf, PRIMARY_LOWER_PCT, DISPROVEN_UPPER_PCT)
-    _, ci_hi = basic_interval(pooled_pf_hat, boot_pf, PRIMARY_LOWER_PCT, DISPROVEN_UPPER_PCT)
+    ci_lo, ci_hi = basic_interval(pooled_pf_hat, boot_pf, PRIMARY_LOWER_PCT, DISPROVEN_UPPER_PCT)
 
-    # margin bootstrap: same day resampling applied to BOTH arms jointly
-    def margin_stat_builder():
-        # rebuild per-day pairs: margin = pf(tuned pooled) - pf(base pooled) on the same day sample
-        def stat(_ignored):
-            return 0.0
-        return stat
-    # joint day-cluster margin: resample days once, apply to both arms
+    # joint day-cluster margin: resample the UNION of days once per replicate;
+    # each sampled day carries BOTH instruments' trades in BOTH arms
     rng = np.random.default_rng(SEED + 1)
-    inst_days = {s: sorted(set(pooled_rs_by[s]) | set(base_rs_by[s])) for s in ("ES", "YM")}
+    union_days = sorted({d for s in ("ES", "YM")
+                         for d in set(pooled_rs_by[s]) | set(base_rs_by[s])})
+    day_t = {d: [] for d in union_days}
+    day_b = {d: [] for d in union_days}
+    for s in ("ES", "YM"):
+        for d, rs in pooled_rs_by[s].items():
+            day_t[d].extend(rs)
+        for d, rs in base_rs_by[s].items():
+            day_b[d].extend(rs)
     boot_margin = np.empty(N_BOOT)
+    n_days_u = len(union_days)
     for b in range(N_BOOT):
+        pick = rng.integers(0, n_days_u, size=n_days_u)
         rs_tt: list[float] = []
         rs_bb: list[float] = []
-        for s, days in inst_days.items():
-            if not days:
-                continue
-            pick = rng.integers(0, len(days), size=len(days))
-            for i in pick:
-                d = days[i]
-                rs_tt.extend(pooled_rs_by[s].get(d, []))
-                rs_bb.extend(base_rs_by[s].get(d, []))
+        for i in pick:
+            d = union_days[i]
+            rs_tt.extend(day_t[d])
+            rs_bb.extend(day_b[d])
         boot_margin[b] = r_pf(rs_tt) - r_pf(rs_bb)
     base_pooled_rs = [r for m in base_rs_by.values() for rs in m.values() for r in rs]
     margin_hat = pooled_pf_hat - r_pf(base_pooled_rs)
@@ -305,7 +309,9 @@ def main() -> dict:
     boot_fold = day_cluster_bootstrap(fold_rs_by, r_pf, n_boot=N_BOOT, seed=SEED + 2)
     fold_ci_lo, _ = basic_interval(pooled_pf_hat, boot_fold, PRIMARY_LOWER_PCT, DISPROVEN_UPPER_PCT)
 
-    # leave-one-out: drop the single most profitable (instrument, fold) cell
+    # leave-one-out: drop the single most profitable (instrument, fold) cell --
+    # a finer-grained (therefore stricter) reading of the frozen 'single most
+    # profitable fold'; immaterial here (cond3 already fails on fold-majority)
     cell_pnl: dict[tuple, float] = {}
     for s in ("ES", "YM"):
         pt = per_inst[s]["spec"].pt_value

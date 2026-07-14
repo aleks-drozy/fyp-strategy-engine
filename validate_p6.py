@@ -54,8 +54,8 @@ CROSS_VENDOR_END = "2025-01-31"
 CROSS_VENDOR_MIN_CORR = 0.9
 CROSS_VENDOR_MIN_COMMON_BARS = 30
 # Forensically established (committed evidence, 2026-07-14): the PHASE-1 NQ
-# dataset -- not the new vendor -- carries a DST-handling defect on ~230
-# scattered overlap days: its bars are stamped +/-60 minutes off (sometimes
+# dataset -- not the new vendor -- carries defects on 188 scattered evaluable
+# overlap days (104 whole-day DST-lag + 84 fast-market infidelity): its bars are stamped +/-60 minutes off (sometimes
 # for only PART of a day -- an intra-day splice). Proof: on those days
 # indep-NQ correlates 0.93-0.98 with indep-ES (it is real NQ), while Phase-1
 # NQ correlates ~0 with everything at lag 0 but 0.88-0.99 at a +/-60-minute

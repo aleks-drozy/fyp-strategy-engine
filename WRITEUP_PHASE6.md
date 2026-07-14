@@ -18,8 +18,9 @@ Bonferroni CI-low 0.794; B2 `trail_swing+p50`: 0.836, CI-low 0.726 — "not supp
 | **NQ** (indep vendor, replication) | 0.851 (914) | **0.899** (1,726) | −$82,438 | −$96,798 |
 
 Everything was frozen before the run: hypotheses, grid, folds, floors, cost model, the gating
-statistic (net R-multiples), the CI method (calendar-day cluster bootstrap, stratified by
-instrument, n=10,000, seed 42, basic intervals), and the ordered 4-verdict decision table —
+statistic (net R-multiples), the CI method (joint calendar-day cluster bootstrap — a resampled
+day carries BOTH instruments' trades; n=10,000, seed 42, basic intervals), and the ordered
+4-verdict decision table —
 committed as `docs/phase6_freeze.json` (hash `699fd485…`) **before `run_phase6.py` existed**
 (git history proves the ordering); the runner recomputes the hash and refuses to run on mismatch.
 
@@ -106,7 +107,8 @@ Phase 2's imperfect trade-matching against the real TradingView logs.
 ## Program epilogue (Phases 1–6)
 
 1. **P1** built a reproducible data foundation → 2. **P2** faithfully rebuilt the strategy and
-found the edge was selectivity, not the signal → 4. **P4** pre-registered tuning: null →
+found the edge was selectivity, not the signal → 3. **P3** (scale analysis) was pre-registered as
+conditional on a robust edge and correctly never run → 4. **P4** pre-registered tuning: null →
 5. **P5** costs + exits: first net-positive point estimate, failed the significance gate ("promising,
 not proven") → 6. **P6** acquired 10 years × 3 instruments of cleaner data, froze the hypothesis,
 and got the definitive answer: **DISPROVEN** — and, along the way, forensically caught defects in
