@@ -1,6 +1,13 @@
 # fyp-strategy-engine
 
-Rebuilding + extending the FYP IFVG+CISD NQ strategy in Python. Phase 1: data foundation.
+[![tests](https://github.com/aleks-drozy/fyp-strategy-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/aleks-drozy/fyp-strategy-engine/actions/workflows/ci.yml)
+
+A six-phase quantitative research program that starts from a +$28,400 backtest and honestly finds
+out whether the edge is real. Bar-by-bar backtest engine (no lookahead), walk-forward optimization
+with leak-free selection, cluster-bootstrap inference, code-enforced pre-registration, and hard
+data-validation gates — ending in a statistically certified cross-instrument **disproof** (and,
+along the way, forensic proof of a ±60-minute timestamp bug in the source dataset). Every headline
+number was defined before it was observed.
 
 ## Phase 2 — Strategy engine + real-log validation
 

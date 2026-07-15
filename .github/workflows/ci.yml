@@ -1,0 +1,21 @@
+name: tests
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      # The raw market data (~1.3 GB) is not committed; data-dependent
+      # regression tests skip cleanly when it is absent (168 synthetic
+      # Pine-logic/statistics/leak-guard tests still run).
+      - run: pytest tests/ -q
