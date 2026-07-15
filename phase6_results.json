@@ -1,6 +1,6 @@
 {
   "config_hash": "699fd485e56eeea364c197bc6b47d624ed9939e99c781f87320d93cc09376ed8",
-  "git_sha": "a4c81afdc8e0bca2dae073a7a79e6344e0a9ca88",
+  "git_sha": "35de5bea363bc71c913e20a7dbcd85d25b66687c",
   "grid_size": 20,
   "instruments": {
     "ES": {
@@ -519,11 +519,11 @@
     "margin_es": 0.017667485742268507,
     "margin_ym": 0.0714672597954018,
     "pooled_r_pf": 0.9054859107032789,
-    "pooled_ci_lower": 0.8130852601672371,
-    "pooled_ci_upper": 0.9901050979275678,
+    "pooled_ci_lower": 0.8095343294035462,
+    "pooled_ci_upper": 0.995713785304795,
     "margin_hat": 0.052345256607260526,
-    "margin_ci_upper": 0.12443802852323792,
-    "margin_ci_lower": -0.023301851224625192,
+    "margin_ci_upper": 0.12733854467631972,
+    "margin_ci_lower": -0.02894917022429916,
     "floors_met": true,
     "per_instrument_floors_met": true,
     "fold_majority_es": false,
@@ -542,7 +542,7 @@
   "hb_replication": {
     "B1_partial_1R_p50": {
       "pooled_r_pf": 0.9040116132249689,
-      "ci_lower_bonferroni_2p5": 0.7940581619472267,
+      "ci_lower_bonferroni_2p5": 0.7808101194940291,
       "margins": {
         "ES": 0.06391439903785867,
         "YM": 0.037761373262359954
@@ -552,7 +552,7 @@
     },
     "B2_trail_swing_p50": {
       "pooled_r_pf": 0.8356598641511371,
-      "ci_lower_bonferroni_2p5": 0.7258216556579381,
+      "ci_lower_bonferroni_2p5": 0.7155798757045388,
       "margins": {
         "ES": -0.017794719987467955,
         "YM": -0.017935674879653307
@@ -580,5 +580,5 @@
     "nq_pre_2023_r_pf": 0.8867000058850156,
     "nq_post_2023_r_pf": 0.7345196183316002
   },
-  "run_seconds": 1937.889806985855
+  "run_seconds": 864.1723301410675
 }

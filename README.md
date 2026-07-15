@@ -142,7 +142,7 @@ instrument. Pre-registered via a git-timestamped freeze
 hash-verifies and refuses to run on mismatch).
 
 **Verdict: DISPROVEN.** Pooled ES+YM net R-multiple profit factor **0.905**,
-day-cluster bootstrap 90% CI **[0.813, 0.990]** — the upper bound is below
+joint day-cluster bootstrap 90% CI **[0.810, 0.996]** — the upper bound is below
 breakeven, so with high confidence the tuned strategy loses net of costs on
 independent data (1,402 OOS trades / 1,005 trade-days). On clean NQ the
 tuned procedure is *worse* than base (0.851 vs 0.899). Both fixed-config

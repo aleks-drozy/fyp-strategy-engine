@@ -6,7 +6,7 @@
 independent instruments. Across ~10 years and two independent equity-index futures (ES, YM;
 17 walk-forward folds each; 1,402 tuned out-of-sample trades over 1,005 trade-days), the frozen
 Phase-5 procedure's pooled net R-multiple profit factor is **0.905**, with a day-cluster bootstrap
-90% CI of **[0.813, 0.990]** — the **upper bound is below breakeven**, firing the pre-registered
+90% CI of **[0.810, 0.996]** — the **upper bound is below breakeven**, firing the pre-registered
 DISPROVEN clause (b): with high confidence, the tuned strategy loses money net of costs on data it
 has never seen. Both fixed-config replications also fail (B1 `partial_1R+p50`: pooled R-PF 0.904,
 Bonferroni CI-low 0.794; B2 `trail_swing+p50`: 0.836, CI-low 0.726 — "not supported").
