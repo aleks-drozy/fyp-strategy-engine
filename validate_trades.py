@@ -1,8 +1,10 @@
 """Validate generated trades against the two real TradingView trade logs.
 
-From docs/superpowers/plans/2026-07-13-phase2-strategy-engine.md, Task 4.
+From the Phase-2 strategy-engine spec
+(docs/specs/2026-07-12-phase2-strategy-engine-design.md).
 
-Honesty constraints this module enforces (see the plan's Global Constraints):
+Honesty constraints this module enforces (see that spec's validation
+methodology):
 
 - The two real logs are DISJOINT date ranges (2023-24 vs 2025-26). `compare()`
   window-clips BOTH the generated set and the real set to
@@ -114,7 +116,7 @@ def compare(generated: list, real: pd.DataFrame, win_start, win_end) -> dict:
     Matching is on (entry_date, direction) only -- never on absolute price.
     A real trade and a generated trade on the same date but opposite
     directions do NOT match (each counts once as missed and once as extra,
-    per the plan's Task 4 spec). No filtering or tuning of `generated` is
+    per the spec). No filtering or tuning of `generated` is
     performed beyond the window clip.
     """
     win_start_d = _to_date(win_start)

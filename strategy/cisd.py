@@ -3,7 +3,7 @@ CISD (Change in State of Delivery) computation.
 
 Ported from Trading_Dashboard-master/backend/strategy/cisd.py, logic extracted
 verbatim from docs/reference/FYP_BOT_1_3.pine -- EXCEPT for a corrected
-off-by-one neighbor index (Phase-2 Task 1 Step 1 / Blocker 4), documented below.
+off-by-one neighbor index (Phase 2, Blocker 4), documented below.
 
 CISD tracks market structure flips:
 - Bearish structure break creates a Bull CISD level (potentialTopPrice / open of pullback start)

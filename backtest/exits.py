@@ -1,7 +1,8 @@
 """Pluggable exit-mode handlers for the Phase-5 backtest engine.
 
-From docs/superpowers/plans/2026-07-13-phase5-exits-costs-volfilter.md, Task
-1 Step 3. Implements the 4 NEW exit modes -- `breakeven_1R`, `trail_swing`,
+From the Phase-5 exits/costs/vol-filter spec
+(docs/specs/2026-07-13-phase5-exits-costs-volfilter-design.md). Implements
+the 4 NEW exit modes -- `breakeven_1R`, `trail_swing`,
 `partial_1R`, `time_stop`. `fixed_1_5R` (the base/default mode) is NOT
 reimplemented here: `backtest.engine.run_execution` routes it straight to
 the original, untouched `backtest.engine._try_exit` so the Phase-2/4 base
@@ -12,8 +13,8 @@ State machine
 -------------
 Each handler manages ONE open trade across the bars it stays open, called
 once per bar by `run_execution` via `manage_bar`. State lives in a plain
-per-trade `dict` (`init_state`), not on `Trade` itself -- the plan requires
-`Trade`'s schema to stay additive (`net_pnl`, `exit_reason` only; see
+per-trade `dict` (`init_state`), not on `Trade` itself -- `Trade`'s schema
+stays additive (`net_pnl`, `exit_reason` only; see
 backtest/trade.py). Fields: `stop` (the CURRENT live stop level -- starts
 at the initial stop; becomes breakeven/trail/remainder-breakeven once
 activated), `activated_1r` (+1R reached), `half_closed` (partial_1R only:
@@ -24,7 +25,7 @@ gross USD P&L, banked for the final blended P&L).
 Signal-close anchoring
 -----------------------
 R and every managed level (1R, 1.5R, 3R) are anchored at the SIGNAL-BAR
-CLOSE, exactly like the base engine's fixed target (Global Constraints).
+CLOSE, exactly like the base engine's fixed target.
 `Trade` doesn't store `signal_close` directly, but it's exactly
 reconstructible from the two fields it DOES store: `risk = abs(signal_close
 - stop)` was fixed at signal time (see engine.py's `_mk`), so

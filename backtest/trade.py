@@ -1,17 +1,17 @@
 """Trade record produced by backtest.engine.backtest().
 
-From docs/superpowers/plans/2026-07-13-phase2-strategy-engine.md, Task 3
-Step 1. A `risk` field is added on top of the plan's code block (see the
-deliverables note in that Task): risk is the distance, in points, between
-the signal-bar close and the stop, fixed at signal time. It is carried
-through unchanged to the filled Trade so that `r_multiple` can be computed
-against the *intended* risk even though the actual fill price (`entry`,
-the next bar's open) can differ slightly from the signal-bar close that
-anchors the stop/target.
+From the Phase-2 strategy-engine spec
+(docs/specs/2026-07-12-phase2-strategy-engine-design.md). A `risk` field is
+added on top of the Trade fields that spec lists: risk is the distance, in
+points, between the signal-bar close and the stop, fixed at signal time. It
+is carried through unchanged to the filled Trade so that `r_multiple` can be
+computed against the *intended* risk even though the actual fill price
+(`entry`, the next bar's open) can differ slightly from the signal-bar close
+that anchors the stop/target.
 
-Phase 5 (docs/superpowers/plans/2026-07-13-phase5-exits-costs-volfilter.md,
-Task 1 Step 5 / Global Constraints -- "Trade schema is EXTENDED
-ADDITIVELY") appends `net_pnl` and `exit_reason` AFTER all the existing
+Phase 5 (docs/specs/2026-07-13-phase5-exits-costs-volfilter-design.md)
+extends the schema ADDITIVELY -- `net_pnl` and `exit_reason` are appended
+AFTER all the existing
 fields, and keeps `outcome`/field order otherwise unchanged so Phase-4's
 `_serialize_trade`/charts (which read `t.outcome`) keep working untouched.
 `net_pnl` mirrors `pnl_usd` (gross) when no `CostModel` is supplied;

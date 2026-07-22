@@ -1,6 +1,7 @@
 """Tests for tuning.walkforward_p5 -- the leakage-critical core of Phase 5.
 
-Phase 5, Task 2 Step 2 (docs/superpowers/plans/2026-07-13-phase5-exits-costs-volfilter.md).
+From the Phase-5 exits/costs/vol-filter spec
+(docs/specs/2026-07-13-phase5-exits-costs-volfilter-design.md).
 
 Deliberately data-light, mirroring tests/test_walkforward.py's convention:
 synthetic frames and tiny grids only. No 20x4 sweep over full real data --
@@ -135,7 +136,7 @@ def test_slice_layer_p5_disjoint_and_full_coverage_like_phase4():
     assert len(train["index"]) + len(test["index"]) == len(df)  # full coverage, no gaps/dups
 
 
-# --- vol-filter threshold: leak-free, train-only (Global Constraints) ------
+# --- vol-filter threshold: leak-free, train-only (pre-registered) ----------
 
 
 def test_vol_threshold_off_is_none():

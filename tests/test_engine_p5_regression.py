@@ -1,7 +1,8 @@
 """Primary regression lock for the Phase-5 exit/cost/vol-filter refactor.
 
-Task 1 Step 6 (docs/superpowers/plans/2026-07-13-phase5-exits-costs-volfilter.md,
-Global Constraints -- "Behavior preservation"). Proves the refactor didn't
+From the Phase-5 exits/costs/vol-filter spec
+(docs/specs/2026-07-13-phase5-exits-costs-volfilter-design.md), whose
+default-regression requirement this is. Proves the refactor didn't
 change the base path: `run_execution` with `exit_mode="fixed_1_5R"`,
 `vol_filter` off (no `atr`/`vol_threshold` passed), `cost_model=None`
 reproduces `tests/fixtures/phase2_golden_trades.json` trade-for-trade on
@@ -56,7 +57,7 @@ def _trade_to_dict(tr) -> dict:
 
 def _fixture_trade_to_dict(d: dict) -> dict:
     # Same key set as _trade_to_dict, minus the fixture's own r_multiple
-    # (this test only asserts the fields the plan names: entry_time/
+    # (this test only asserts the pre-registered fields: entry_time/
     # direction/entry/stop/target/exit/pnl_usd).
     return {k: d[k] for k in ("entry_time", "direction", "entry", "stop", "target", "exit", "pnl_usd")}
 

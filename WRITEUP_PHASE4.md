@@ -12,7 +12,7 @@ softened. A rigorously measured null is a legitimate, portfolio-grade
 result: it means the question was asked honestly and the answer, on this
 data, is no.
 
-The **pre-registered success rule** (fixed in `docs/superpowers/plans/2026-07-13-phase4-parameter-tuning.md`
+The **pre-registered success rule** (fixed in `docs/specs/2026-07-13-phase4-parameter-tuning-design.md`
 *before* the run) required **all four** of the following. Two failed:
 
 | # | Condition | Required | Actual | Passes? |
@@ -284,7 +284,7 @@ deliverable, as much as any single number:
    pre-registered a Phase 3 (a large-sample Monte Carlo / ML re-run of the
    strategy) explicitly **conditional on Phase 4 finding a robust
    improvement** — it was designed to run "AFTER, on the tuned trades, if
-   tuning helps" (`docs/superpowers/specs/2026-07-13-phase4-parameter-tuning-design.md`).
+   tuning helps" (`docs/specs/2026-07-13-phase4-parameter-tuning-design.md`).
    Phase 4's pre-registered verdict is `robust_improvement = false`, so
    Phase 3's gating condition was never met, and it was skipped by design
    rather than run anyway to manufacture another number. Skipping a

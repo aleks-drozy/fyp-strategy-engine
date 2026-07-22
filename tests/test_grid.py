@@ -1,6 +1,7 @@
 """Tests for tuning.grid.build_grid.
 
-Phase 4, Task 2 Step 2 (docs/superpowers/plans/2026-07-13-phase4-parameter-tuning.md).
+From the Phase-4 parameter-tuning spec
+(docs/specs/2026-07-13-phase4-parameter-tuning-design.md).
 """
 
 from strategy.params import StrategyParams

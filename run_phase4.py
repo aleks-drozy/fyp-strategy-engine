@@ -1,6 +1,7 @@
 """Runner: single-shot Phase-4 walk-forward parameter-tuning verdict.
 
-From docs/superpowers/plans/2026-07-13-phase4-parameter-tuning.md, Task 3.
+From the Phase-4 parameter-tuning spec
+(docs/specs/2026-07-13-phase4-parameter-tuning-design.md).
 `load_nq()` -> `walk_forward(df, build_grid(), make_folds())`, then assembles
 `phase4_results.json` (the pre-registered, falsifiable OOS verdict) and the
 5 `charts/phase4_*.png` diagnostics.
@@ -9,7 +10,7 @@ PRE-REGISTRATION: the grid (`tuning/grid.py`), folds/objective/floor
 (`tuning/walkforward.py`) are frozen BEFORE this file is executed. This
 runner records a SHA-256 hash of that frozen config plus the current git
 commit SHA into the results JSON, so the stitched-OOS number is observed
-exactly once (Global Constraints: "single-shot"). Do not edit the grid,
+exactly once (the spec's "single-shot" rule). Do not edit the grid,
 folds, `MIN_IS_TRADES`, or the selection objective after seeing a result --
 that requires a new dated spec and an explicitly-labelled new experiment.
 

@@ -1,12 +1,13 @@
 """Tests for strategy.params.StrategyParams.
 
-Phase 4, Task 1 Step 6 (docs/superpowers/plans/2026-07-13-phase4-parameter-tuning.md).
-Asserts the documented defaults (Global Constraints -- MUST reproduce Phase 2
-exactly) and that the dataclass is frozen (hashable, assignment raises).
+From the Phase-4 parameter-tuning spec
+(docs/specs/2026-07-13-phase4-parameter-tuning-design.md). Asserts the
+documented defaults (which MUST reproduce Phase 2 exactly) and that the
+dataclass is frozen (hashable, assignment raises).
 
-Phase 5, Task 1 Step 4 (docs/superpowers/plans/2026-07-13-phase5-exits-costs-volfilter.md)
-adds `exit_mode`/`vol_filter`, both defaulting to the Phase-2/4 base
-behavior.
+The Phase-5 spec
+(docs/specs/2026-07-13-phase5-exits-costs-volfilter-design.md) adds
+`exit_mode`/`vol_filter`, both defaulting to the Phase-2/4 base behavior.
 """
 
 import dataclasses

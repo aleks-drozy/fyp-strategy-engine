@@ -19,12 +19,12 @@ Key rules from Pine source:
   treating ifvgState as "None" at the start of each day (same as Pine's daily clear
   of fvgArray via array.clear on new calendar day).
 
-Added vs the original port (Phase-2, Task 1 Step 5): an explicit `in_session` gate,
+Added vs the original port (Phase 2): an explicit `in_session` gate,
 mirroring Pine lines 320/335 (FVG creation gated on inTradingSession) and lines
 425-426 (state reset outside the session). FVG creation is now gated on session,
 and the emitted state is forced to "None" for any out-of-session bar.
 
-Added in Phase 4, Task 1 Step 2: `fvg_threshold` (Pine lines 307-315) -- a gap
+Added in Phase 4: `fvg_threshold` (Pine lines 307-315) -- a gap
 only qualifies as an FVG if its percentage size clears this floor. A bullish
 gap's pct is `(low[i]-high[i-2])/high[i-2]*100`; a bearish gap's pct is
 `(low[i-2]-high[i])/low[i-2]*100`. At the default `0.0` this is identical to

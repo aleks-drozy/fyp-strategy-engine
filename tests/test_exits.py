@@ -1,6 +1,7 @@
 """Tests for backtest.exits -- the 4 new (non-fixed_1_5R) exit-mode handlers.
 
-Task 1 Step 3 (docs/superpowers/plans/2026-07-13-phase5-exits-costs-volfilter.md).
+From the Phase-5 exits/costs/vol-filter spec
+(docs/specs/2026-07-13-phase5-exits-costs-volfilter-design.md).
 
 `fixed_1_5R` is NOT retested here: `backtest.engine.run_execution` routes it
 straight to the ORIGINAL, byte-for-byte unmodified `_try_exit` (see

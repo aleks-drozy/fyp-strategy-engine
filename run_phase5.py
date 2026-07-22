@@ -1,8 +1,9 @@
 """Runner: single-shot Phase-5 net out-of-sample verdict (costs + exits +
 volatility filter).
 
-From docs/superpowers/plans/2026-07-13-phase5-exits-costs-volfilter.md, Task
-3. `load_nq()` -> `walk_forward_p5(df, build_grid_p5(), make_folds(),
+From the Phase-5 exits/costs/vol-filter spec
+(docs/specs/2026-07-13-phase5-exits-costs-volfilter-design.md).
+`load_nq()` -> `walk_forward_p5(df, build_grid_p5(), make_folds(),
 CostModel())`, then assembles `phase5_results.json` (the pre-registered,
 falsifiable NET OOS verdict) and the 5 `charts/phase5_*.png` diagnostics.
 
@@ -12,7 +13,7 @@ PRE-REGISTRATION: the grid (`tuning/grid_p5.py`), folds/objective/floor
 vol-filter definition are frozen BEFORE this file is executed. This runner
 records a SHA-256 hash of that ENTIRE frozen design plus the current git
 commit SHA into the results JSON, so the stitched-OOS number is observed
-exactly once (Global Constraints: "single-shot"). Do not edit the grid,
+exactly once (the spec's "single-shot" rule). Do not edit the grid,
 folds, MIN_IS_TRADES/MIN_OOS_TRADES, the objective, the vol-filter
 definition, the ATR method, the exit sequencing, the cost constants, or
 TIME_STOP_ET after seeing a result -- that requires a new dated spec and an
@@ -62,9 +63,9 @@ from tuning.grid_p5 import VOL_FILTERS, build_grid_p5
 from tuning.walkforward import MIN_IS_TRADES, PF_CAP, _bootstrap_pf_ci, make_folds
 from tuning.walkforward_p5 import walk_forward_p5
 
-MIN_OOS_TRADES = 60  # pre-registered OOS-sample gate (Global Constraints, condition (e))
+MIN_OOS_TRADES = 60  # pre-registered OOS-sample gate (success rule, condition (e))
 OBJECTIVE_NAME = "max_net_pf_among_eligible_combos__tiebreak_net_total_pnl_then_lower_net_max_drawdown"
-BOOTSTRAP_SEED = 42  # fixed, not random/time-based (Global Constraints, condition (e))
+BOOTSTRAP_SEED = 42  # fixed, not random/time-based (condition (e)'s bootstrap)
 BOOTSTRAP_N = 1000
 CHARTS_DIR = Path("charts")
 RESULTS_PATH = Path("phase5_results.json")
@@ -89,8 +90,8 @@ def _config_hash(
     objective_name: str,
     cost_model: CostModel,
 ) -> str:
-    """SHA-256 of the WHOLE frozen Phase-5 design (Global Constraints:
-    "config hash covers the whole frozen design"): every grid combo's full
+    """SHA-256 of the WHOLE frozen Phase-5 design (the spec requires the
+    config hash to cover the whole frozen design): every grid combo's full
     field tuple (entry fields + exit_mode + vol_filter -- not just the
     varying two, so a change to the entry-fixed defaults also changes the
     hash), the fold date-windows, MIN_IS_TRADES, MIN_OOS_TRADES, the
@@ -199,8 +200,8 @@ def _serialize_trade(t: Trade) -> dict:
 
 
 def _net_aggregate(trades: list[Trade]) -> dict:
-    """Net-metric aggregate for a stitched trade list (Global Constraints,
-    Blocker 2: net everywhere). Mirrors `walkforward_p5._net_metrics`'s
+    """Net-metric aggregate for a stitched trade list (Blocker 2: net
+    everywhere). Mirrors `walkforward_p5._net_metrics`'s
     fields but drops the raw `trades`/`params` keys (not JSON-safe /
     redundant at this level) and adds `gross_total_pnl` so charts and the
     writeup can show the gross-vs-net erosion from costs directly."""
@@ -249,7 +250,7 @@ def _net_pnls_at_multiplier(trades: list[Trade], multiplier: float) -> list[floa
 
 def _cost_sensitivity(stitched_tuned: list[Trade], stitched_default: list[Trade]) -> dict:
     """Recompute stitched tuned & base NET PF + total_pnl at cost
-    multipliers 0x/1x/2x (Global Constraints: "does the verdict survive?").
+    multipliers 0x/1x/2x (the spec's pre-registered cost sensitivity).
     `multiplier` is never used for selection -- these are the SAME picks
     (per-fold selected exit_mode/vol_filter, and the fixed base combo)
     already chosen under the pre-registered 1x cost model; only their
@@ -344,7 +345,7 @@ def _build_results(df: pd.DataFrame, grid: list[StrategyParams], folds, cost_mod
     n_oos_trades = stitched_oos["all_folds"]["tuned"]["n_trades"]
     rng = np.random.default_rng(BOOTSTRAP_SEED)
     # alpha=0.10 -> percentiles [5, 95]: the lower bound IS the 5th
-    # percentile the plan asks for (reusing the existing 2-sided-CI helper,
+    # percentile condition (e) is scored on (reusing the 2-sided-CI helper,
     # which defaults to alpha=0.05 / a 95% CI -- alpha=0.10 is what turns
     # its lower percentile into exactly "5th pct").
     ci_lo, ci_hi = _bootstrap_pf_ci(

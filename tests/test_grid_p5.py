@@ -1,6 +1,7 @@
 """Tests for tuning.grid_p5.build_grid_p5.
 
-Phase 5, Task 2 Step 1 (docs/superpowers/plans/2026-07-13-phase5-exits-costs-volfilter.md).
+From the Phase-5 exits/costs/vol-filter spec
+(docs/specs/2026-07-13-phase5-exits-costs-volfilter-design.md).
 """
 
 from strategy.params import StrategyParams

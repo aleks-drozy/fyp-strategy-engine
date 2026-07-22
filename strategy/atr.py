@@ -1,8 +1,9 @@
 """Average True Range (ATR), Wilder's RMA smoothing.
 
-From docs/superpowers/plans/2026-07-13-phase5-exits-costs-volfilter.md, Task 1
-Step 1. Used by the Phase-5 volatility filter (ATR% = ATR14 / close * 100,
-wired up in Task 2) and, in this task, threaded through `run_execution` as
+From the Phase-5 exits/costs/vol-filter spec
+(docs/specs/2026-07-13-phase5-exits-costs-volfilter-design.md). Used by the
+Phase-5 volatility filter (ATR% = ATR14 / close * 100, wired up in the
+walk-forward) and threaded through `run_execution` as
 an optional pre-sliced `atr` array for the entry-side vol gate.
 
 TR[i] = max(high[i]-low[i], |high[i]-close[i-1]|, |low[i]-close[i-1]|)

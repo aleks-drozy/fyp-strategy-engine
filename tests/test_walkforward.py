@@ -1,6 +1,7 @@
 """Tests for tuning.walkforward -- the leakage-critical core of Phase 4.
 
-Phase 4, Task 2 Step 3 (docs/superpowers/plans/2026-07-13-phase4-parameter-tuning.md).
+From the Phase-4 parameter-tuning spec
+(docs/specs/2026-07-13-phase4-parameter-tuning-design.md).
 
 Deliberately data-light: synthetic frames and tiny grids only. The real
 `make_folds()` dates (2023-2025) are exercised as pure date arithmetic (no

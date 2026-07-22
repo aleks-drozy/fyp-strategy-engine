@@ -1,4 +1,4 @@
-"""Phase-6 Task 3: fold tiling (pinned rule), roll-spanning trade exclusion,
+"""Phase 6: fold tiling (pinned rule), roll-spanning trade exclusion,
 and the H-A / H-B runners (H-B provably selection-free)."""
 import numpy as np
 import pandas as pd

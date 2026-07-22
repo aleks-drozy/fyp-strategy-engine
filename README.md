@@ -165,7 +165,7 @@ Data foundation (P1) → faithful strategy rebuild that located the likely
 source of the real track record's edge in selectivity/tuning rather than a
 different core mechanic (P2) → a large-sample Monte Carlo/ML re-run (P3)
 pre-registered as conditional on Phase 4 finding a robust improvement, and
-correctly **not run** since it didn't (`docs/superpowers/specs/2026-07-13-phase4-parameter-tuning-design.md`)
+correctly **not run** since it didn't (`docs/specs/2026-07-13-phase4-parameter-tuning-design.md`)
 → a pre-registered, falsifiable walk-forward tuning study that tests the
 Phase-2 hypothesis honestly out-of-sample and reports an **honest null**
 (P4) → smarter exits + costs + a volatility filter, layered on the

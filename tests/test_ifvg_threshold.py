@@ -1,6 +1,7 @@
 """Tests for the `fvg_threshold` parameter added to strategy.ifvg.compute_ifvg.
 
-Phase 4, Task 1 Steps 3-4 (docs/superpowers/plans/2026-07-13-phase4-parameter-tuning.md).
+From the Phase-4 parameter-tuning spec
+(docs/specs/2026-07-13-phase4-parameter-tuning-design.md).
 
 Two synthetic in-session frames, each with a single bullish gap-then-invert
 event at bar index 2 (gap) / bar index 3 (inversion, giving state "Bearish"

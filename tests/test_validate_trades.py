@@ -1,8 +1,9 @@
 """Tests for validate_trades.py -- generated-vs-real-log validation.
 
-Task 4 Step 1 (docs/superpowers/plans/2026-07-13-phase2-strategy-engine.md):
+From the Phase-2 strategy-engine spec
+(docs/specs/2026-07-12-phase2-strategy-engine-design.md):
 (a) parse_tv_log pairs Entry/Exit rows and the PnL identity holds;
-(b) window-match + disjointness, with the plan's exact asserted numbers;
+(b) window-match + disjointness, with exact asserted counts;
 (c) opposite-direction on a matched date scores as a mismatch, not a match.
 """
 from datetime import date, datetime

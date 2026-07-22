@@ -2,7 +2,8 @@
 dataset, validate the generated trades against both real TradingView logs,
 and write backtest_results.json + charts/*.png.
 
-Task 5 (docs/superpowers/plans/2026-07-13-phase2-strategy-engine.md).
+From the Phase-2 strategy-engine spec
+(docs/specs/2026-07-12-phase2-strategy-engine-design.md).
 
 Run: .venv/Scripts/python run_backtest.py
 Requires: data/raw/Dataset_NQ_1min_2022_2025.csv (Phase-1 raw data, not
@@ -32,11 +33,11 @@ REAL_LOG_PATHS = {
     "optimised": "C:/Users/Alex/Projects/Trading-Strategy-Monte-Carlo-Simulation/data/NQ1_optimised.csv",
 }
 
-# Phase-1 raw-data coverage bounds (Global Constraints, plan doc).
+# Phase-1 raw-data coverage bounds (the Phase-2 spec's data window).
 DATA_WINDOW_START = date(2022, 12, 26)
 DATA_WINDOW_END = date(2025, 12, 11)
 
-# Known in-window real baselines (verified, Global Constraints) -- asserted
+# Known in-window real baselines (verified; see the Phase-2 spec) -- asserted
 # below so a parsing/window regression fails loudly instead of silently
 # shipping a wrong headline number.
 KNOWN_BASELINES = {

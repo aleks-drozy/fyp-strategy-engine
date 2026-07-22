@@ -1,6 +1,7 @@
 """Phase-6 cross-instrument confirmation runners.
 
-CONFIRMATION, NOT EXPLORATION (Global Constraints): nothing here re-tunes,
+CONFIRMATION, NOT EXPLORATION (the Phase-6 spec's cardinal rule): nothing
+here re-tunes,
 re-searches, or re-selects anything in response to Phase-6 data. `run_HA`
 runs the FROZEN Phase-5 walk-forward procedure (`tuning.walkforward_p5.
 walk_forward_p5`, reused verbatim -- not reimplemented) over folds tiled

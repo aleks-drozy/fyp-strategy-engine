@@ -3,7 +3,8 @@ grid, folds) doesn't raise, returns the expected structure, and each fold's
 test window is strictly after its train window -- on a SMALL grid over a
 SHORT real slice (not the full 144x4 sweep).
 
-Task 3 Step 4 (docs/superpowers/plans/2026-07-13-phase4-parameter-tuning.md).
+From the Phase-4 parameter-tuning spec
+(docs/specs/2026-07-13-phase4-parameter-tuning-design.md).
 This only proves plumbing (real data flows through walk_forward end-to-end
 without error); leakage/selection correctness is covered by
 tests/test_walkforward.py's synthetic-data tests. Skips if the raw Phase-1

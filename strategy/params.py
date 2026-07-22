@@ -1,18 +1,18 @@
 """Strategy parameters for the FYP IFVG+CISD NQ engine.
 
-From docs/superpowers/plans/2026-07-13-phase4-parameter-tuning.md, Task 1
-Step 1 (Global Constraints). Defaults MUST reproduce Phase 2 exactly --
-they are the Pine-source values the engine was originally hardcoded to
-(PT_VALUE/MAX_TRADES_PER_DAY stay engine-side constants, not params, per
-the plan).
+From the Phase-4 parameter-tuning spec
+(docs/specs/2026-07-13-phase4-parameter-tuning-design.md). Defaults MUST
+reproduce Phase 2 exactly -- they are the Pine-source values the engine was
+originally hardcoded to (PT_VALUE/MAX_TRADES_PER_DAY stay engine-side
+constants, not params, per that spec's field list).
 
-Phase 5 (docs/superpowers/plans/2026-07-13-phase5-exits-costs-volfilter.md,
-Task 1 Step 4) adds `exit_mode` and `vol_filter`, both defaulting to the
+Phase 5 (docs/specs/2026-07-13-phase5-exits-costs-volfilter-design.md) adds
+`exit_mode` and `vol_filter`, both defaulting to the
 Phase-2/4 base behavior so existing callers -- and the golden-fixture
 regression -- are unaffected. `exit_mode="fixed_1_5R"` selects the
 ORIGINAL, unmodified `backtest.engine._try_exit` stop/target logic (see
 engine.py's dispatch); the other 4 modes route through backtest/exits.py.
-`vol_filter` is a descriptive label for the Task-2 grid/walk-forward (its
+`vol_filter` is a descriptive label for the Phase-5 grid/walk-forward (its
 threshold-selection machinery lives there) -- `run_execution` itself is
 gated by the separate `atr`/`vol_threshold` arguments, not this field, so
 `vol_filter="off"` alone doesn't change `run_execution`'s behavior."""

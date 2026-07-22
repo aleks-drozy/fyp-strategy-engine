@@ -1,7 +1,8 @@
 """Phase-5 grid: exit_mode x vol_filter (20 combos, entry fixed at defaults).
 
-From docs/superpowers/plans/2026-07-13-phase5-exits-costs-volfilter.md, Task
-2 Step 1 (Global Constraints -- "Grid = 20"). Unlike Phase-4's `tuning/grid.py`
+From the Phase-5 exits/costs/vol-filter spec
+(docs/specs/2026-07-13-phase5-exits-costs-volfilter-design.md) -- the 20-combo
+grid. Unlike Phase-4's `tuning/grid.py`
 (which sweeps `fvg_threshold`/`rr`/`ema_length`/`swing_lookback`), the
 Phase-5 sweep is CONDITIONAL on the Phase-4-null default entry: every combo
 here uses `StrategyParams()`'s entry fields untouched (`fvg_threshold=0.0`,

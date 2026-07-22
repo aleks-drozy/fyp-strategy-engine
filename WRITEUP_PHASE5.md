@@ -21,7 +21,7 @@ burying it would be its own kind of dishonesty.
 
 ### The five pre-registered conditions
 
-Frozen in `docs/superpowers/plans/2026-07-13-phase5-exits-costs-volfilter.md`
+Frozen in `docs/specs/2026-07-13-phase5-exits-costs-volfilter-design.md`
 *before* the run. A positive verdict requires **all five**:
 
 | # | Condition | Required | Actual | Passes? |
@@ -244,7 +244,7 @@ breakeven even before the statistical-confidence question is asked.
 6. **Provenance note on `git_sha`.** `phase5_results.json` records
    `config_hash: 71ced75e…` and `git_sha: 37fa2dd…`. The recorded SHA is
    the **design-freeze parent commit** (the commit that landed the frozen
-   Task-1/2 grid, folds, cost model, and success rule), not the commit
+   grid, folds, cost model, and success rule), not the commit
    that produced the runner/results file itself — this project's
    single-shot workflow runs the sweep against the frozen design and
    commits the results *afterward*. The config hash is the load-bearing

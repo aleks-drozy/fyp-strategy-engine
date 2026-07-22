@@ -2,8 +2,9 @@
 NET-metric selection/null, and a selection floor decoupled from the filter
 under test.
 
-From docs/superpowers/plans/2026-07-13-phase5-exits-costs-volfilter.md, Task
-2 Step 3. Reuses Phase-4's `tuning/walkforward.py` machinery (`make_folds`,
+From the Phase-5 exits/costs/vol-filter spec
+(docs/specs/2026-07-13-phase5-exits-costs-volfilter-design.md). Reuses
+Phase-4's `tuning/walkforward.py` machinery (`make_folds`,
 `Fold`, `Selection`, `_slice_layer`, `MIN_IS_TRADES`, `PF_CAP`) but does NOT
 reuse `_precompute`/`_layer_for_params`/`_run_metrics`/`select_params`
 unchanged -- each is either inapplicable (grid_p5 varies only
@@ -126,7 +127,7 @@ def _in_session_signal_count(sliced_layer: dict) -> int:
 
 
 def _vol_threshold(train_sliced_layer: dict, vol_filter: str) -> float | None:
-    """The vol-filter threshold (leak-free, Global Constraints): the
+    """The vol-filter threshold (leak-free, per the Phase-5 spec): the
     `vol_filter`-th percentile of ATR% over the PINNED POPULATION -- every
     in-session signal bar in the TRAIN slice, before the vol gate/1-per-day
     cap/exit_mode. `"off"` -> None (no gate). The caller MUST always pass a

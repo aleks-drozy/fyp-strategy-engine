@@ -1,16 +1,17 @@
 """Walk-forward parameter tuning: no-leakage in-sample selection + honest
 out-of-sample evaluation, with a selection-luck null control.
 
-From docs/superpowers/plans/2026-07-13-phase4-parameter-tuning.md, Task 2
-Step 5. The Global Constraints govern the anti-leakage rules; the key ones
-are restated inline at their enforcement points below, not just here.
+From the Phase-4 parameter-tuning spec
+(docs/specs/2026-07-13-phase4-parameter-tuning-design.md), whose
+anti-leakage rules govern here; the key ones are restated inline at their
+enforcement points below, not just here.
 
 PRECOMPUTE-AND-SLICE. `compute_cisd` is param-free; `compute_ifvg` depends
 only on `fvg_threshold` (session is fixed at the `StrategyParams` default
 for the base grid); `compute_ema` depends only on `ema_length`. None of
 `compute_cisd`/`compute_ifvg`/`compute_ema`/`double_confirmation` look
-ahead -- each bar's output depends only on bars <= it (verified in Task-1/2
-review). So each is computed EXACTLY ONCE over the FULL `df`, cached by the
+ahead -- each bar's output depends only on bars <= it (verified in review).
+So each is computed EXACTLY ONCE over the FULL `df`, cached by the
 grid value that determines it, and then sliced per (fold, window) via
 `index.searchsorted(ts, side="left")` -- a purely positional, half-open
 `[start, end)` slice. Slicing a precomputed full-series array to a LATER
@@ -44,12 +45,12 @@ from strategy.session import in_session_mask
 from strategy.signals import double_confirmation
 from tuning.grid import EMA_GRID, FVG_GRID
 
-MIN_IS_TRADES = 50  # pre-registered selection floor (Global Constraints)
+MIN_IS_TRADES = 50  # pre-registered selection floor (Phase-4 spec)
 PF_CAP = 1e6  # cap on profit factor for all-win (gross_loss==0 -> inf) combos, so the
               # null-control distribution / median-combo PF can't be distorted by an inf.
 
-# Pre-registered fold windows (Global Constraints: "rolling 12mo train / 6mo
-# test / 6mo step"), expressed directly in half-open form:
+# Pre-registered fold windows (the spec's "rolling 12-month train / 6-month
+# test / 6-month step"), expressed directly in half-open form:
 # (train_start, test_start, test_end) with train = [train_start, test_start)
 # and test = [test_start, test_end). F4's test_end (2025-12-12) is past the
 # data's last bar (2025-12-11 20:52 ET) -- `_slice_layer`'s searchsorted
@@ -91,7 +92,7 @@ def make_folds() -> list[Fold]:
 
 
 def select_params(is_results: list[dict]) -> Selection:
-    """Pre-registered selection objective (Global Constraints): max
+    """Pre-registered selection objective (Phase-4 spec): max
     in-sample profit factor among combos with >= MIN_IS_TRADES trades;
     ties broken by higher trade count, then lower max_drawdown. Falls back
     to `StrategyParams()` (flagged via `fallback_used`) if no combo clears
@@ -190,9 +191,9 @@ def _slice_layer(layer: dict, start: pd.Timestamp, end: pd.Timestamp) -> dict:
     """Half-open positional slice `[start, end)` of a full-series layer via
     `index.searchsorted(ts, side="left")`. Every array in the layer is cut
     with the SAME `[a, b)` bounds, so they stay bar-for-bar aligned with
-    each other and with `df` -- this is the "1-bar-leak guard" the plan
-    calls out: a +1 error here would carry the next bar's signal/EMA into
-    every decision in the window.
+    each other and with `df` -- this is the 1-bar-leak guard: a +1 error
+    here would carry the next bar's signal/EMA into every decision in the
+    window.
     """
     idx = layer["index"]
     a = idx.searchsorted(start, side="left")
@@ -234,7 +235,7 @@ def _bootstrap_pf_ci(
     """Bootstrap CI on profit factor: resample `pnls` with replacement
     `n_boot` times using a caller-supplied, already-seeded
     `numpy.random.Generator` (deterministic and reproducible per fold --
-    never `random`/time-based, per the plan). PF is capped at `cap` before
+    never `random`/time-based). PF is capped at `cap` before
     taking percentiles so an all-win resample (gross_loss == 0 -> PF = inf
     under `metrics.profit_factor`'s convention) can't blow up the
     percentile computation.
@@ -325,7 +326,7 @@ def walk_forward(df: pd.DataFrame, grid: list[StrategyParams], folds: list[Fold]
         ]
 
         # Cap PF (all-win combos give gross_loss==0 -> inf) so an inf can't
-        # distort the median-combo null the Task-3 success rule compares against.
+        # distort the median-combo null the success rule compares against.
         oos_pf_distribution = [min(r["profit_factor"], PF_CAP) for r in oos_results]
         selected_oos = next(r for r in oos_results if r["params"] == selection.params)
         default_oos = next(r for r in oos_results if r["params"] == default)

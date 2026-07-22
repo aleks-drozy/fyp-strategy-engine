@@ -1,8 +1,9 @@
 """Reason-aware trading cost model: commission + slippage applied to a
 Trade's gross P&L.
 
-From docs/superpowers/plans/2026-07-13-phase5-exits-costs-volfilter.md, Task
-1 Step 2 (Global Constraints, Blocker 1 -- "no differential under-costing").
+From the Phase-5 exits/costs/vol-filter spec
+(docs/specs/2026-07-13-phase5-exits-costs-volfilter-design.md): reason-aware
+costs, with no differential under-costing of the new treatment arms.
 Pre-registered constants (frozen; not tuned): TICK_VALUE=5.0 USD/tick,
 COMMISSION_RT=5.0 USD, SLIPPAGE_TICKS_ENTRY=1, SLIPPAGE_TICKS_EXIT=1.
 
@@ -22,8 +23,8 @@ entry slippage is charged ONCE, not once per leg. Commission, by contrast,
 is charged PER FILL (a broker commission per contract/exit event), so a
 partial trade pays two commissions -- one per leg. The engine (backtest/
 exits.py) calls `net_pnl` once per leg (`charge_entry=True` on the first,
-`charge_entry=False` on the rest) and sums the results ("Net is computed
-per fill and summed" -- Global Constraints).
+`charge_entry=False` on the rest) and sums the results -- the spec charges
+commission per fill, with per-leg slippage.
 """
 
 from dataclasses import dataclass

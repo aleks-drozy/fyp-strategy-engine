@@ -4,8 +4,8 @@ Vendored (unchanged logic) from
 C:/Users/Alex/Projects/Trading-Strategy-Monte-Carlo-Simulation/mc/metrics.py
 because that module lives in a separate, unrelated repo and importing across
 repos would require sys.path surgery. profit_factor, win_rate, total_pnl are
-used by validate_trades.py; max_drawdown was added for run_backtest.py
-(Task 5). See the source file for the fuller metrics set (equity_curve,
+used by validate_trades.py; max_drawdown was added for run_backtest.py.
+See the source file for the fuller metrics set (equity_curve,
 longest_losing_streak) if this repo ever needs those too.
 """
 from __future__ import annotations

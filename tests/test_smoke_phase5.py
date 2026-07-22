@@ -3,7 +3,8 @@ grid, folds, cost_model) doesn't raise, returns the expected structure, and
 net metrics (not gross) are present -- on a SMALL grid over a SHORT real
 slice (not the full 20x4 sweep).
 
-Task 3 Step 4 (docs/superpowers/plans/2026-07-13-phase5-exits-costs-volfilter.md).
+From the Phase-5 exits/costs/vol-filter spec
+(docs/specs/2026-07-13-phase5-exits-costs-volfilter-design.md).
 This only proves plumbing (real data flows through walk_forward_p5 end-to-end
 without error); leakage/selection/net-routing correctness is covered by
 tests/test_walkforward_p5.py's synthetic-data tests. Skips if the raw Phase-1

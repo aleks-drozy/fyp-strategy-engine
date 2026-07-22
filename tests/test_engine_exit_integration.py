@@ -4,7 +4,8 @@ the `len(atr) == len(sig)` guard), and the full per-bar-loop dispatch to a
 non-fixed_1_5R exit mode / a CostModel, end to end (not just the isolated
 `exits.manage_bar` unit tests in tests/test_exits.py).
 
-Task 1 Step 5 (docs/superpowers/plans/2026-07-13-phase5-exits-costs-volfilter.md).
+From the Phase-5 exits/costs/vol-filter spec
+(docs/specs/2026-07-13-phase5-exits-costs-volfilter-design.md).
 Reuses test_engine.py's monkeypatch style: a fixed, hand-picked signal via
 `double_confirmation` and a constant EMA far below/above price so the
 long/short filter is trivially satisfied, leaving only the execution-loop

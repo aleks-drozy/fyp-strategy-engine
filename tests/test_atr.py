@@ -1,6 +1,7 @@
 """Tests for strategy.atr.compute_atr.
 
-Task 1 Step 1 (docs/superpowers/plans/2026-07-13-phase5-exits-costs-volfilter.md).
+From the Phase-5 exits/costs/vol-filter spec
+(docs/specs/2026-07-13-phase5-exits-costs-volfilter-design.md).
 Hand-computed TR/ATR on a tiny 5-bar frame (period=2, alpha=0.5, so the
 Wilder recursion is easy to verify by hand); bar-0 fallback (no NaN); and a
 no-lookahead check (truncating the df to fewer bars can't change ATR values

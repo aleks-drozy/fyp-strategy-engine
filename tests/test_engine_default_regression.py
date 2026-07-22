@@ -1,6 +1,7 @@
 """Golden-trade regression lock for the parameterized engine.
 
-Phase 4, Task 1 Step 7 (docs/superpowers/plans/2026-07-13-phase4-parameter-tuning.md).
+From the Phase-4 parameter-tuning spec
+(docs/specs/2026-07-13-phase4-parameter-tuning-design.md).
 
 NOT a self-comparison (`backtest(df) == backtest(df, StrategyParams())` would
 be tautological -- same code path, always passes even if the refactor
@@ -11,12 +12,12 @@ captured from the ORIGINAL, pre-refactor engine
 exact capture script/commit) on the fixed deterministic slice
 `load_nq().loc["2024-05-01":"2024-07-31"]` (53 trades).
 
-Step 7b (primary lock): runs unconditionally except for the raw-data-absent
+Primary lock: runs unconditionally except for the raw-data-absent
 escape hatch (the fixture itself is committed; only the ability to
 regenerate `df_slice` from raw data requires the ~70MB CSV that isn't
 committed).
 
-Step 7c (secondary confirmation): the full-data default run still yields
+Secondary confirmation: the full-data default run still yields
 605 trades and profit_factor ~= 0.85886, matching the committed
 backtest_results.json. Skippable if raw data is absent.
 """

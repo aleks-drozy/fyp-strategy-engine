@@ -1,7 +1,8 @@
 """Coarse parameter grid for Phase-4 walk-forward tuning.
 
-From docs/superpowers/plans/2026-07-13-phase4-parameter-tuning.md, Global
-Constraints ("Coarse grid (144 combos)") and Task 2 Step 1.
+From the Phase-4 parameter-tuning spec
+(docs/specs/2026-07-13-phase4-parameter-tuning-design.md) -- the coarse
+144-combo grid.
 
 PRE-REGISTRATION FREEZE (anti-meta-overfitting): `FVG_GRID`, `RR_GRID`,
 `EMA_GRID`, `SWING_GRID` and their Cartesian product in `build_grid()` are

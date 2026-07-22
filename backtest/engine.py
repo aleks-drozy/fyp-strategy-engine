@@ -1,8 +1,9 @@
 """Bar-by-bar backtest execution loop for the FYP IFVG+CISD NQ strategy.
 
-From docs/superpowers/plans/2026-07-13-phase2-strategy-engine.md, Task 3
-("Backtest engine"). Reuses the strategy ports (session/ema/ifvg/cisd) and
-the double-confirmation transition trigger (Task 1-2) to drive a faithful
+From the Phase-2 strategy-engine spec
+(docs/specs/2026-07-12-phase2-strategy-engine-design.md). Reuses the strategy
+ports (session/ema/ifvg/cisd) and the double-confirmation transition
+trigger to drive a faithful
 per-bar simulation: session-gated entries, EMA-filtered direction, an
 8-bar swing stop (inclusive of the signal bar), a 1.5R target, 1 trade/day,
 1 contract, and a stop-first / gap-through exit fill model.
@@ -16,15 +17,14 @@ Three phases run per bar i, strictly in this order:
 
 No lookahead: every decision at bar i only reads bars <= i.
 
-Phase 4 (docs/superpowers/plans/2026-07-13-phase4-parameter-tuning.md, Task 1
-Step 5) split this into a cacheable signal layer and a cheap execution
-layer, and threaded a `StrategyParams` through both so the engine can be
-re-run cheaply over many (params, window) combinations for walk-forward
-tuning. `backtest(df, params=StrategyParams())` = the Phase-2 default
+Phase 4 (docs/specs/2026-07-13-phase4-parameter-tuning-design.md) split this
+into a cacheable signal layer and a cheap execution layer, and threaded a
+`StrategyParams` through both so the engine can be re-run cheaply over many
+(params, window) combinations for walk-forward tuning. `backtest(df, params=StrategyParams())` = the Phase-2 default
 behavior, byte-identical for defaults.
 
-Phase 5 (docs/superpowers/plans/2026-07-13-phase5-exits-costs-volfilter.md,
-Task 1 Step 5) adds three OPTIONAL `run_execution`/`backtest` arguments --
+Phase 5 (docs/specs/2026-07-13-phase5-exits-costs-volfilter-design.md) adds
+three OPTIONAL `run_execution`/`backtest` arguments --
 `cost_model`, `atr`, `vol_threshold` -- all `None` by default, and reads
 `params.exit_mode` to choose how an open trade is managed:
 `exit_mode="fixed_1_5R"` (the default) routes to the ORIGINAL, byte-for-byte
@@ -32,7 +32,8 @@ unmodified `_try_exit` below -- this is what makes the base path provably
 regression-locked (tests/test_engine_p5_regression.py) rather than merely
 "behaves the same" -- while the other 4 modes route to per-mode handlers in
 backtest/exits.py. `atr`/`vol_threshold` gate NEW entries only (an optional
-volatility filter, wired up fully in Phase 5 Task 2); `cost_model` (a
+volatility filter, wired up fully in the Phase-5 walk-forward);
+`cost_model` (a
 `backtest.costs.CostModel`) turns each closed trade's gross `pnl_usd` into
 a `net_pnl` -- `None` (the default) leaves `net_pnl == pnl_usd`.
 """
@@ -101,7 +102,7 @@ def run_execution(
     return the list of CLOSED trades.
 
     Trades still open at the end of the data are intentionally not
-    appended (see Task 3 spec: only resolved trades are returned).
+    appended (by design: only resolved trades are returned).
 
     `cost_model` (a `backtest.costs.CostModel`, optional): if given, every
     closed trade's `net_pnl` is `cost_model.net_pnl(...)`-derived from its

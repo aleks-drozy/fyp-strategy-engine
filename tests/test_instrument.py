@@ -1,4 +1,4 @@
-"""Phase-6 Task 2: InstrumentSpec + engine threading.
+"""Phase 6: InstrumentSpec + engine threading.
 
 The one thing that MUST hold: the NQ spec is the default everywhere, so all
 Phase 2-5 behavior is byte-preserved (the golden-fixture regression in

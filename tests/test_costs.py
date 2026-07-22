@@ -1,8 +1,8 @@
 """Tests for backtest.costs.CostModel.
 
-Task 1 Step 2 (docs/superpowers/plans/2026-07-13-phase5-exits-costs-volfilter.md,
-Global Constraints -- Blocker 1: reason-aware costs, no differential
-under-costing of the new treatment arms).
+From the Phase-5 exits/costs/vol-filter spec
+(docs/specs/2026-07-13-phase5-exits-costs-volfilter-design.md) -- Blocker 1:
+reason-aware costs, no differential under-costing of the new treatment arms.
 
 Default constants: commission_rt=$5.00, slippage_ticks_entry=1,
 slippage_ticks_stop=1, tick_value=$5.00/tick, multiplier=1.0 -- so each

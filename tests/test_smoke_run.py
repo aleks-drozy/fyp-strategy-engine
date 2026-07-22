@@ -1,7 +1,8 @@
 """Smoke test for the core call run_backtest.py makes: backtest(load_nq())
 doesn't raise and returns a list[Trade], on a small real 2-day slice.
 
-Task 5 Step 3 (docs/superpowers/plans/2026-07-13-phase2-strategy-engine.md).
+From the Phase-2 strategy-engine spec
+(docs/specs/2026-07-12-phase2-strategy-engine-design.md).
 This only proves plumbing (real data loads and flows through the engine
 without error) -- backtest correctness is covered by tests/test_engine.py's
 synthetic fixtures. Skips if the raw Phase-1 NQ CSV isn't present locally

@@ -1,6 +1,7 @@
 """Per-instrument contract specifications (Phase 6).
 
-Frozen constants from the Phase-6 plan's Global Constraints — CME e-mini
+Frozen constants from the Phase-6 cross-instrument-proof spec
+(docs/specs/2026-07-14-phase6-cross-instrument-proof-design.md) — CME e-mini
 contract specs, used to thread $/point and $/tick through the engine and
 cost model so ES/NQ/YM are each costed and P&L'd correctly:
 

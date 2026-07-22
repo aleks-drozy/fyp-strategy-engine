@@ -1,10 +1,11 @@
 """Tests for backtest.engine.backtest -- the bar-by-bar execution loop.
 
-Task 3 Step 2 (docs/superpowers/plans/2026-07-13-phase2-strategy-engine.md).
+From the Phase-2 strategy-engine spec
+(docs/specs/2026-07-12-phase2-strategy-engine-design.md).
 
 `compute_ifvg`/`compute_cisd`/`double_confirmation` are already characterized
-against Pine logic in tests/test_ifvg.py, test_cisd.py and test_signals.py
-(Tasks 1-2). These tests isolate the EXECUTION loop -- fill timing,
+against Pine logic in tests/test_ifvg.py, test_cisd.py and test_signals.py.
+These tests isolate the EXECUTION loop -- fill timing,
 stop-first/gap-through exits, the 1-trade/day cap, the session gate, and
 no-lookahead -- by monkeypatching `double_confirmation` (to fire an exact,
 hand-picked signal at an exact bar position) and `compute_ema` (to a
